@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="PurchasedPianoList.aspx.cs" Inherits="_1_List" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="PurchasesPianosDataEntry.aspx.cs" Inherits="_1_DataEntry" %>
 
 <!DOCTYPE html>
 
