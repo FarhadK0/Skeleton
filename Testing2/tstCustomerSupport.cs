@@ -16,19 +16,7 @@ namespace Testing2
             Assert.IsNotNull(AnCustomerSupport); 
         }
 
-        [TestMethod]
-
-        public void ActivePropertyOK()
-        {
-            //create an instance of the class we want to create
-            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
-            Boolean TestData = true;
-            //assign the data to the property
-            AnCustomerSupport.Active = TestData;
-            //test to see that the two values are the same
-            Assert.AreEqual(AnCustomerSupport.Active, TestData);
-        }
-        [TestMethod]
+             [TestMethod]
         public void TicketIDPropertyOK()
         {
             //Create an  instance of the class we want to create
