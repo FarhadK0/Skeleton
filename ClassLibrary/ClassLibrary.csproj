@@ -45,6 +45,7 @@
     <Compile Include="clsCustomerSupport.cs" />
     <Compile Include="clsDataConnection.cs" />
     <Compile Include="clsPiano.cs" />
+    <Compile Include="clsPurchases.cs" />
     <Compile Include="clsPurchasesPiano.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
