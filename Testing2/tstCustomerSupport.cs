@@ -17,7 +17,8 @@ namespace Testing2
         }
 
 
-        [TestMethod]
+             [TestMethod]
+
         public void TicketIDPropertyOK()
         {
             //Create an  instance of the class we want to create
