@@ -21,6 +21,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         //capture Ticket Type
         AnCustomerSupport.TicketType = txtTicketType.Text;
+        AnCustomerSupport.Subject = txtSubject.Text;
+        AnCustomerSupport.Description = txtDescription.Text;
+        AnCustomerSupport.SubmissionDate = Convert.ToDateTime(DateTime.Now);
+        AnCustomerSupport.TicketStatus = txtTicketStatus.Text;
+        AnCustomerSupport.RaiseTicketStatus = chkActive.Checked;
 
         //store the Ticket in the sesssion object
         Session["AnCustomerSupport"] = AnCustomerSupport;

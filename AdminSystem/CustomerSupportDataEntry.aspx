@@ -35,7 +35,7 @@
         <asp:TextBox ID="txtSubject" runat="server" height="22px" style="z-index: 1; left: 162px; top: 123px; position: absolute" width="153px"></asp:TextBox>
         <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click1" style="z-index: 1; left: 29px; top: 377px; position: absolute" Text="OK" />
         <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 119px; top: 379px; position: absolute" Text="Cancel" />
-        <asp:CheckBox ID="lblYes" runat="server" style="z-index: 1; left: 165px; top: 321px; position: absolute" Text="Yes" />
+        <asp:CheckBox ID="chkActive" runat="server" style="z-index: 1; left: 165px; top: 321px; position: absolute" Text="Active" />
     </form>
 </body>
 </html>

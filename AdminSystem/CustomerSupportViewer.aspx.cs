@@ -18,5 +18,15 @@ public partial class _1Viewer : System.Web.UI.Page
 
         //display the TicketType number for this entry
         Response.Write(AnCustomerSupport.TicketType);
+        Response.Write("<br>");
+        Response.Write(AnCustomerSupport.Subject);
+        Response.Write("<br>");
+        Response.Write(AnCustomerSupport.Description);
+        Response.Write("<br>");
+        Response.Write(AnCustomerSupport.SubmissionDate);
+        Response.Write("<br>");
+        Response.Write(AnCustomerSupport.TicketStatus);
+        Response.Write("<br>");
+        Response.Write(AnCustomerSupport.RaiseTicketStatus);
     }
 }
