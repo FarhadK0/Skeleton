@@ -16,7 +16,9 @@ namespace Testing2
             Assert.IsNotNull(AnCustomerSupport); 
         }
 
+
              [TestMethod]
+
         public void TicketIDPropertyOK()
         {
             //Create an  instance of the class we want to create

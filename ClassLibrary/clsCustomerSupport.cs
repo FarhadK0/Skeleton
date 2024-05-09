@@ -3,8 +3,7 @@
 namespace ClassLibrary
 {
     public class clsCustomerSupport
-    {
-        public bool Active { get; set; }
+    { 
         public int TicketID { get; set; }
         public string TicketType { get; set; }
         public string Subject { get; set; }
