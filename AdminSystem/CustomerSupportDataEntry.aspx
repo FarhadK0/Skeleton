@@ -27,7 +27,7 @@
         <asp:Label ID="lblTicketType" runat="server" height="19px" style="z-index: 1; left: 7px; top: 82px; position: absolute" Text="TicketType" width="54px"></asp:Label>
         <asp:Label ID="lblDate" runat="server" height="19px" style="z-index: 1; left: 7px; top: 214px; position: absolute" Text="SubmissionDate" width="54px"></asp:Label>
         <asp:Label ID="lblStatus" runat="server" height="19px" style="z-index: 1; left: 6px; top: 268px; position: absolute" Text="TicketStatus" width="54px"></asp:Label>
-        <asp:Label ID="lblRaiseTicket" runat="server" height="19px" style="z-index: 1; left: 7px; top: 324px; position: absolute" Text="RaiseTicket" width="54px"></asp:Label>
+        <asp:Label ID="lblElevated" runat="server" height="19px" style="z-index: 1; left: 7px; top: 324px; position: absolute" Text="Elevated" width="54px"></asp:Label>
         <asp:TextBox ID="txtDescription" runat="server" height="22px" style="z-index: 1; left: 160px; top: 162px; position: absolute" width="153px"></asp:TextBox>
         <asp:TextBox ID="txtSbmissionDate" runat="server" height="22px" style="z-index: 1; left: 160px; top: 208px; position: absolute" width="153px"></asp:TextBox>
         <asp:TextBox ID="txtTicketStatus" runat="server" height="22px" style="z-index: 1; left: 160px; top: 263px; position: absolute" width="153px"></asp:TextBox>

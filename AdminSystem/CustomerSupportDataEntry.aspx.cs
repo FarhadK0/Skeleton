@@ -25,7 +25,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         AnCustomerSupport.Description = txtDescription.Text;
         AnCustomerSupport.SubmissionDate = Convert.ToDateTime(DateTime.Now);
         AnCustomerSupport.TicketStatus = txtTicketStatus.Text;
-        AnCustomerSupport.RaiseTicketStatus = chkActive.Checked;
+        AnCustomerSupport.TicketElevated = chkActive.Checked;
 
         //store the Ticket in the sesssion object
         Session["AnCustomerSupport"] = AnCustomerSupport;
