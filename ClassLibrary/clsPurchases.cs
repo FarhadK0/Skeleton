@@ -8,8 +8,8 @@ namespace ClassLibrary
         public DateTime OrderDate { get; set; }
         public string CustomerName { get; set; }
         public string DeliveryOptions { get; set; }
-        public double ProductPrice { get; set; }
+        public decimal ProductPrice { get; set; }
         public int Quantity { get; set; }
-        public double TotalAmount { get; set; }
+        public decimal TotalAmount { get; set; }
     }
 }
