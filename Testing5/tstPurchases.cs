@@ -93,7 +93,7 @@ namespace Testing5
             clsPurchases APurchase = new clsPurchases();
 
             //some test data to assign to the Purchase
-            double testProductPrice = 1;
+            decimal testProductPrice = 1;
 
             //Assign data to the ProductPrice
             APurchase.ProductPrice = testProductPrice;
@@ -127,7 +127,7 @@ namespace Testing5
             clsPurchases APurchase = new clsPurchases();
 
             //some test data to assign to the Purchase
-            double testTotalAmount = 1;
+            decimal testTotalAmount = 1;
 
             //Assign data to the ProductPrice
             APurchase.TotalAmount = testTotalAmount;
