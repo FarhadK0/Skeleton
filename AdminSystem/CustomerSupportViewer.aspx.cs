@@ -27,6 +27,6 @@ public partial class _1Viewer : System.Web.UI.Page
         Response.Write("<br>");
         Response.Write(AnCustomerSupport.TicketStatus);
         Response.Write("<br>");
-        Response.Write(AnCustomerSupport.RaiseTicketStatus);
+        Response.Write(AnCustomerSupport.TicketElevated);
     }
 }
