@@ -120,7 +120,7 @@ namespace Testing3
             //create a Boolean variable to store the results of the validation
             Boolean Found = false;
             //create some test data to use with the method
-            Int32 PianoId = 1;
+            Int32 PianoId = 2;
             //invoke the method
             Found = aPiano.Find(PianoId);
             //test to see if result is true
@@ -138,11 +138,11 @@ namespace Testing3
             //create a Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 PianoId = 1;
+            Int32 PianoId = 2;
             //invoke the method
             Found = aPiano.Find(PianoId);
             //check the address id property
-            if (aPiano.PianoId != 1)
+            if (aPiano.PianoId != 2)
             {
                 OK = false;
             }
@@ -160,11 +160,11 @@ namespace Testing3
             //create a Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 PianoId = 1;
+            Int32 PianoId = 2;
             //invoke the method
             Found = aPiano.Find(PianoId);
             //check the address id property
-            if (aPiano.DateAdded != Convert.ToDateTime("12/05/2024"))
+            if (aPiano.DateAdded != Convert.ToDateTime("12/06/2024"))
             {
                 OK = false;
             }
@@ -182,7 +182,7 @@ namespace Testing3
             //create a Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 PianoId = 1;
+            Int32 PianoId = 2;
             //invoke the method
             Found = aPiano.Find(PianoId);
             //check the address id property
@@ -204,11 +204,11 @@ namespace Testing3
             //create a Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 PianoId = 1;
+            Int32 PianoId = 2;
             //invoke the method
             Found = aPiano.Find(PianoId);
             //check the address id property
-            if (aPiano.Manufacturer != "Yamaha")
+            if (aPiano.Manufacturer != "Kawai")
             {
                 OK = false;
             }
@@ -226,11 +226,11 @@ namespace Testing3
             //create a Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 PianoId = 1;
+            Int32 PianoId = 2;
             //invoke the method
             Found = aPiano.Find(PianoId);
             //check the address id property
-            if (aPiano.ModelName != "Upright B1")
+            if (aPiano.ModelName != "GX")
             {
                 OK = false;
             }
@@ -248,7 +248,7 @@ namespace Testing3
             //create a Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 PianoId = 1;
+            Int32 PianoId = 2;
             //invoke the method
             Found = aPiano.Find(PianoId);
             //check the address id property
@@ -270,11 +270,11 @@ namespace Testing3
             //create a Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 PianoId = 1;
+            Int32 PianoId = 2;
             //invoke the method
             Found = aPiano.Find(PianoId);
             //check the address id property
-            if (aPiano.SerialNumber != "928719308")
+            if (aPiano.SerialNumber != "00231")
             {
                 OK = false;
             }

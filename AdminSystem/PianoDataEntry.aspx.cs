@@ -37,4 +37,29 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Response.Redirect("PianoViewer.aspx");
 
     }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        //create an instance of the piano class
+        clsPiano aPiano = new clsPiano();
+        //variable for storing primary key
+        Int32 PianoId;
+        //variable for storing find result
+        Boolean Found = false;
+        //retrieve PianoId from user entry
+        PianoId = Convert.ToInt32(txtPianoId.Text);
+        //Find the record
+        Found = aPiano.Find(PianoId);
+
+        //if found:
+        if (Found == true)
+        {
+            txtDateAdded.Text = aPiano.DateAdded.ToString();
+            txtPrice.Text = aPiano.Price.ToString();
+            txtManufacturer.Text = aPiano.Manufacturer;
+            txtModelName.Text = aPiano.ModelName;
+            txtSerialNumber.Text = aPiano.SerialNumber;
+            chkIsInStock.Checked = aPiano.IsInStock;
+        }
+    }
 }
