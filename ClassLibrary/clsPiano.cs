@@ -105,19 +105,36 @@ namespace ClassLibrary
             }
         }
 
-        public bool Find(int pianoId)
+        /**FIND METHOD**/
+        public bool Find(int PianoId)
         {
-            //set private data members to test value
-            mPianoId = 1;
-            mDateAdded = Convert.ToDateTime("12/05/2024");
-            mPrice = 399.99;
-            mManufacturer = "Yamaha";
-            mModelName = "Upright B1";
-            mIsInStock = true;
-            mSerialNumber = "928719308";
-            
-            // Force always true
-            return true;
+            //create an instance of the data conection
+            clsDataConnection db = new clsDataConnection();
+            //add the parameter for the piano id to search for
+            db.AddParameter("@PianoId", PianoId);
+            //execute the stored procedure
+            db.Execute("sproc_tblPiano_FilterByPianoId");
+
+            //if and ONLY IF one record is found:
+            if (db.Count == 1)
+            {
+                mPianoId = Convert.ToInt32(db.DataTable.Rows[0]["PianoId"]);
+                mDateAdded = Convert.ToDateTime(db.DataTable.Rows[0]["DateAdded"]);
+                mPrice = Convert.ToDouble(db.DataTable.Rows[0]["Price"]);
+                mManufacturer = Convert.ToString(db.DataTable.Rows[0]["Manufacturer"]);
+                mModelName = Convert.ToString(db.DataTable.Rows[0]["ModelName"]);
+                mIsInStock = Convert.ToBoolean(db.DataTable.Rows[0]["IsInStock"]);
+                mSerialNumber = Convert.ToString(db.DataTable.Rows[0]["SerialNumber"]);
+
+                return true;
+            }
+            //otherwise if NO record was found:
+            else
+            {
+                //indicate there's a potential problem
+                return false;
+            }
+
         }
     }
 }
