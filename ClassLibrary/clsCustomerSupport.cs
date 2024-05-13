@@ -138,16 +138,40 @@ namespace ClassLibrary
 
         public bool Find(int TicketID)
         {
-            //set the private data members to the test data value
-            cTicketID = 21;
-            cTicketType = "TechniqalSupport";
-            cSubject = "Error";
-            cDescription = "Full Details";
-            cSubmissionDate = Convert.ToDateTime("09/06/2024");
-            cTicketStatus= "InProgress";
-            cTicketElevated = true;
-            //Always return true
-            return true;
+            //create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+
+            //add the parameter for the TicketID to search for
+            DB.AddParameter("@TicketID", TicketID);
+
+            //execute the stores procedure
+            DB.Execute("sproc_CustomerSupport_FilterByTicketID");
+
+            //if one record is found (there should be either one or zero)
+            if (DB.Count == 1)
+            {
+                cTicketID = Convert.ToInt32(DB.DataTable.Rows[0]["TicketID"]);
+                cTicketType = Convert.ToString(DB.DataTable.Rows[0]["TicketType"]);
+                cSubject = Convert.ToString(DB.DataTable.Rows[0]["Subject"]);
+                cDescription = Convert.ToString(DB.DataTable.Rows[0]["Description"]);
+                cSubmissionDate = Convert.ToDateTime(DB.DataTable.Rows[0]["SubmissionDate"]);
+                cTicketStatus = Convert.ToString(DB.DataTable.Rows[0]["TicketStatus"]);
+                cTicketElevated = Convert.ToBoolean(DB.DataTable.Rows[0]["TicketElevated"]);
+
+                //return that everthing worked ok
+                return true;
+
+
+
+            }
+
+            //if no record was found
+            else
+            {
+                //return false indicating there is a problem
+                return false;
+            }
+
         }
     }
 }
