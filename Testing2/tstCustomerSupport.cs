@@ -155,7 +155,7 @@ namespace Testing2
             Boolean Found = false;
 
             //create some test data to use with the method
-            Int32 TicketID = 21;
+            Int32 TicketID = 1;
 
             //invoke the method
             Found = AnCustomerSupport.Find(TicketID);
@@ -179,14 +179,14 @@ namespace Testing2
             Boolean OK = true;
 
             //Create some test data to use withe the method
-            Int32 TicketID = 21;
+            Int32 TicketID = 1;
         
 
              //invoke the method
              Found = AnCustomerSupport.Find(TicketID);
 
             //check the TicketID
-            if (AnCustomerSupport.TicketID != 21)
+            if (AnCustomerSupport.TicketID != 1)
             {
                 OK = false;
             }
@@ -210,13 +210,13 @@ namespace Testing2
             Boolean OK = true;
 
             //create some test data to use with the method
-            Int32 TicketID = 21;
+            Int32 TicketID = 1;
 
             //invoke the method
             Found = AnCustomerSupport.Find(TicketID);
 
             //check the TicketType property
-            if (AnCustomerSupport.TicketType != "TechniqalSupport")
+            if (AnCustomerSupport.TicketType != "BillInquiry")
             {
                 OK = false;
             }
@@ -238,7 +238,7 @@ namespace Testing2
             Boolean OK = true;
 
             //create some test data to use with the method
-            Int32 TicketID = 21;
+            Int32 TicketID = 1;
 
             //invoke the method
             Found = AnCustomerSupport.Find(TicketID);
@@ -266,13 +266,13 @@ namespace Testing2
             Boolean OK = true;
 
             //create some test data to use with the method
-            Int32 TicketID = 21;
+            Int32 TicketID = 1;
 
             //invoke the method
             Found = AnCustomerSupport.Find(TicketID);
 
             //check the Description Property
-            if (AnCustomerSupport.Description != "Full Details")
+            if (AnCustomerSupport.Description != "Hello")
             {
                 OK = false;
             }
@@ -294,13 +294,13 @@ namespace Testing2
             Boolean OK = true;
 
             //create some test data to use with the method
-            Int32 TicketID = 21;
+            Int32 TicketID = 1;
 
             //invoke the method
             Found = AnCustomerSupport.Find(TicketID);
 
             //check the SubmissionDate Property
-            if (AnCustomerSupport.SubmissionDate != Convert.ToDateTime("09/06/2024"))
+            if (AnCustomerSupport.SubmissionDate != Convert.ToDateTime("02/05/2024"))
             {
                 OK = false;
             }
@@ -322,13 +322,13 @@ namespace Testing2
             Boolean OK = true;
 
             //create some test data to use with the method
-            Int32 TicketID = 21;
+            Int32 TicketID = 1;
 
             //invoke the method
             Found = AnCustomerSupport.Find(TicketID);
 
             //check the Description Property
-            if (AnCustomerSupport.TicketStatus != "InProgress")
+            if (AnCustomerSupport.TicketStatus != "open")
             {
                 OK = false;
             }
@@ -349,13 +349,13 @@ namespace Testing2
             Boolean OK = true;
 
             //create some test data to use with the method
-            Int32 TicketID = 21;
+            Int32 TicketID = 1;
 
             //invoke the method
             Found = AnCustomerSupport.Find(TicketID);
 
             //check the Description Property
-            if (AnCustomerSupport.TicketElevated != true)
+            if (AnCustomerSupport.TicketElevated != false)
             {
                 OK = false;
             }
