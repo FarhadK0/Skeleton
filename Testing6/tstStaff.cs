@@ -100,6 +100,7 @@ namespace Testing6
             Assert.AreEqual(AStaff.IsManager, TestData);
 
         }
+        
 
 
 
