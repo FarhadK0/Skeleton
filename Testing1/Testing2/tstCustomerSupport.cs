@@ -7,16 +7,20 @@ namespace Testing2
     [TestClass]
     public class tstCustomerSupport
     {
+       
+
         [TestMethod]
         public void InstantOK()
         {
             //create a instance of the class we want to create
             clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
             //test to see that it exists
-            Assert.IsNotNull(AnCustomerSupport); 
+            Assert.IsNotNull(AnCustomerSupport);
         }
 
-             [TestMethod]
+
+        [TestMethod]
+
         public void TicketIDPropertyOK()
         {
             //Create an  instance of the class we want to create
@@ -95,7 +99,7 @@ namespace Testing2
             clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
 
             //create some test data to assing to the property
-           DateTime TestData = DateTime.Now.Date;
+            DateTime TestData = DateTime.Now.Date;
 
             //assign the data to the property
             AnCustomerSupport.SubmissionDate = TestData;
@@ -125,7 +129,7 @@ namespace Testing2
         }
 
         [TestMethod]
-        public void RaiseTicketPropertyOK()
+        public void TicketElevatedPropertyOK()
         {
             //Create an  instance of the class we want to create
             clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
@@ -134,12 +138,232 @@ namespace Testing2
             Boolean TestData = true;
 
             //assign the data to the property
-            AnCustomerSupport.RaiseTicketStatus = TestData;
+            AnCustomerSupport.TicketElevated = TestData;
 
             //test to see that the two values are the same
-            Assert.AreEqual(AnCustomerSupport.RaiseTicketStatus, TestData);
+            Assert.AreEqual(AnCustomerSupport.TicketElevated, TestData);
 
 
         }
+        [TestMethod]
+        public void FindMethoOK()
+        {
+            //Create an  instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //create a boolean variable to store the results of the validation
+            Boolean Found = false;
+
+            //create some test data to use with the method
+            Int32 TicketID = 1;
+
+            //invoke the method
+            Found = AnCustomerSupport.Find(TicketID);
+
+            //test to see if the result is true
+            Assert.IsTrue(Found);
+
+
+        }
+
+        [TestMethod]
+        public void TestTicketIDFound() 
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //create a boolean variable to store the result of the search
+            Boolean Found = false;
+
+            //create a boolean variable to record if the data is OK (assume it is)
+            Boolean OK = true;
+
+            //Create some test data to use withe the method
+            Int32 TicketID = 1;
+        
+
+             //invoke the method
+             Found = AnCustomerSupport.Find(TicketID);
+
+            //check the TicketID
+            if (AnCustomerSupport.TicketID != 1)
+            {
+                OK = false;
+            }
+            
+
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+
+        }
+
+        [TestMethod]
+        public void TestTicketTypeFound() 
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //create a Boolean variable to store the result of the search
+            Boolean Found = false;
+
+            //create a Boolean variable to record if data is OK (assume it is)
+            Boolean OK = true;
+
+            //create some test data to use with the method
+            Int32 TicketID = 1;
+
+            //invoke the method
+            Found = AnCustomerSupport.Find(TicketID);
+
+            //check the TicketType property
+            if (AnCustomerSupport.TicketType != "BillInquiry")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+
+        }
+
+        [TestMethod]
+        public void TestSubjectFound() 
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //create a Boolean variable to store the result of the search
+            Boolean Found = false;
+
+            //create a Boolean variable to record if data is OK (assume it is)
+            Boolean OK = true;
+
+            //create some test data to use with the method
+            Int32 TicketID = 1;
+
+            //invoke the method
+            Found = AnCustomerSupport.Find(TicketID);
+
+            //check the Subject Property
+            if (AnCustomerSupport.Subject != "Error")
+            {
+                OK = false;
+            }
+
+            //test to see the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestDescriptionFound()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //create a Boolean variable to store the result of the search
+            Boolean Found = false;
+
+            //create a Boolean variable to record if data is OK (assume it is)
+            Boolean OK = true;
+
+            //create some test data to use with the method
+            Int32 TicketID = 1;
+
+            //invoke the method
+            Found = AnCustomerSupport.Find(TicketID);
+
+            //check the Description Property
+            if (AnCustomerSupport.Description != "Hello")
+            {
+                OK = false;
+            }
+
+            //test to see the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestSubmissionDateFound()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //create a Boolean variable to store the result of the search
+            Boolean Found = false;
+
+            //create a Boolean variable to record if data is OK (assume it is)
+            Boolean OK = true;
+
+            //create some test data to use with the method
+            Int32 TicketID = 1;
+
+            //invoke the method
+            Found = AnCustomerSupport.Find(TicketID);
+
+            //check the SubmissionDate Property
+            if (AnCustomerSupport.SubmissionDate != Convert.ToDateTime("02/05/2024"))
+            {
+                OK = false;
+            }
+
+            //test to see the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestTicketStatusFound()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //create a Boolean variable to store the result of the search
+            Boolean Found = false;
+
+            //create a Boolean variable to record if data is OK (assume it is)
+            Boolean OK = true;
+
+            //create some test data to use with the method
+            Int32 TicketID = 1;
+
+            //invoke the method
+            Found = AnCustomerSupport.Find(TicketID);
+
+            //check the Description Property
+            if (AnCustomerSupport.TicketStatus != "open")
+            {
+                OK = false;
+            }
+
+            //test to see the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        public void TestTicketElevatedFound()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //create a Boolean variable to store the result of the search
+            Boolean Found = false;
+
+            //create a Boolean variable to record if data is OK (assume it is)
+            Boolean OK = true;
+
+            //create some test data to use with the method
+            Int32 TicketID = 1;
+
+            //invoke the method
+            Found = AnCustomerSupport.Find(TicketID);
+
+            //check the Description Property
+            if (AnCustomerSupport.TicketElevated != false)
+            {
+                OK = false;
+            }
+
+            //test to see the result is correct
+            Assert.IsTrue(OK);
+        }
     }
+        
+    
 }
