@@ -136,5 +136,320 @@ namespace Testing5
             Assert.AreEqual(APurchase.TotalAmount, testTotalAmount);
 
         }
+
+        [TestMethod]
+        public void OrderConfirmedOK()
+        {
+            //New Instance of TotalAmount
+            clsPurchases APurchase = new clsPurchases();
+
+            //some test data to assign to the Purchase
+            Boolean testOrderConfirmed = true;
+
+            //Assign data to the ProductPrice
+            APurchase.OrderConfirmed = testOrderConfirmed;
+
+            //test
+            Assert.AreEqual(APurchase.OrderConfirmed, testOrderConfirmed);
+
+        }
+
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            //Create an instance of the class we want to create
+            clsPurchases APurchase = new clsPurchases();
+
+            //Create a boolean variable to store the results of the validation
+            Boolean Found = false;
+
+            //Create some test data to use with the method
+            Int32 PurchaseId = 1;
+
+            //Invoke the method
+            Found = APurchase.Find(PurchaseId);
+
+            //Test to see if the result is true
+            Assert.IsTrue(Found);
+        }
+
+        [TestMethod]
+        public void TestPurchaseIdFound()
+        {
+            //Create an instance of the class we want to create 
+            clsPurchases APurchase = new clsPurchases();
+
+            //Create a Boolean variable to store the result of the search
+            Boolean Found = false;
+
+            //Create a Boolean variable to record if the data is OK
+            Boolean OK = true;
+
+            //Some test data to use with the method
+            Int32 PurchaseId = 1;
+
+            //Invoked Method
+            Found = APurchase.Find(PurchaseId);
+
+            //checking PurchaseId
+            if (APurchase.PurchaseId != 1)
+            {
+                OK = false;
+            }
+
+            //test to see if result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestOrderDateFound()
+        {
+            //Create an instance of the class we want to create 
+            clsPurchases APurchase = new clsPurchases();
+
+            //Create a Boolean variable to store the result of the search
+            Boolean Found = false;
+
+            //Create a Boolean variable to record if the data is OK
+            Boolean OK = true;
+
+            //Some test data to use with the method
+            Int32 PurchaseId = 1;
+
+            //Invoked Method
+            Found = APurchase.Find(PurchaseId);
+
+            //Check the OrderDate Property
+            if (APurchase.OrderDate != Convert.ToDateTime("14/05/2024"))
+            {
+                OK = false;
+            }
+
+            //Test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestCustomerNameFound()
+        {
+            //Create an instance of the class we want to create 
+            clsPurchases APurchase = new clsPurchases();
+
+            //Create a Boolean variable to store the result of the search
+            Boolean Found = false;
+
+            //Create a Boolean variable to record if the data is OK
+            Boolean OK = true;
+
+            //Some test data to use with the method
+            Int32 PurchaseId = 1;
+
+            //Invoked Method
+            Found = APurchase.Find(PurchaseId);
+
+            //Check the CustomerName Property
+            if (APurchase.CustomerName != "Chloe")
+            {
+                OK = false;
+            }
+
+            //Test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestDeliveryOptionsFound()
+        {
+            //Create an instance of the class we want to create 
+            clsPurchases APurchase = new clsPurchases();
+
+            //Create a Boolean variable to store the result of the search
+            Boolean Found = false;
+
+            //Create a Boolean variable to record if the data is OK
+            Boolean OK = true;
+
+            //Some test data to use with the method
+            Int32 PurchaseId = 1;
+
+            //Invoked Method
+            Found = APurchase.Find(PurchaseId);
+
+            //Check the DeliveryOptions Property
+            if (APurchase.DeliveryOptions != "Morning")
+            {
+                OK = false;
+            }
+
+            //Test to see that the result is correct
+            Assert.IsTrue(OK);
+
+        }
+
+        [TestMethod]
+        public void TestProductPriceFound()
+        {
+            //Create an instance of the class we want to create 
+            clsPurchases APurchase = new clsPurchases();
+
+            //Create a Boolean variable to store the result of the search
+            Boolean Found = false;
+
+            //Create a Boolean variable to record if the data is OK
+            Boolean OK = true;
+
+            //Some test data to use with the method
+            Int32 PurchaseId = 1;
+
+            //Invoked Method
+            Found = APurchase.Find(PurchaseId);
+
+            //Check the ProductPrice Property
+            if (APurchase.ProductPrice !=Convert.ToDecimal ("1.9"))
+            {
+                OK = false;
+            }
+
+            //Test to see that the result is correct
+            Assert.IsTrue(OK);
+
+        }
+
+        [TestMethod]
+        public void TestQuantityFound()
+        {
+            //Create an instance of the class we want to create 
+            clsPurchases APurchase = new clsPurchases();
+
+            //Create a Boolean variable to store the result of the search
+            Boolean Found = false;
+
+            //Create a Boolean variable to record if the data is OK
+            Boolean OK = true;
+
+            //Some test data to use with the method
+            Int32 PurchaseId = 1;
+
+            //Invoked Method
+            Found = APurchase.Find(PurchaseId);
+
+            //checking Quantity Property
+            if (APurchase.Quantity != 1)
+            {
+                OK = false;
+            }
+
+            //test to see if result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestTotalAmountFound()
+        {
+            //Create an instance of the class we want to create 
+            clsPurchases APurchase = new clsPurchases();
+
+            //Create a Boolean variable to store the result of the search
+            Boolean Found = false;
+
+            //Create a Boolean variable to record if the data is OK
+            Boolean OK = true;
+
+            //Some test data to use with the method
+            Int32 PurchaseId = 1;
+
+            //Invoked Method
+            Found = APurchase.Find(PurchaseId);
+
+            //Check the ProductPrice Property
+            if (APurchase.TotalAmount != Convert.ToDecimal("1.9"))
+            {
+                OK = false;
+            }
+
+            //Test to see that the result is correct
+            Assert.IsTrue(OK);
+
+        }
+
+        [TestMethod]
+        public void TestOrderConfirmedFound()
+        {
+            //Create an instance of the class we want to create 
+            clsPurchases APurchase = new clsPurchases();
+
+            //Create a Boolean variable to store the result of the search
+            Boolean Found = false;
+
+            //Create a Boolean variable to record if the data is OK
+            Boolean OK = true;
+
+            //Some test data to use with the method
+            Int32 PurchaseId = 1;
+
+            //Invoked Method
+            Found = APurchase.Find(PurchaseId);
+
+            //Check OrderConfirmed Property
+            if (APurchase.OrderConfirmed != true)
+            {
+                OK = false;
+            }
+
+            //test to see that result is correct
+            Assert.IsTrue(OK);
+
+
+
+
+        }
     }
-}
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
