@@ -137,7 +137,7 @@ namespace ClassLibrary
 
         }
 
-        public string Valid(string dateAdded, string manufacturer, string modelName, string serialNumber)
+        public string Valid(string dateAdded, string Price, string manufacturer, string modelName, string serialNumber)
         {
             return "";
         }

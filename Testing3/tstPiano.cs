@@ -11,12 +11,11 @@ namespace Testing3
     {
         //"good" test data to pass the method
         string DateAdded = DateTime.Now.ToShortDateString();
-        //integers amd bools are being ignored at the moment
-        //string Price = "399.99";
-        //string IsInStock = "true";
+        string Price = "399.99";
         string Manufacturer = "Roland";
         string ModelName = "Electric Piano";
         string SerialNumber = "1234567890";
+        //bool values are currently not being tested
 
         /***INSTANCE TESTS***/
         [TestMethod]
@@ -300,7 +299,7 @@ namespace Testing3
             //var to store any error message
             String Error = "";
             //invoke method
-            Error = aPiano.Valid(DateAdded, Manufacturer, ModelName, SerialNumber);
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
             //Check that the results are correct
             Assert.AreEqual(Error, "");
         }
