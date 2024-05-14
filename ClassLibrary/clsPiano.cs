@@ -136,5 +136,10 @@ namespace ClassLibrary
             }
 
         }
+
+        public string Valid(string dateAdded, string manufacturer, string modelName, string serialNumber)
+        {
+            return "";
+        }
     }
 }

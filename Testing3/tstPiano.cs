@@ -9,6 +9,15 @@ namespace Testing3
     [TestClass]
     public class tstPiano
     {
+        //"good" test data to pass the method
+        string DateAdded = DateTime.Now.ToShortDateString();
+        //integers amd bools are being ignored at the moment
+        //string Price = "399.99";
+        //string IsInStock = "true";
+        string Manufacturer = "Roland";
+        string ModelName = "Electric Piano";
+        string SerialNumber = "1234567890";
+
         /***INSTANCE TESTS***/
         [TestMethod]
         public void InstanceOK()
@@ -280,6 +289,20 @@ namespace Testing3
             }
             //test to see that the result is correct
             Assert.IsTrue(OK);
+        }
+
+        /***VALID METHOD TEST***/
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            //create instance of the piano class
+            clsPiano aPiano = new clsPiano();
+            //var to store any error message
+            String Error = "";
+            //invoke method
+            Error = aPiano.Valid(DateAdded, Manufacturer, ModelName, SerialNumber);
+            //Check that the results are correct
+            Assert.AreEqual(Error, "");
         }
     }
 }
