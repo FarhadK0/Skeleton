@@ -36,5 +36,8 @@ public partial class _1Viewer : System.Web.UI.Page
 
         //Display the TotalAmount for this entry
         Response.Write(APurchase.TotalAmount);
+
+        //Display the OrderConfirmation for this entry
+        Response.Write(APurchase.OrderConfirmed);
     }
 }

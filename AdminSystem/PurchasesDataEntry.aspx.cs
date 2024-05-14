@@ -39,10 +39,23 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //Capture a TotalAmount
         APurchase.TotalAmount = Convert.ToDecimal(txtTotalAmount.Text);
 
+        //Capture a Checkbox
+        APurchase.OrderConfirmed = chkOrderConfirmed.Checked;
+
         //Store a Purchase in the session object
         Session["APurchase"] = APurchase;
 
         //Navigate to the view page
         Response.Redirect("PurchasesViewer.aspx");
+    }
+
+    protected void CheckBox1_CheckedChanged1(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+
     }
 }
