@@ -18,6 +18,20 @@ namespace Testing6
         }
 
         [TestMethod]
+        public void StaffIdOK()
+        {
+            //create an instance of the class we want.
+            clsStaff AStaff = new clsStaff();
+            //create some test data to assign to the property 
+            Int32 TestData = 4;
+            //assign the data to the property
+            AStaff.StaffId = TestData;
+            //test to see that the two values are the same 
+            Assert.AreEqual(AStaff.StaffId, TestData);
+
+        }
+
+        [TestMethod]
         public void StaffNameOK()
         {
             //create an instance of the class we want.
@@ -100,7 +114,48 @@ namespace Testing6
             Assert.AreEqual(AStaff.IsManager, TestData);
 
         }
-        
+
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            //create an instance of the class we want.
+            clsStaff AStaff = new clsStaff();
+            //create a Boolean variable to store the results of the validation
+            Boolean Found = false;
+            //create some test data to use with the method
+            Int32 StaffId = 15;
+            //invoke the method
+            Found = AStaff.Find(StaffId);
+            //test to see if the result is true  
+            Assert.IsTrue(Found);
+
+        }
+
+        [TestMethod]
+        public void TestStaffIdFound()
+        {
+            //create an instance of the class we want.
+            clsStaff AStaff = new clsStaff();
+            //create a Boolean variable to store the results of the search
+            Boolean Found = false;
+            //create a Boolean variable to record if the data is ok (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 StaffId = 15;
+            //invoke the method
+            Found = AStaff.Find(StaffId);
+            //check the Address Id
+            if(AStaff.StaffId != 15)
+            {
+                OK = false;
+            }
+            //test to see if the result is true  
+            Assert.IsTrue(OK);
+
+        }   
+
+
+
 
 
 
