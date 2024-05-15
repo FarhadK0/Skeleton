@@ -137,9 +137,48 @@ namespace ClassLibrary
 
         }
 
-        public string Valid(string dateAdded, string Price, string manufacturer, string modelName, string serialNumber)
+        public string Valid(string dateAdded, string price, string manufacturer, string modelName, string serialNumber)
         {
-            return "";
+            //string for storing errors
+            String Error = "";
+
+            //if the Manufacturer is blank or longer than 20 chars
+            if (manufacturer.Length == 0)
+            {
+                //record the error (concatenate onto any other errors that may exist)
+                Error = Error + "No manufacturer provided; \n";
+            }
+            if (manufacturer.Length > 20)
+            {
+                //record the error
+                Error = Error + "Character limit exceeded for Manufacturer; \n";
+            }
+
+            //if the ModelName is blank or longer than 20 chars
+            if (modelName.Length == 0)
+            {
+                //record the error (concatenate onto any other errors that may exist)
+                Error = Error + "No model name provided; \n";
+            }
+            if (modelName.Length > 20)
+            {
+                //record the error
+                Error = Error + "Character limit exceeded for Model Name; \n";
+            }
+
+            //if the serialNumber is blank or longer than 20 chars
+            if (serialNumber.Length == 0)
+            {
+                //record the error (concatenate onto any other errors that may exist)
+                Error = Error + "No model name provided; \n";
+            }
+            if (serialNumber.Length > 20)
+            {
+                //record the error
+                Error = Error + "Character limit exceeded for Model Name; \n";
+            }
+            //return error messages
+            return Error;
         }
     }
 }

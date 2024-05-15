@@ -303,5 +303,377 @@ namespace Testing3
             //Check that the results are correct
             Assert.AreEqual(Error, "");
         }
+
+        /***ATTIBUTE VALIDATION TESTS***/
+        [TestMethod]
+        public void ManufacturerMinMinusOne()
+        {
+            //create a piano instance
+            clsPiano aPiano = new clsPiano();
+            //variable for storing errors
+            String Error = "";
+            //target test data
+            string Manufacturer = "";
+            //Run validation method
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
+            //Test if desired result is achieved
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ManufacturerMin()
+        {
+            //create a piano instance
+            clsPiano aPiano = new clsPiano();
+            //variable for storing errors
+            String Error = "";
+            //target test data
+            string Manufacturer = "*";
+            //Manufacturer.PadRight(1, '*');
+            //Run validation method
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
+            //Test if desired result is achieved
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ManufacturerMinPlusOne()
+        {
+            //create a piano instance
+            clsPiano aPiano = new clsPiano();
+            //variable for storing errors
+            String Error = "";
+            //target test data
+            string Manufacturer = "**";
+            //Manufacturer.PadRight(2, '*');
+            //Run validation method
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
+            //Test if desired result is achieved
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ManufacturerMaxMinusOne()
+        {
+            //create a piano instance
+            clsPiano aPiano = new clsPiano();
+            //variable for storing errors
+            String Error = "";
+            //target test data
+            string Manufacturer = "*******************";
+            //Manufacturer.PadRight(19, '*');
+            //Run validation method
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
+            //Test if desired result is achieved
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ManufacturerMax()
+        {
+            //create a piano instance
+            clsPiano aPiano = new clsPiano();
+            //variable for storing errors
+            String Error = "";
+            //target test data
+            string Manufacturer = "********************";
+            //Manufacturer.PadRight(20, '*');
+            //Run validation method
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
+            //Test if desired result is achieved
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ManufacturerMaxPlusOne()
+        {
+            //create a piano instance
+            clsPiano aPiano = new clsPiano();
+            //variable for storing errors
+            String Error = "";
+            //target test data
+            string Manufacturer = "";
+            Manufacturer.PadRight(21, '*'); 
+            //Run validation method
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
+            //Test if desired result is achieved
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ManufacturerMid()
+        {
+            //create a piano instance
+            clsPiano aPiano = new clsPiano();
+            //variable for storing errors
+            String Error = "";
+            //target test data
+            string Manufacturer = "**********";
+            //Run validation method
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
+            //Test if desired result is achieved
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ManufacturerExtremeMax()
+        {
+            //create a piano instance
+            clsPiano aPiano = new clsPiano();
+            //variable for storing errors
+            String Error = "";
+            //target test data
+            string Manufacturer = "";
+            Manufacturer.PadRight(50, '*');
+            //Run validation method
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
+            //Test if desired result is achieved
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ModelNameMinMinusOne()
+        {
+            //create a piano instance
+            clsPiano aPiano = new clsPiano();
+            //variable for storing errors
+            String Error = "";
+            //target test data
+            string ModelName = "";
+            //Run validation method
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
+            //Test if desired result is achieved
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ModelNameMin()
+        {
+            //create a piano instance
+            clsPiano aPiano = new clsPiano();
+            //variable for storing errors
+            String Error = "";
+            //target test data
+            string ModelName = "*";
+            //Run validation method
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
+            //Test if desired result is achieved
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ModelNameMinPlusOne()
+        {
+            //create a piano instance
+            clsPiano aPiano = new clsPiano();
+            //variable for storing errors
+            String Error = "";
+            //target test data
+            string ModelName = "**";
+            //Run validation method
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
+            //Test if desired result is achieved
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ModelNameMaxMinusOne()
+        {
+            //create a piano instance
+            clsPiano aPiano = new clsPiano();
+            //variable for storing errors
+            String Error = "";
+            //target test data
+            string ModelName = "*******************";
+            //Run validation method
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
+            //Test if desired result is achieved
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ModelNameMax()
+        {
+            //create a piano instance
+            clsPiano aPiano = new clsPiano();
+            //variable for storing errors
+            String Error = "";
+            //target test data
+            string ModelName = "********************";
+            //Run validation method
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
+            //Test if desired result is achieved
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ModelNameMaxPlusOne()
+        {
+            //create a piano instance
+            clsPiano aPiano = new clsPiano();
+            //variable for storing errors
+            String Error = "";
+            //target test data
+            string ModelName = "";
+            ModelName.PadRight(21, '*');
+            //Run validation method
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
+            //Test if desired result is achieved
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ModelNameMid()
+        {
+            //create a piano instance
+            clsPiano aPiano = new clsPiano();
+            //variable for storing errors
+            String Error = "";
+            //target test data
+            string ModelName = "**********";
+            //Run validation method
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
+            //Test if desired result is achieved
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ModelNameExtremeMax()
+        {
+            //create a piano instance
+            clsPiano aPiano = new clsPiano();
+            //variable for storing errors
+            String Error = "";
+            //target test data
+            string ModelName = "";
+            ModelName.PadRight(50, '*');
+            //Run validation method
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
+            //Test if desired result is achieved
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //
+        [TestMethod]
+        public void SerialNumberMinMinusOne()
+        {
+            //create a piano instance
+            clsPiano aPiano = new clsPiano();
+            //variable for storing errors
+            String Error = "";
+            //target test data
+            string SerialNumber = "";
+            //Run validation method
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
+            //Test if desired result is achieved
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SerialNumberMin()
+        {
+            //create a piano instance
+            clsPiano aPiano = new clsPiano();
+            //variable for storing errors
+            String Error = "";
+            //target test data
+            string SerialNumber = "*";
+            //Run validation method
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
+            //Test if desired result is achieved
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SerialNumberMinPlusOne()
+        {
+            //create a piano instance
+            clsPiano aPiano = new clsPiano();
+            //variable for storing errors
+            String Error = "";
+            //target test data
+            string SerialNumber = "**";
+            //Run validation method
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
+            //Test if desired result is achieved
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SerialNumberMaxMinusOne()
+        {
+            //create a piano instance
+            clsPiano aPiano = new clsPiano();
+            //variable for storing errors
+            String Error = "";
+            //target test data
+            string SerialNumber = "*******************";
+            //Run validation method
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
+            //Test if desired result is achieved
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SerialNumberMax()
+        {
+            //create a piano instance
+            clsPiano aPiano = new clsPiano();
+            //variable for storing errors
+            String Error = "";
+            //target test data
+            string SerialNumber = "********************";
+            //Run validation method
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
+            //Test if desired result is achieved
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SerialNumberMaxPlusOne()
+        {
+            //create a piano instance
+            clsPiano aPiano = new clsPiano();
+            //variable for storing errors
+            String Error = "";
+            //target test data
+            string SerialNumber = "";
+            SerialNumber.PadRight(21, '*');
+            //Run validation method
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
+            //Test if desired result is achieved
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SerialNumberMid()
+        {
+            //create a piano instance
+            clsPiano aPiano = new clsPiano();
+            //variable for storing errors
+            String Error = "";
+            //target test data
+            string SerialNumber = "**********";
+            //Run validation method
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
+            //Test if desired result is achieved
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void serialNumberExtremeMax()
+        {
+            //create a piano instance
+            clsPiano aPiano = new clsPiano();
+            //variable for storing errors
+            String Error = "";
+            //target test data
+            string SerialNumber = "";
+            SerialNumber.PadRight(50, '*');
+            //Run validation method
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
+            //Test if desired result is achieved
+            Assert.AreNotEqual(Error, "");
+        }
     }
 }
