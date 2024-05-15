@@ -88,12 +88,12 @@ namespace Testing6
         }
 
         [TestMethod]
-        public void StaffAge()
+        public void StaffAgeOK()
         {
             //create an instance of the class we want.
             clsStaff AStaff = new clsStaff();
             //create some test data to assign to the property 
-            Int32 TestData = 1;
+            Int32 TestData = 34;
             //assign the data to the property
             AStaff.StaffAge = TestData;
             //test to see that the two values are the same 
@@ -141,18 +141,157 @@ namespace Testing6
             //create a Boolean variable to record if the data is ok (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffId = 15;
+            Int32 StaffId = 4;
             //invoke the method
             Found = AStaff.Find(StaffId);
-            //check the Address Id
-            if(AStaff.StaffId != 15)
+            //check the Staff Id
+            if(AStaff.StaffId != 4)
             {
                 OK = false;
             }
             //test to see if the result is true  
             Assert.IsTrue(OK);
 
-        }   
+        }
+
+
+        [TestMethod]
+        public void TestStaffNameFound()
+        {
+            //create an instance of the class we want.
+            clsStaff AStaff = new clsStaff();
+            //create a Boolean variable to store the results of the search
+            Boolean Found = false;
+            //create a Boolean variable to record if the data is ok (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 StaffId = 15;
+            //invoke the method
+            Found = AStaff.Find(StaffId);
+            //check the Staff Name
+            if (AStaff.StaffName != "John Micheal")
+            {
+                OK = false;
+            }
+            //test to see if the result is true  
+            Assert.IsTrue(OK);
+
+        }
+
+        [TestMethod]
+        public void TestStaffEmailFound()
+        {
+            //create an instance of the class we want.
+            clsStaff AStaff = new clsStaff();
+            //create a Boolean variable to store the results of the search
+            Boolean Found = false;
+            //create a Boolean variable to record if the data is ok (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 StaffId = 15;
+            //invoke the method
+            Found = AStaff.Find(StaffId);
+            //check the Staff Email
+            if (AStaff.StaffEmail != "JohnMicheal@gmail.com")
+            {
+                OK = false;
+            }
+            //test to see if the result is true  
+            Assert.IsTrue(OK);
+
+        }
+
+        [TestMethod]
+        public void TestDateOfBirthFound()
+        {
+            //create an instance of the class we want.
+            clsStaff AStaff = new clsStaff();
+            //create a Boolean variable to store the results of the search
+            Boolean Found = false;
+            //create a Boolean variable to record if the data is ok (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 StaffId = 15;
+            //invoke the method
+            Found = AStaff.Find(StaffId);
+            //check the Date Of Birth
+            if (AStaff.DateOfBirth != Convert.ToDateTime("13/5/1990"))
+            {
+                OK = false;
+            }
+            //test to see if the result is true  
+            Assert.IsTrue(OK);
+
+        }
+
+        [TestMethod]
+        public void TestStaffAddressFound()
+        {
+            //create an instance of the class we want.
+            clsStaff AStaff = new clsStaff();
+            //create a Boolean variable to store the results of the search
+            Boolean Found = false;
+            //create a Boolean variable to record if the data is ok (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 StaffId = 15;
+            //invoke the method
+            Found = AStaff.Find(StaffId);
+            //check the Address Id
+            if (AStaff.StaffAddress != "33 Castle Street LE2 5WL")
+            {
+                OK = false;
+            }
+            //test to see if the result is true  
+            Assert.IsTrue(OK);
+
+        }
+
+        [TestMethod]
+        public void TestStaffAgeFound()
+        {
+            //create an instance of the class we want.
+            clsStaff AStaff = new clsStaff();
+            //create a Boolean variable to store the results of the search
+            Boolean Found = false;
+            //create a Boolean variable to record if the data is ok (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 StaffId = 15;
+            //invoke the method
+            Found = AStaff.Find(StaffId);
+            //check the Address Id
+            if (AStaff.StaffAge != 34)
+            {
+                OK = false;
+            }
+            //test to see if the result is true  
+            Assert.IsTrue(OK);
+
+        }
+
+        [TestMethod]
+        public void TestIsManagerFound()
+        {
+            //create an instance of the class we want.
+            clsStaff AStaff = new clsStaff();
+            //create a Boolean variable to store the results of the search
+            Boolean Found = false;
+            //create a Boolean variable to record if the data is ok (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 StaffId = 15;
+            //invoke the method
+            Found = AStaff.Find(StaffId);
+            //check the Address Id
+            if (AStaff.IsManager != true)
+            {
+                OK = false;
+            }
+            //test to see if the result is true  
+            Assert.IsTrue(OK);
+
+        }
 
 
 
