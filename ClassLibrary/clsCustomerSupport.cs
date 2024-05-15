@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 
 namespace ClassLibrary
 {
@@ -172,6 +173,116 @@ namespace ClassLibrary
                 return false;
             }
 
+           
+
+        }
+
+        public string Valid(string ticketType, string subject, string description, string submissionDate, string ticketStatus)
+        {
+            //This is TicketType Valid Method
+
+            //create a string variable to store the error
+            String Error = "";
+
+            //create a temporary variable to store the date values
+            DateTime DateTemp;
+
+            //if the TicketType is blank
+            if (ticketType.Length == 0)
+            {
+                //record the error
+                Error = Error + "Please fill the TicketType field";
+            }
+
+            //if the TicketType is greater than 20 characters
+            if (ticketType.Length > 20)
+            {
+                Error = Error + "The TicketType must be less than 20 characters";
+
+            }
+
+            //This is Subject Valid Method
+
+            //if the Suject is blank
+            if (subject.Length == 0)
+            {
+                //record the error
+                Error = Error + "Please fill the Subject field";
+            }
+
+            //if the Subject is greater than 20 characters
+            if (subject.Length > 20)
+            {
+                Error = Error + "The Subject must be less than 20 characters";
+
+            }
+
+
+            //This is Description Valid Method
+
+            //if the Description is blank
+            if (description.Length == 0)
+            {
+                //record the error
+                Error = Error + "Please fill the Description field";
+            }
+
+            //if the Description is greater than 20 characters
+            if (description.Length > 30)
+            {
+                Error = Error + "The Description must be less than 30 characters";
+
+            }
+
+            //This is TicketStatus Valid Method
+
+            //if the TicketStatus is blank
+            if (ticketStatus.Length == 0)
+            {
+                //record the error
+                Error = Error + "Please fill the TicketStatus field";
+            }
+
+            //if the TicketStatus is greater than 20 characters
+            if (ticketStatus.Length > 16)
+            {
+                Error = Error + "The TicketStatus must be less than 16 characters";
+
+            }
+
+            DateTime DateComp = DateTime.Now.Date;
+
+            try 
+            {
+                DateTemp = Convert.ToDateTime(submissionDate);
+
+                //copy the dateAdded value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(submissionDate);
+                if (DateTemp < DateComp)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past : ";
+                }
+
+                //check to see if the date is greater than today's date
+                if (DateTemp > DateComp)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future : ";
+                }
+            }
+            catch 
+            {
+                //record the error
+                Error = Error + "The date was not a valid date";
+            }
+
+            
+            
+
+
+            //return any error message
+            return Error;
         }
     }
 }

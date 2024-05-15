@@ -1,13 +1,22 @@
 ﻿using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Testing2
 {
     [TestClass]
     public class tstCustomerSupport
     {
-       
+        //good test data
+        //create some test data to pass the method
+        string TicketType = "Inquiry";
+        string Subject = "CannotAccess";
+        string Description = "Deatils";
+        string SubmissionDate = DateTime.Now.ToShortDateString();
+        string TicketStatus = "open";
+
+
 
         [TestMethod]
         public void InstantOK()
@@ -167,7 +176,7 @@ namespace Testing2
         }
 
         [TestMethod]
-        public void TestTicketIDFound() 
+        public void TestTicketIDFound()
         {
             //create an instance of the class we want to create
             clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
@@ -180,17 +189,17 @@ namespace Testing2
 
             //Create some test data to use withe the method
             Int32 TicketID = 1;
-        
 
-             //invoke the method
-             Found = AnCustomerSupport.Find(TicketID);
+
+            //invoke the method
+            Found = AnCustomerSupport.Find(TicketID);
 
             //check the TicketID
             if (AnCustomerSupport.TicketID != 1)
             {
                 OK = false;
             }
-            
+
 
             //test to see that the result is correct
             Assert.IsTrue(OK);
@@ -198,7 +207,7 @@ namespace Testing2
         }
 
         [TestMethod]
-        public void TestTicketTypeFound() 
+        public void TestTicketTypeFound()
         {
             //create an instance of the class we want to create
             clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
@@ -226,7 +235,7 @@ namespace Testing2
         }
 
         [TestMethod]
-        public void TestSubjectFound() 
+        public void TestSubjectFound()
         {
             //create an instance of the class we want to create
             clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
@@ -363,7 +372,861 @@ namespace Testing2
             //test to see the result is correct
             Assert.IsTrue(OK);
         }
+
+        [TestMethod]
+
+        public void ValidMethodOK()
+        {
+            //create an instance of the class we want to create 
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //String variable to store any error message
+            String Error = "";
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+
+
+        }
+
+        [TestMethod]
+
+        public void TicketTypeMinLessOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string c=variable to store any error message
+            String Error = "";
+
+            //create some test data to pass to the method
+            string TicketType = ""; //this should trigger an error
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void TicketTypeMin()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            String Error = "";
+
+            //create some test data to pass to the method
+            string TicketType = "a"; //this should be ok
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void TicketTypeMinPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            string Error = "";
+
+            //create some test data to pass to the method
+            string TicketType = "aa"; //this should be ok
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+
+        public void TicketTypeMaxLessOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            string Error = "";
+
+            //create some test data to pass the method
+            string TicketType = "aaaaaaaaaaaaaaaaaaa"; //this should be ok
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the resut is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+
+        public void TicketTypeMax()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            string Error = "";
+
+            //create some test data to pass the method
+            string TicketType = "aaaaaaaaaaaaaaaaaaaa"; //this should be ok
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the resut is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+
+        public void TicketTypeMid()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            string Error = "";
+
+            //create some test data to pass the method
+            string TicketType = "aaaaaaaaaa"; //this should be ok
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the resut is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+
+        public void TicketTypeMaxPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            string Error = "";
+
+            //create some test data to pass the method
+            string TicketType = "aaaaaaaaaaaaaaaaaaaaa"; //this should be ok
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the resut is correct
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+
+        public void TicketTypeExtremeMax()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustmerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            String Error = "";
+
+            //create some test data to pass to the method
+            string TicketType = "";
+            TicketType = TicketType.PadRight(100, 'a'); //this should fail
+
+            //invoke the method
+            Error = AnCustmerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+        [TestMethod]
+
+        public void SubjectMinLessOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string c=variable to store any error message
+            String Error = "";
+
+            //create some test data to pass to the method
+            string Subject = ""; //this should trigger an error
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void SubjectMin()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            String Error = "";
+
+            //create some test data to pass to the method
+            string Subject = "a"; //this should be ok
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void SubjectMinPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            string Error = "";
+
+            //create some test data to pass to the method
+            string Subject = "aa"; //this should be ok
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+
+        public void SubjectMaxLessOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            string Error = "";
+
+            //create some test data to pass the method
+            string Subject = "sssssssssssssssssss"; //this should be ok
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the resut is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+
+        public void SubjectMax()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            string Error = "";
+
+            //create some test data to pass the method
+            string Subject = "ssssssssssssssssssss"; //this should be ok
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the resut is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+
+        public void SubjectMid()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            string Error = "";
+
+            //create some test data to pass the method
+            string Subject = "ssssssssss"; //this should be ok
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the resut is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+
+        public void SubjectMaxPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            string Error = "";
+
+            //create some test data to pass the method
+            string Subject = "sssssssssssssssssssss"; //this should be ok
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the resut is correct
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+
+        public void SubjectExtremeMax()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustmerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            String Error = "";
+
+            //create some test data to pass to the method
+            string Subject = "";
+            Subject = Subject.PadRight(100, 'a'); //this should fail
+
+            //invoke the method
+            Error = AnCustmerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        public void DescriptionMinLessOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string c=variable to store any error message
+            String Error = "";
+
+            //create some test data to pass to the method
+            string Description = ""; //this should trigger an error
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void DescriptionMin()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            String Error = "";
+
+            //create some test data to pass to the method
+            string Description = "d"; //this should be ok
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void DescriptionMinPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            string Error = "";
+
+            //create some test data to pass to the method
+            string Description = "dd"; //this should be ok
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+
+        public void DescriptionMaxLessOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            string Error = "";
+
+            //create some test data to pass the method
+            string Description ="ddddddddddddddddddddddddddddd"; //this should be ok
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the resut is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+
+        public void DescriptionMax()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            string Error = "";
+
+            //create some test data to pass the method
+            string Description = "dddddddddddddddddddddddddddddd"; //this should be ok
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the resut is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+
+        public void DescriptionMid()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            string Error = "";
+
+            //create some test data to pass the method
+            string Description = "ddddddddddddddd"; //this should be ok
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the resut is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+
+        public void DescriptionMaxPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            string Error = "";
+
+            //create some test data to pass the method
+            string Description = "ddddddddddddddddddddddddddddddd"; //this should be ok
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the resut is correct
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+
+        public void DescriptionExtremeMax()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustmerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            String Error = "";
+
+            //create some test data to pass to the method
+            string Description = "";
+            Description = Description.PadRight(100, 'd'); //this should fail
+
+            //invoke the method
+            Error = AnCustmerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+        public void TicketSatatusMinLessOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string c=variable to store any error message
+            String Error = "";
+
+            //create some test data to pass to the method
+            string TicketStatus = ""; //this should trigger an error
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void TicketStatusMin()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            String Error = "";
+
+            //create some test data to pass to the method
+            string TicketStatus = "t"; //this should be ok
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void TicketStatusMinPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            string Error = "";
+
+            //create some test data to pass to the method
+            string TicketStatus = "tt"; //this should be ok
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+
+        public void TicketStatusMaxLessOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            string Error = "";
+
+            //create some test data to pass the method
+            string TicketStatus = "ttttttttttttttt"; //this should be ok
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the resut is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+
+        public void TicketStatusMax()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            string Error = "";
+
+            //create some test data to pass the method
+            string TicketStatus = "tttttttttttttttt"; //this should be ok
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the resut is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+
+        public void TicketStatusMid()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            string Error = "";
+
+            //create some test data to pass the method
+            string TicketStatus = "tttttttt"; //this should be ok
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the resut is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+
+        public void TicketStatusMaxPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            string Error = "";
+
+            //create some test data to pass the method
+            string TicketStatus = "ttttttttttttttttt"; //this should be ok
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the resut is correct
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+
+        public void TicketStatusExtremeMax()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustmerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            String Error = "";
+
+            //create some test data to pass to the method
+            string TicketStatus = "";
+            TicketStatus = TicketStatus.PadRight(100, 't'); //this should fail
+
+            //invoke the method
+            Error = AnCustmerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void SubmissionDateExtremeMin()
+        {
+            //create an instance of the class we want ro create 
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            String Error = "";
+
+            //create a variable to store the test date data
+            DateTime TestDate;
+
+            //set the date to todays date
+            TestDate = DateTime.Now.Date;
+
+            //change the date to whatever the date is less 100 years
+            TestDate = TestDate.AddYears(-100);
+
+            //convert the date variable to a string variable
+            string SubmissionDate = TestDate.ToString();
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+
+        [TestMethod]
+
+        public void SubmissionDateMinLessOne()
+        {
+            //create an instance of the class we want ro create 
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            String Error = "";
+
+            //create a variable to store the test date data
+            DateTime TestDate;
+
+            //set the date to todays date
+            TestDate = DateTime.Now.Date;
+
+            //change the date to whatever the date is less 1 day
+            TestDate = TestDate.AddDays(-1);
+
+            //convert the date variable to a string variable
+            string SubmissionDate = TestDate.ToString();
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+
+        [TestMethod]
+
+        public void SubmissionDateMin()
+        {
+            //create an instance of the class we want ro create 
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            String Error = "";
+
+            //create a variable to store the test date data
+            DateTime TestDate;
+
+            //set the date to todays date
+            TestDate = DateTime.Now.Date;
+
+          
+            //convert the date variable to a string variable
+            string SubmissionDate = TestDate.ToString();
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+
+        [TestMethod]
+
+        public void SubmissionDateMinPlusOne()
+        {
+            //create an instance of the class we want ro create 
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            String Error = "";
+
+            //create a variable to store the test date data
+            DateTime TestDate;
+
+            //set the date to todays date
+            TestDate = DateTime.Now.Date;
+
+            //change the date to whatever the date is plus 1 day
+            TestDate = TestDate.AddDays(1);
+
+            //convert the date variable to a string variable
+            string SubmissionDate = TestDate.ToString();
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+
+        [TestMethod]
+
+        public void SubmissionDateExtremeMax()
+        {
+            //create an instance of the class we want ro create 
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            String Error = "";
+
+            //create a variable to store the test date data
+            DateTime TestDate;
+
+            //set the date to todays date
+            TestDate = DateTime.Now.Date;
+
+            //change the date to whatever the date is plus 100 years
+            TestDate = TestDate.AddYears(100);
+
+            //convert the date variable to a string variable
+            string SubmissionDate = TestDate.ToString();
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+
+        public void SubmissionDateInvalidData()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
+
+            //string variable to store any error message
+            String Error = "";
+
+            //set the submissionDate to a non date value
+            string SubmissionDate = "This is not a date!";
+
+            //invoke the method
+            Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+
+            //test to see that the result is correcrt
+            Assert.AreNotEqual(Error, "");
+
+        }
     }
-        
-    
+
 }
+
