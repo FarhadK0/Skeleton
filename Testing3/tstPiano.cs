@@ -785,8 +785,84 @@ namespace Testing3
             String Error = "";
             // wrong data type
             string DateAdded = "this is not a date!";
+            //invoke the method
             Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
             //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PriceExtremeMin()
+        {
+            //create an instance of the class we want to create
+            clsPiano aPiano = new clsPiano();
+            //string variable to store any error message
+            String Error = "";
+            //set target test data
+            string Price = "-1000000";
+            //invoke the method
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
+            //test to see if result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PriceMinMinusOne()
+        {
+            //create an instance of the class we want to create
+            clsPiano aPiano = new clsPiano();
+            //string variable to store any error message
+            String Error = "";
+            //set target test data
+            string Price = "-0.01";
+            //invoke the method
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
+            //test to see if result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PriceMin()
+        {
+            //create an instance of the class we want to create
+            clsPiano aPiano = new clsPiano();
+            //string variable to store any error message
+            String Error = "";
+            //set target test data
+            string Price = "0.00";
+            //invoke the method
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
+            //test to see if result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PriceMinPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsPiano aPiano = new clsPiano();
+            //string variable to store any error message
+            String Error = "";
+            //set target test data
+            string Price = "0.01";
+            //invoke the method
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
+            //test to see if result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PriceInvalidDataType()
+        {
+            //create an instance of the class we want to create
+            clsPiano aPiano = new clsPiano();
+            //string variable to store any error message
+            String Error = "";
+            //set target test data
+            string Price = "price";
+            //invoke the method
+            Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
+            //test to see if result is correct
             Assert.AreNotEqual(Error, "");
         }
     }

@@ -146,6 +146,8 @@ namespace ClassLibrary
             //create an instance of DateTime to compare with DateTemp
             //in the if statements
             DateTime DateComp = DateTime.Now.Date;
+            //create a new variable for storing actual Price as double
+            Double PriceAsDouble;
 
             //if the Manufacturer is blank or longer than 20 chars
             if (manufacturer.Length == 0)
@@ -183,6 +185,7 @@ namespace ClassLibrary
                 Error = Error + "Character limit exceeded for serial number; \n";
             }
 
+            //to test the date...
             try 
             {
                 //copy the dateAdded value to the DateTemp variable
@@ -203,6 +206,22 @@ namespace ClassLibrary
             {
                 //record the error
                 Error = Error + "The date was an invalid date; \n";
+            }
+
+            //to test the Price...
+            try
+            {
+                PriceAsDouble = Convert.ToDouble(price);
+                // if the price is less than 0
+                if (PriceAsDouble < 0)
+                {
+                    Error = Error + "The price cannot be smaller than £0.00; \n";
+                }
+            }
+            catch 
+            {
+                //record the error if price is invalid data type
+                Error = Error + "The price was an invalid number; \n";
             }
             
             //return error messages
