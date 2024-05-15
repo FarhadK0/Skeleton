@@ -28,7 +28,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         APurchase.DeliveryOptions = txtDeliveryOptions.Text;
 
         //Capture a ProductPrice
-        APurchase.ProductPrice = Convert.ToDecimal(txtProductPrice.Text);
+        APurchase.ProductPrice = Convert.ToDouble(txtProductPrice.Text);
 
         //Capture a Quantity
         APurchase.Quantity = Convert.ToInt32(txtQuantity.Text);
@@ -37,7 +37,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         APurchase.OrderDate = Convert.ToDateTime(DateTime.Now);
 
         //Capture a TotalAmount
-        APurchase.TotalAmount = Convert.ToDecimal(txtTotalAmount.Text);
+        APurchase.TotalAmount = Convert.ToDouble(txtTotalAmount.Text);
 
         //Capture a Checkbox
         APurchase.OrderConfirmed = chkOrderConfirmed.Checked;
@@ -57,5 +57,36 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void btnCancel_Click(object sender, EventArgs e)
     {
 
+    }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        //Create an instance of the Purchase Class
+        clsPurchases APurchase = new clsPurchases();
+
+        //create a variable to store the primary key
+        Int32 PurchaseId;
+
+        //Create a variable to store the result of the find operation
+        Boolean Found = false;
+
+        //Get the primary key entered by the user
+        PurchaseId = Convert.ToInt32(txtPurchaseId.Text);
+
+        //Find the record
+        Found = APurchase.Find(PurchaseId);
+
+        //If Found
+        if (Found == true)
+        {
+            //Display the values of the properties in the form
+            txtCustomerName.Text = APurchase.CustomerName;
+            txtDeliveryOptions.Text = APurchase.DeliveryOptions;
+            txtProductPrice.Text = APurchase.ProductPrice.ToString();
+            txtQuantity.Text = APurchase.Quantity.ToString();
+            txtOrderDate.Text = APurchase.OrderDate.ToString();
+            txtTotalAmount.Text = APurchase.TotalAmount.ToString();
+            chkOrderConfirmed.Checked = APurchase.OrderConfirmed;
+        }
     }
 }

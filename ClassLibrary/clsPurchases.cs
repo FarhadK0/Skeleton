@@ -71,8 +71,8 @@ namespace ClassLibrary
         }
 
         //Private data member for the Purchase ID property
-        private decimal mProductPrice;
-        public decimal ProductPrice
+        private double mProductPrice;
+        public double ProductPrice
         {
             get
             {
@@ -103,8 +103,8 @@ namespace ClassLibrary
         }
 
         //Private data member for the Purchase ID property
-        private decimal mTotalAmount;
-        public decimal TotalAmount
+        private double mTotalAmount;
+        public double TotalAmount
         {
             get
             {
@@ -134,22 +134,45 @@ namespace ClassLibrary
             }
         }
 
-        public bool Find(int purchaseId)
-        {
-            //Set the private data members to the test data value
-            mPurchaseId = 1;
-            mOrderDate = Convert.ToDateTime("14/05/2024");
-            mCustomerName = ("Chloe");
-            mDeliveryOptions = ("Morning");
-            mProductPrice = Convert.ToDecimal("1.9");
-            mQuantity = 1;
-            mTotalAmount = Convert.ToDecimal("1.9");
-            mOrderConfirmed = true;
-            
-            //always return true
-            return true;
-        }
+        //Find Method
 
-     
+        public bool Find(int PurchaseId)
+        {
+            //Create an Instance of the Data Connection
+            clsDataConnection db = new clsDataConnection();
+
+            //Add parameter for the PurchaseId to search for
+            db.AddParameter("@PurchaseId", PurchaseId);
+
+            //Execute the Stored Procedure
+            db.Execute("sproc_tblPurchases_FilterByPurchaseID");
+
+            //If one record is found 
+            if (db.Count == 1)
+            {
+                //Set the private data members to the test data value
+                mPurchaseId = Convert.ToInt32(db.DataTable.Rows[0]["PurchaseId"]);
+                mOrderDate = Convert.ToDateTime(db.DataTable.Rows[0]["OrderDate"]);
+                mCustomerName = Convert.ToString(db.DataTable.Rows[0]["CustomerName"]);
+                mDeliveryOptions = Convert.ToString(db.DataTable.Rows[0]["DeliveryOptions"]);
+                mProductPrice = Convert.ToDouble(db.DataTable.Rows[0]["ProductPrice"]);
+                mQuantity = Convert.ToInt32(db.DataTable.Rows[0]["Quantity"]);
+                mTotalAmount = Convert.ToDouble(db.DataTable.Rows[0]["TotalAmount"]);
+                mOrderConfirmed = Convert.ToBoolean(db.DataTable.Rows[0]["OrderConfirmed"]);
+
+                //return that everything worked OK
+                return true;
+            }
+            //if No record found
+            else
+            {
+                //return false indicating there is a problem
+                return false;
+
+            }
+
+
+
+        }
     }
 }
