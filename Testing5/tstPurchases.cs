@@ -93,7 +93,7 @@ namespace Testing5
             clsPurchases APurchase = new clsPurchases();
 
             //some test data to assign to the Purchase
-            decimal testProductPrice = 1;
+            double testProductPrice = 1;
 
             //Assign data to the ProductPrice
             APurchase.ProductPrice = testProductPrice;
@@ -127,7 +127,7 @@ namespace Testing5
             clsPurchases APurchase = new clsPurchases();
 
             //some test data to assign to the Purchase
-            decimal testTotalAmount = 1;
+            double testTotalAmount = 1;
 
             //Assign data to the ProductPrice
             APurchase.TotalAmount = testTotalAmount;
@@ -154,6 +154,7 @@ namespace Testing5
 
         }
 
+        /***FIND METHOD TEST***/
         [TestMethod]
         public void FindMethodOK()
         {
@@ -164,7 +165,7 @@ namespace Testing5
             Boolean Found = false;
 
             //Create some test data to use with the method
-            Int32 PurchaseId = 1;
+            Int32 PurchaseId = 8;
 
             //Invoke the method
             Found = APurchase.Find(PurchaseId);
@@ -172,7 +173,7 @@ namespace Testing5
             //Test to see if the result is true
             Assert.IsTrue(Found);
         }
-
+        /***ATTRIBUTE DATA TESTS***/
         [TestMethod]
         public void TestPurchaseIdFound()
         {
@@ -186,13 +187,13 @@ namespace Testing5
             Boolean OK = true;
 
             //Some test data to use with the method
-            Int32 PurchaseId = 1;
+            Int32 PurchaseId = 8;
 
             //Invoked Method
             Found = APurchase.Find(PurchaseId);
 
             //checking PurchaseId
-            if (APurchase.PurchaseId != 1)
+            if (APurchase.PurchaseId != 8)
             {
                 OK = false;
             }
@@ -214,13 +215,13 @@ namespace Testing5
             Boolean OK = true;
 
             //Some test data to use with the method
-            Int32 PurchaseId = 1;
+            Int32 PurchaseId = 8;
 
             //Invoked Method
             Found = APurchase.Find(PurchaseId);
 
             //Check the OrderDate Property
-            if (APurchase.OrderDate != Convert.ToDateTime("14/05/2024"))
+            if (APurchase.OrderDate != Convert.ToDateTime ("15/04/2024"))
             {
                 OK = false;
             }
@@ -242,13 +243,13 @@ namespace Testing5
             Boolean OK = true;
 
             //Some test data to use with the method
-            Int32 PurchaseId = 1;
+            Int32 PurchaseId = 8;
 
             //Invoked Method
             Found = APurchase.Find(PurchaseId);
 
             //Check the CustomerName Property
-            if (APurchase.CustomerName != "Chloe")
+            if (APurchase.CustomerName != "Tel Tel")
             {
                 OK = false;
             }
@@ -270,7 +271,7 @@ namespace Testing5
             Boolean OK = true;
 
             //Some test data to use with the method
-            Int32 PurchaseId = 1;
+            Int32 PurchaseId = 8;
 
             //Invoked Method
             Found = APurchase.Find(PurchaseId);
@@ -299,13 +300,13 @@ namespace Testing5
             Boolean OK = true;
 
             //Some test data to use with the method
-            Int32 PurchaseId = 1;
+            Int32 PurchaseId = 8;
 
             //Invoked Method
             Found = APurchase.Find(PurchaseId);
 
             //Check the ProductPrice Property
-            if (APurchase.ProductPrice !=Convert.ToDecimal ("1.9"))
+            if (APurchase.ProductPrice !=Convert.ToDouble ("5"))
             {
                 OK = false;
             }
@@ -328,7 +329,7 @@ namespace Testing5
             Boolean OK = true;
 
             //Some test data to use with the method
-            Int32 PurchaseId = 1;
+            Int32 PurchaseId = 8;
 
             //Invoked Method
             Found = APurchase.Find(PurchaseId);
@@ -356,13 +357,13 @@ namespace Testing5
             Boolean OK = true;
 
             //Some test data to use with the method
-            Int32 PurchaseId = 1;
+            Int32 PurchaseId = 8;
 
             //Invoked Method
             Found = APurchase.Find(PurchaseId);
 
             //Check the ProductPrice Property
-            if (APurchase.TotalAmount != Convert.ToDecimal("1.9"))
+            if (APurchase.TotalAmount != Convert.ToDouble("5"))
             {
                 OK = false;
             }
@@ -385,7 +386,7 @@ namespace Testing5
             Boolean OK = true;
 
             //Some test data to use with the method
-            Int32 PurchaseId = 1;
+            Int32 PurchaseId = 8;
 
             //Invoked Method
             Found = APurchase.Find(PurchaseId);
