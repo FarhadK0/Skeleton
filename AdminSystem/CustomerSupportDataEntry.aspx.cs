@@ -16,21 +16,61 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnOK_Click1(object sender, EventArgs e)
     {
-        //create a new instance of clsCutsomerSupport
+        //create a new instance of clsCustomerSupport
         clsCustomerSupport AnCustomerSupport = new clsCustomerSupport();
 
-        //capture Ticket Type
-        AnCustomerSupport.TicketType = txtTicketType.Text;
-        AnCustomerSupport.Subject = txtSubject.Text;
-        AnCustomerSupport.Description = txtDescription.Text;
-        AnCustomerSupport.SubmissionDate = Convert.ToDateTime(DateTime.Now);
-        AnCustomerSupport.TicketStatus = txtTicketStatus.Text;
-        AnCustomerSupport.TicketElevated = chkTicketElevated.Checked;
+        //capture the TicketType
+        string TicketType = txtTicketType.Text;
 
-        //store the Ticket in the sesssion object
-        Session["AnCustomerSupport"] = AnCustomerSupport;
-        //navigate to the CustomerPage
-        Response.Redirect("CustomerSupportViewer.aspx");
+        //capture the Subject
+        string Subject = txtSubject.Text;
+
+        //capture the Description
+        string Description = txtDescription.Text;
+
+        //capture the submissionDate
+        string SubmissionDate = txtSubmissionDate.Text;
+
+        //capture the TicketStatus
+        string TicketStatus = txtTicketStatus.Text;
+
+        //capture TicketElevated check box
+        string TicketElevated = chkTicketElevated.Text;
+
+        //variable to store any error messages
+        string Error = "";
+
+        //validate the data
+        Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
+        if (Error == "")
+        {
+            //capture the TicketType
+            AnCustomerSupport.TicketType = TicketType;
+
+            //capture the Subject
+            AnCustomerSupport.Subject = Subject;
+
+            //capture the description
+            AnCustomerSupport.Description = Description;
+
+            //capture the submission date 
+            AnCustomerSupport.SubmissionDate = Convert.ToDateTime(SubmissionDate);
+
+            //capture the TicketStatus
+            AnCustomerSupport.TicketStatus = TicketStatus;
+
+            //store the CustomerSupport in the session object
+            Session["CustomerSupport"] = AnCustomerSupport;
+
+            //navigate to the view page
+            Response.Redirect("CustomerSupportViewer.aspx");
+
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
