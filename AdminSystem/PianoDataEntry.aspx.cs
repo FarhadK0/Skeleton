@@ -20,21 +20,43 @@ public partial class _1_DataEntry : System.Web.UI.Page
         /*                          */
         //Create a new instance of a Piano class
         clsPiano aPiano = new clsPiano();
+        
+        //capture data from the form
+        string DateAdded = txtDateAdded.Text;
+        string Price = txtPrice.Text;
+        string Manufacturer = txtManufacturer.Text;
+        string ModelName = txtModelName.Text;
+        string IsInStock = chkIsInStock.Text;
+        string SerialNumber = txtSerialNumber.Text;
 
-        //capture data from the forms
-        aPiano.PianoId = Convert.ToInt32(txtPianoId.Text);
-        aPiano.DateAdded = Convert.ToDateTime(DateTime.Now);
-        aPiano.Price = Convert.ToDouble(txtPrice.Text);
-        aPiano.Manufacturer = txtManufacturer.Text;
-        aPiano.ModelName = txtModelName.Text;
-        aPiano.IsInStock = chkIsInStock.Checked;
-        aPiano.SerialNumber = txtSerialNumber.Text;
+        //variable to store errors
+        string Error = "";
+        //validate the data
+        Error = aPiano.Valid(DateAdded, Price, Manufacturer, ModelName, SerialNumber);
 
-        //store the model name in the session object
-        Session["aPiano"] = aPiano;
+        if (Error == "")
+        {
+            //assign to object attributes
+            aPiano.DateAdded = Convert.ToDateTime(DateAdded);
+            aPiano.Price = Convert.ToDouble(Price);
+            aPiano.Manufacturer = Manufacturer;
+            aPiano.ModelName = ModelName;
+            //aPiano.IsInStock = Convert.ToBoolean(IsInStock);
+            aPiano.SerialNumber = SerialNumber;
 
-        //nav to the view page
-        Response.Redirect("PianoViewer.aspx");
+            //store the model name in the session object
+            Session["aPiano"] = aPiano;
+
+            //nav to the view page
+            Response.Redirect("PianoViewer.aspx");
+        }
+        else
+        {
+            //display error messages
+            lblError.Text = Error;
+        }
+
+
 
     }
 
