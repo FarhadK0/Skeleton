@@ -191,13 +191,13 @@ namespace ClassLibrary
             if (ticketType.Length == 0)
             {
                 //record the error
-                Error = Error + "Please fill the TicketType field";
+                Error = Error + "Please fill the TicketType field <br>";
             }
 
             //if the TicketType is greater than 20 characters
             if (ticketType.Length > 20)
             {
-                Error = Error + "The TicketType must be less than 20 characters";
+                Error = Error + "The TicketType must be less than 20 characters <br>";
 
             }
 
@@ -207,13 +207,13 @@ namespace ClassLibrary
             if (subject.Length == 0)
             {
                 //record the error
-                Error = Error + "Please fill the Subject field";
+                Error = Error + "Please fill the Subject field <br>";
             }
 
             //if the Subject is greater than 20 characters
             if (subject.Length > 20)
             {
-                Error = Error + "The Subject must be less than 20 characters";
+                Error = Error + "The Subject must be less than 20 characters <br>";
 
             }
 
@@ -224,13 +224,13 @@ namespace ClassLibrary
             if (description.Length == 0)
             {
                 //record the error
-                Error = Error + "Please fill the Description field";
+                Error = Error + "Please fill the Description field <br>";
             }
 
             //if the Description is greater than 20 characters
             if (description.Length > 30)
             {
-                Error = Error + "The Description must be less than 30 characters";
+                Error = Error + "The Description must be less than 30 characters <br>";
 
             }
 
@@ -240,13 +240,13 @@ namespace ClassLibrary
             if (ticketStatus.Length == 0)
             {
                 //record the error
-                Error = Error + "Please fill the TicketStatus field";
+                Error = Error + "Please fill the TicketStatus field <br>";
             }
 
             //if the TicketStatus is greater than 20 characters
             if (ticketStatus.Length > 16)
             {
-                Error = Error + "The TicketStatus must be less than 16 characters";
+                Error = Error + "The TicketStatus must be less than 16 characters <br>";
 
             }
 
@@ -261,20 +261,20 @@ namespace ClassLibrary
                 if (DateTemp < DateComp)
                 {
                     //record the error
-                    Error = Error + "The date cannot be in the past : ";
+                    Error = Error + "The date cannot be in the past : <br> ";
                 }
 
                 //check to see if the date is greater than today's date
                 if (DateTemp > DateComp)
                 {
                     //record the error
-                    Error = Error + "The date cannot be in the future : ";
+                    Error = Error + "The date cannot be in the future : <br> ";
                 }
             }
             catch 
             {
                 //record the error
-                Error = Error + "The date was not a valid date";
+                Error = Error + "The date was not a valid date <br>";
             }
 
             
