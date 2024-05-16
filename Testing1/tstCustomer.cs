@@ -100,8 +100,174 @@ namespace Testing1
             //test to see that the two values are the same
             Assert.AreEqual(AnAddress.hasPurchases, TestData);
         }
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            //class an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //create a Blooean variable to store the results of the validation
+            Boolean Found = false;
+            //create some test data to use with the method
+            Int32 CustomerID = 1;
+            //invoke the method
+            Found = AnCustomer.Find(CustomerID);
+            // test to see if the results is true
+            Assert.IsTrue(Found);
+        }
+
+        [TestMethod]
+        public void TestCustomerIDFound()
+        {
+            //class an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //create a Blooean variable to store the result of the search
+            Boolean Found = false;
+            //create a Blooean variable to record if the data is ok(assume it is)
+            Boolean OK = true;
+            // create some test data to use the method
+            Int32 CustomerID = 1;
+            //invoke the method
+            Found = AnCustomer.Find(CustomerID);
+            //check the customer id
+            if (AnCustomer.CustomerID !=1)
+            {
+                OK = false;
+            }
+            //tets to see that the results is correct
+            Assert.IsTrue(OK); 
+        }
+
+        [TestMethod]
+        public void TestDateofbirthFound()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //create a Boolean variable to store the result of the search
+            Boolean Found = false;
+            //create Boolean variable to record if the data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 CustomerID = 1;
+            //invoke the method
+            Found = AnCustomer.Find(CustomerID);
+            //check the date added property
+            if (AnCustomer.Dateofbirth!= Convert.ToDateTime("03/05/2002"))
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestCustomerNameFound()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //create a Boolean variable to store the result of the search
+            Boolean Found = false;
+            //create a Boolean variable to record if data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 CustomerID = 1;
+            //invoke the method
+            Found = AnCustomer.Find(CustomerID);
+            //check the house no property
+            if (AnCustomer.CustomerName != "Jainish")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestCustomerEmailFound()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //create a Boolean variable to store the result of the search
+            Boolean Found = false;
+            //create a Boolean variable to record if data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 CustomerID = 1;
+            //invoke the method
+            Found = AnCustomer.Find(CustomerID);
+            //check the street property
+            if (AnCustomer.CustomerEmail != "Jainish@gmail.com")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestCustomerPhoneFound()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //create a boolean variable to store the result of the search
+            Boolean Found = false;
+            //create a Boolean variable to record if data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 CustomerID= 1;
+            //invoke the method
+            Found = AnCustomer.Find(CustomerID);
+            //check the town property
+            if (AnCustomer.CustomerPhone != "0099887766")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestCustomerAddressFound()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //create a boolean variable to store the result of the search
+            Boolean Found = false;
+            //create a boolean variable to record if data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 CustomerID = 1;
+            //invoke the method
+            Found = AnCustomer.Find(CustomerID);
+            //check the post code property
+            if (AnCustomer.CustomerAddress != "1234 Leicster ")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TesthasPurchasesFound()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //create a Boolean variable to store the result of the search
+            Boolean Found = false;
+            //create Boolean variable to record if the data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 CustomerID = 1;
+            //invoke the method
+            Found = AnCustomer.Find(CustomerID);
+            //check the active property
+            if (AnCustomer.hasPurchases != true)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
     }
 }
+    
+
 
     
 
