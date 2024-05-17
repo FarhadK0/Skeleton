@@ -1,12 +1,24 @@
 ﻿using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.IO;
+using System.Net.Mail;
 
 namespace Testing5
 {
+
     [TestClass]
     public class tstPurchases
     {
+        //Good Test Data
+        string CustomerName = "Chloe Hans";
+        string DeliveryOptions = "Morning";
+        string ProductPrice = "13.99";
+        string Quantity = "3";
+        string OrderDate = DateTime.Now.ToShortDateString();
+        string TotalAmount = "41.97";
+
+    
 
         [TestMethod]
         public void InstanceOK()
@@ -221,7 +233,7 @@ namespace Testing5
             Found = APurchase.Find(PurchaseId);
 
             //Check the OrderDate Property
-            if (APurchase.OrderDate != Convert.ToDateTime ("15/04/2024"))
+            if (APurchase.OrderDate != Convert.ToDateTime("15/04/2024"))
             {
                 OK = false;
             }
@@ -306,7 +318,7 @@ namespace Testing5
             Found = APurchase.Find(PurchaseId);
 
             //Check the ProductPrice Property
-            if (APurchase.ProductPrice !=Convert.ToDouble ("5"))
+            if (APurchase.ProductPrice != Convert.ToDouble("5"))
             {
                 OK = false;
             }
@@ -400,12 +412,913 @@ namespace Testing5
             //test to see that result is correct
             Assert.IsTrue(OK);
 
+        }
+
+
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+             String Error = "";
+
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName,DeliveryOptions,ProductPrice,Quantity,OrderDate,TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerNameMinMinusOne()
+        {
+
+            //This is the CustomerName Valid Method
+
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Some test date to pass method
+            string CustomerName = ""; 
+
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //This is the CustomerName Valid Method
+        [TestMethod]
+        public void CustomerNameMinPlusOne()
+        {
+
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Some test date to pass method
+            string CustomerName = "**";
+
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerNameMin()
+        {
+
+            //This is the CustomerName Valid Method
+
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Some test date to pass method
+            string CustomerName = "*";
+
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerNameMaxMinusOne()
+        {
+
+            //This is the CustomerName Valid Method
+
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Some test date to pass method
+            string CustomerName = "*"; //Should be Ok
+            CustomerName.PadRight(49, '*');
+
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerNameMax()
+        {
+
+            //This is the CustomerName Valid Method
+
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Some test date to pass method
+            string CustomerName = "*"; //Should be Ok
+            CustomerName.PadRight(50, '*');
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerNameMaxPlusOne()
+        {
+
+            //This is the CustomerName Valid Method
+
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Some test date to pass method
+            string CustomerName = "";
+            CustomerName.PadRight(51, '*');
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerNameMid()
+        {
+
+            //This is the CustomerName Valid Method
+
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Some test date to pass method
+            string CustomerName = "*"; //Should be Ok
+            CustomerName = CustomerName.PadRight(25, '*');
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerNameExtremeMax()
+        {
+
+            //This is the CustomerName Valid Method
+
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Some test date to pass method
+            string CustomerName = "*"; //Should be Ok
+           CustomerName = CustomerName.PadRight(500, '*');
+
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DeliveryOptionsMinMinusOne()
+        {
+
+            //This is the DeliveryOptions Valid Method
+
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Some test date to pass method
+            string DeliveryOptions = "";
+
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //This is the CustomerName Valid Method
+        [TestMethod]
+        public void DeliveryOptionsMinPlusOne()
+        {
+
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Some test date to pass method
+            string DeliveryOptions = "**";
+
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DeliveryOptionsMin()
+        {
+
+            //This is the DeliveryOptions Valid Method
+
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Some test date to pass method
+            string DeliveryOptions = "*";
+
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DeliveryOptionsMaxMinusOne()
+        {
+
+            //This is the CustomerName Valid Method
+
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Some test date to pass method
+            string DeliveryOptions = "*"; //Should be Ok
+            DeliveryOptions.PadRight(149, '*');
+
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DeliveryOptionsMax()
+        {
+
+            //This is the DeliveryOptions Valid Method
+
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Some test date to pass method
+            string DeliveryOptions = "*"; //Should be Ok
+            DeliveryOptions.PadRight(150, '*');
+
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DeliveryOptionsMaxPlusOne()
+        {
+
+            //This is the DeliveryOptions Valid Method
+
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Some test date to pass method
+            string DeliveryOptions = "";
+            DeliveryOptions.PadRight(151, '*');
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DeliveryOptionsMid()
+        {
+
+            //This is the DeliveryOptions Valid Method
+
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Some test date to pass method
+            string DeliveryOptions = ""; //Should be Ok
+            DeliveryOptions = DeliveryOptions.PadRight(75, '*');
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DeliveryOptionsExtremeMax()
+        {
+
+            //This is the DeliveryOptions Valid Method
+
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Some test date to pass method
+            string DeliveryOptions = ""; //Should be Ok
+            DeliveryOptions = DeliveryOptions.PadRight(750, '*');
+
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ProductPriceExtremeMin()
+        {
+
+            //This is the ProductPrice Valid Method
+
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Some test date to pass method
+            string ProductPrice = "-10,000";
+
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ProductPriceMinMinusOne()
+        {
+
+            //This is the ProductPrice Valid Method
+
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Some test date to pass method
+            string ProductPrice = "-0.01";
+
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ProductPriceMinPlusOne()
+        {
+            //This is the ProductPrice Valid Method
+
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Some test date to pass method
+            string ProductPrice = "0.01";
+
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ProductPriceMin()
+        {
+
+            //This is the ProductPrice Valid Method
+
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Some test date to pass method
+            string ProductPrice = "0.00";
+
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void TotalAmountExtremeMin()
+        {
+
+            //This is the TotalAmount Valid Method
+
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Some test date to pass method
+            string TotalAmount = "-10,000,000";
+
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void TotalAmountMinMinusOne()
+        {
+
+            //This is the TotalAmount Valid Method
+
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Some test date to pass method
+            string TotalAmount = "-0.01";
+
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        
+        [TestMethod]
+        public void TotalAmountMinPlusOne()
+        {
+            //This is the TotalAmount Valid Method
+
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Some test date to pass method
+            string TotalAmount = "0.01";
+
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void TotalAmountMin()
+        {
+
+            //This is the TotalAmount Valid Method
+
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Some test date to pass method
+            string TotalAmount = "0.00";
+
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+            [TestMethod]
+            public void QuantityMinMinusOne()
+            {
+
+                //This is the Quantity Valid Method
+
+                //Instance of Class Created
+                clsPurchases APurchase = new clsPurchases();
+
+                //String Variable to store error message
+                String Error = "";
+
+                //Some test date to pass method
+                string Quantity = "0";
+
+                //Method Invoked
+                Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+                //Test to see if result is correct
+                Assert.AreNotEqual(Error, "");
+            }
+
+            [TestMethod]
+            public void QuantityMin()
+            {
+
+            //This is the Quantity Valid Method
+
+                //Instance of Class Created
+                clsPurchases APurchase = new clsPurchases();
+
+                //String Variable to store error message
+                String Error = "";
+
+                //Some test date to pass method
+                string Quantity = "1";
+
+                //Method Invoked
+                Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+                //Test to see if result is correct
+                Assert.AreEqual(Error, "");
+            }
+
+            
+            [TestMethod]
+            public void QuantityMinPlusOne()
+            {
+                //This is the Quantity Valid Method
+
+                //Instance of Class Created
+                clsPurchases APurchase = new clsPurchases();
+
+                //String Variable to store error message
+                String Error = "";
+
+                //Some test date to pass method
+                string Quantity = "2";
+
+                //Method Invoked
+                Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+                //Test to see if result is correct
+                Assert.AreEqual(Error, "");
+            }
+
+            [TestMethod]
+            public void QuantityMaxMinusOne()
+            {
+
+            //This is the Quantity Valid Method
+
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+                //String Variable to store error message
+                String Error = "";
+
+                //Some test date to pass method
+                string Quantity = "249";
+
+                //Method Invoked
+                Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+                //Test to see if result is correct
+                Assert.AreEqual(Error, "");
+
+            }
+
+            [TestMethod]
+            public void QuantityMax()
+            {
+
+            //This is the Quantity Valid Method
+
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+                //String Variable to store error message
+                String Error = "";
+
+                //Some test date to pass method
+                string TotalAmount = "250";
+
+                //Method Invoked
+                Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+                //Test to see if result is correct
+                Assert.AreEqual(Error, "");
+            }
+
+            [TestMethod]
+            public void QuantityMaxPlusOne()
+            {
+
+                //This is the DeliveryOptions Valid Method
+
+                //Instance of Class Created
+                clsPurchases APurchase = new clsPurchases();
+
+                //String Variable to store error message
+                String Error = "";
+
+                //Some test date to pass method
+                string Quantity = "251";
+
+                //Method Invoked
+                Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+                //Test to see if result is correct
+                Assert.AreNotEqual(Error, "");
+            }
+
+            //This is the CustomerName Valid Method
+            [TestMethod]
+            public void QuantityMid()
+            {
+
+                //Instance of Class Created
+                clsPurchases APurchase = new clsPurchases();
+
+                //String Variable to store error message
+                String Error = "";
+
+                //Some test date to pass method
+                string Quantity = "125";
+
+                //Method Invoked
+                Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+                //Test to see if result is correct
+                Assert.AreEqual(Error, "");
+            }
+
+        [TestMethod]
+        public void QuantityExtremeMax()
+        {
+
+            //This is the DeliveryOptions Valid Method
+
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Some test date to pass method
+            string Quantity = "500";
+
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void OrderDateExtremeMin()
+        {
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Create variable to store the test date data
+            DateTime TestDate;
+
+            //Set date to todays date
+            TestDate = DateTime.Now.Date;
+
+            //Change date to whatever date is minus 10 years
+            TestDate = TestDate.AddYears(-10);
+
+            //Convert date variable to a string variable
+            string OrderDate = TestDate.ToString();
+
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void OrderDateMinMinusOne()
+        {
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Create variable to store the test date data
+            DateTime TestDate;
+
+            //Set date to todays date
+            TestDate = DateTime.Now.Date;
+
+            //Change date to whatever date is minus one day.
+            TestDate = TestDate.AddDays(-1);
+
+            //Convert date variable to a string variable
+            string OrderDate = TestDate.ToString();
+
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void OrderDateMinPlusOne()
+        {
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Create variable to store the test date data
+            DateTime TestDate;
+
+            //Set date to todays date
+            TestDate = DateTime.Now.Date;
+
+            //Change date to whatever date is less 1 day
+            TestDate = TestDate.AddDays(1);
+
+            //Convert date variable to a string variable
+            string OrderDate = TestDate.ToString();
+
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void OrderDateMin()
+        {
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Create variable to store the test date data
+            DateTime TestDate;
+
+            //Set date to todays date
+            TestDate = DateTime.Now.Date;
+
+            //Convert date variable to a string variable
+            string OrderDate = TestDate.ToString();
+
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void OrderDateExtremeMax()
+        {
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Create variable to store the test date data
+            DateTime TestDate;
+
+            //Set date to todays date
+            TestDate = DateTime.Now.Date;
+
+            //Change date to whatever date is plus 10 years
+            TestDate = TestDate.AddYears(10);
+
+            //Convert date variable to a string variable
+            string OrderDate = TestDate.ToString();
+
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void OrderDateInvalidData()
+        {
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Set the OrderDate to a non data value
+            string OrderDate = "This is not a date!";
+
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreNotEqual(Error, ""); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
         }
+
     }
-    }
+}
+
 
 
 
