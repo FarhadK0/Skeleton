@@ -8,6 +8,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:ListBox ID="lstPianoList" runat="server" style="z-index: 1; left: 10px; top: 15px; position: absolute; height: 464px; width: 549px"></asp:ListBox>
         <div>
         </div>
     </form>
