@@ -17,7 +17,7 @@ namespace ClassLibrary
             set
             {
                 //this line of code allows data into the property
-                mStaffId = value;   
+                mStaffId = value;
             }
         }
 
@@ -127,26 +127,44 @@ namespace ClassLibrary
             }
         }
 
+        /*****FIND METHOD*******/
 
         public bool Find(int StaffId)
         {
-            //set the private data members to the test data value 
-            mStaffId = 4;
-            mStaffName = "John Micheal";
-            mStaffEmail = "JohnMicheal@gmail.com";
-            mDateOfBirth = Convert.ToDateTime("13/5/1990");
-            mStaffAddress = "33 Castle Street LE2 5WL";
-            mStaffAge = 34;
-            mIsManager = true;
-            //always return true
-            return true;
+            //create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the Staff id to search for 
+            DB.AddParameter("@StaffID", StaffId);
+            //execute the stored procedure
+            DB.Execute("sproc_tblStaff_FilterByStaffID");
+            //if one record is found(there should be either one or zero)
+            if (DB.Count == 1)
+            {
+                //copy the data from the database  to the private data members
+                mStaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffID"]);
+                mStaffName = Convert.ToString(DB.DataTable.Rows[0]["StaffName"]);
+                mStaffEmail = Convert.ToString(DB.DataTable.Rows[0]["StaffEmail"]);
+                mDateOfBirth = Convert.ToDateTime(DB.DataTable.Rows[0]["DateOfBirth"]);
+                mStaffAddress = Convert.ToString(DB.DataTable.Rows[0]["StaffAddress"]);
+                mStaffAge = Convert.ToInt32(DB.DataTable.Rows[0]["StaffAge"]);
+                mIsManager = Convert.ToBoolean(DB.DataTable.Rows[0]["IsManager"]);
+                //everything works fine 
+                return true;
+
+            }
+            //if no record was found 
+            else
+            {
+                //return false indicating there is a problem 
+                return false;
+            }
+
+
+
+
+
+
+
         }
-
-
-
-
-
-
-
     }
 }
