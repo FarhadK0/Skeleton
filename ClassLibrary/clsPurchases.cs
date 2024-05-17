@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ClassLibrary
 {
@@ -171,7 +172,107 @@ namespace ClassLibrary
 
             }
 
+           
 
+
+
+        }
+
+        public string Valid(string customerName, string deliveryOptions, string productPrice, string quantity, string orderDate, string totalAmount)
+        {
+            //This is` the Valid Method
+
+            //String variable to store error
+            String Error = "";
+
+            //create a temporary variable to store the date values
+            DateTime DateTemp;
+
+            //If the CustomerName is blank
+            if (customerName.Length == 0)
+            {
+                //Record the error
+                Error = Error + "The Customer name can't be blank : ";
+            }
+            //If the CustomerName is greater than 50 Characters
+            if (customerName.Length > 50)
+            {
+                //Record the error
+                Error = Error + "The Customer name must be more than 50 characters : ";
+            }
+
+            //If the DeliveryOptions is blank
+            if (deliveryOptions.Length == 0)
+            {
+                //Record the error
+                Error = Error + "The delivery options can't be blank : ";
+            }
+            //If the DeliveryOptions is greater than 50 Characters
+            if (deliveryOptions.Length > 150)
+            {
+                //Record the error
+                Error = Error + "The delivery options must be more than 150 characters : ";
+            }
+
+            //If ProductPrice is less than 0
+            ProductPrice = Convert.ToDouble(productPrice);
+            if (ProductPrice < 0)
+            {
+                Error = Error + "The Product Price can't be smaller than £0.00";
+            }
+
+            //If TotalAmount is less than 0
+            TotalAmount = Convert.ToDouble(totalAmount);
+            if (TotalAmount < 0)
+            {
+                Error = Error + "The Total Amount can't be smaller than £0.00";
+            }
+        
+            //If the Quantity is less than 1
+            Quantity = Convert.ToInt32(quantity);
+            if (Quantity < 1)
+            {
+                //Record the error
+                Error = Error + "The quantity can't be less than one : ";
+            }
+            //If the Quantity is greater than 250
+            Quantity = Convert.ToInt32(quantity);
+            if (Quantity > 250)
+            {
+                //Record the error
+                Error = Error + "The quantity can't be more than 250 : ";
+            }
+
+        //Create instance of DateTime to compare with DateTemp
+        //In the if statements
+        DateTime DateComp = DateTime.Now.Date;
+
+            try
+            {
+                //Copy the OrderDate value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(orderDate);
+
+                //Check to see if data is less than today's date
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The Order Date can't be in the past : ";
+                }
+                //check to see if the date is greater than today's date
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The Order Date can't be in the future : ";
+                }
+            }
+            catch
+            {
+                //Record the error
+                Error = Error + "The date was not a valid date : ";
+            }
+
+            //Return any error messages
+            return Error;
 
         }
     }
