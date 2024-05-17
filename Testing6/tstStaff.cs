@@ -123,7 +123,7 @@ namespace Testing6
             //create a Boolean variable to store the results of the validation
             Boolean Found = false;
             //create some test data to use with the method
-            Int32 StaffId = 15;
+            Int32 StaffId = 4;
             //invoke the method
             Found = AStaff.Find(StaffId);
             //test to see if the result is true  
@@ -165,11 +165,11 @@ namespace Testing6
             //create a Boolean variable to record if the data is ok (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffId = 15;
+            Int32 StaffId = 4;
             //invoke the method
             Found = AStaff.Find(StaffId);
             //check the Staff Name
-            if (AStaff.StaffName != "John Micheal")
+            if (AStaff.StaffName != "Daniel Johnson")
             {
                 OK = false;
             }
@@ -188,11 +188,11 @@ namespace Testing6
             //create a Boolean variable to record if the data is ok (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffId = 15;
+            Int32 StaffId = 4;
             //invoke the method
             Found = AStaff.Find(StaffId);
             //check the Staff Email
-            if (AStaff.StaffEmail != "JohnMicheal@gmail.com")
+            if (AStaff.StaffEmail != "DanielJohnson@gmail.com")
             {
                 OK = false;
             }
@@ -211,11 +211,11 @@ namespace Testing6
             //create a Boolean variable to record if the data is ok (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffId = 15;
+            Int32 StaffId = 4;
             //invoke the method
             Found = AStaff.Find(StaffId);
             //check the Date Of Birth
-            if (AStaff.DateOfBirth != Convert.ToDateTime("13/5/1990"))
+            if (AStaff.DateOfBirth != Convert.ToDateTime("15/4/1997"))
             {
                 OK = false;
             }
@@ -234,11 +234,11 @@ namespace Testing6
             //create a Boolean variable to record if the data is ok (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffId = 15;
+            Int32 StaffId = 4;
             //invoke the method
             Found = AStaff.Find(StaffId);
             //check the Address Id
-            if (AStaff.StaffAddress != "33 Castle Street LE2 5WL")
+            if (AStaff.StaffAddress != "16 Castle Street LE2 5WL")
             {
                 OK = false;
             }
@@ -257,11 +257,11 @@ namespace Testing6
             //create a Boolean variable to record if the data is ok (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffId = 15;
+            Int32 StaffId = 4;
             //invoke the method
             Found = AStaff.Find(StaffId);
             //check the Address Id
-            if (AStaff.StaffAge != 34)
+            if (AStaff.StaffAge != 27)
             {
                 OK = false;
             }
@@ -280,7 +280,7 @@ namespace Testing6
             //create a Boolean variable to record if the data is ok (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffId = 15;
+            Int32 StaffId = 4;
             //invoke the method
             Found = AStaff.Find(StaffId);
             //check the Address Id

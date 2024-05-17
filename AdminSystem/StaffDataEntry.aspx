@@ -44,6 +44,11 @@
             <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 87px; top: 335px; position: absolute" Text="Cancel" />
         </p>
         <p>
+            <asp:Button ID="btnFind" runat="server" Height="34px" Text="Find" Width="51px" style="z-index: 1; left: 10px; top: 380px; position: absolute" OnClick="btnFind_Click1" />
+        </p>
+        <p>
+            &nbsp;</p>
+        <p>
             &nbsp;</p>
     </form>
 </body>
