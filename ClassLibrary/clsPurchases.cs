@@ -192,40 +192,40 @@ namespace ClassLibrary
             if (customerName.Length == 0)
             {
                 //Record the error
-                Error = Error + "The Customer name can't be blank : ";
+                Error = Error + "The Customer name can't be blank: <br>  ";
             }
             //If the CustomerName is greater than 50 Characters
             if (customerName.Length > 50)
             {
                 //Record the error
-                Error = Error + "The Customer name must be more than 50 characters : ";
+                Error = Error + "The Customer name must be less than 50 characters: <br>  ";
             }
 
             //If the DeliveryOptions is blank
             if (deliveryOptions.Length == 0)
             {
                 //Record the error
-                Error = Error + "The delivery options can't be blank : ";
+                Error = Error + "The delivery options can't be blank: <br>  ";
             }
             //If the DeliveryOptions is greater than 50 Characters
             if (deliveryOptions.Length > 150)
             {
                 //Record the error
-                Error = Error + "The delivery options must be more than 150 characters : ";
+                Error = Error + "The delivery options must be less than 150 characters: <br>  ";
             }
 
             //If ProductPrice is less than 0
             ProductPrice = Convert.ToDouble(productPrice);
             if (ProductPrice < 0)
             {
-                Error = Error + "The Product Price can't be smaller than £0.00";
+                Error = Error + "The Product Price can't be smaller than £0.00: <br> ";
             }
 
             //If TotalAmount is less than 0
             TotalAmount = Convert.ToDouble(totalAmount);
             if (TotalAmount < 0)
             {
-                Error = Error + "The Total Amount can't be smaller than £0.00";
+                Error = Error + "The Total Amount can't be smaller than £0.00: <br> ";
             }
         
             //If the Quantity is less than 1
@@ -233,14 +233,14 @@ namespace ClassLibrary
             if (Quantity < 1)
             {
                 //Record the error
-                Error = Error + "The quantity can't be less than one : ";
+                Error = Error + "The quantity can't be less than one: <br>  ";
             }
             //If the Quantity is greater than 250
             Quantity = Convert.ToInt32(quantity);
             if (Quantity > 250)
             {
                 //Record the error
-                Error = Error + "The quantity can't be more than 250 : ";
+                Error = Error + "The quantity can't be more than 250: <br>  ";
             }
 
         //Create instance of DateTime to compare with DateTemp
@@ -256,19 +256,19 @@ namespace ClassLibrary
                 if (DateTemp < DateTime.Now.Date)
                 {
                     //record the error
-                    Error = Error + "The Order Date can't be in the past : ";
+                    Error = Error + "The Order Date can't be in the past: <br> ";
                 }
                 //check to see if the date is greater than today's date
-                if (DateTemp > DateTime.Now.Date)
+                if (DateTemp > DateComp)
                 {
                     //record the error
-                    Error = Error + "The Order Date can't be in the future : ";
+                    Error = Error + "The Order Date can't be in the future: <br> ";
                 }
             }
             catch
             {
                 //Record the error
-                Error = Error + "The date was not a valid date : ";
+                Error = Error + "The date was not a valid date: <br> ";
             }
 
             //Return any error messages

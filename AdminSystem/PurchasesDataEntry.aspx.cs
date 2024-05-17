@@ -18,35 +18,45 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //Create a new instance of clsPurchases
         clsPurchases APurchase = new clsPurchases();
 
-        //Capture a PurchaseId
-        APurchase.PurchaseId = Convert.ToInt32(txtPurchaseId.Text);
+        //Capture the attributes
+        string PurchaseId = txtPurchaseId.Text;
+        string CustomerName = txtCustomerName.Text;
+        string DeliveryOptions = txtDeliveryOptions.Text;
+        string ProductPrice = txtProductPrice.Text;
+        string Quantity = txtQuantity.Text;
+        string OrderDate = txtOrderDate.Text;
+        string TotalAmount = txtTotalAmount.Text;
+        string OrderConfirmed = chkOrderConfirmed.Text;
 
-        //Capture a CustomerName
-        APurchase.CustomerName = txtCustomerName.Text;
+        //Variable to store any error messages
+        string Error = "";
 
-        //Capture a DeliveryOptions
-        APurchase.DeliveryOptions = txtDeliveryOptions.Text;
+        //Validate the data#
+        Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
 
-        //Capture a ProductPrice
-        APurchase.ProductPrice = Convert.ToDouble(txtProductPrice.Text);
+        if (Error == "")
+        {
+            //Capture the attributes 2
+            APurchase.CustomerName = CustomerName;
+            APurchase.DeliveryOptions = DeliveryOptions;
+            APurchase.ProductPrice = Convert.ToDouble(ProductPrice);
+            APurchase.Quantity = Convert.ToInt32(Quantity);
+            APurchase.OrderDate = Convert.ToDateTime(OrderDate);
+            APurchase.TotalAmount = Convert.ToDouble(TotalAmount);
 
-        //Capture a Quantity
-        APurchase.Quantity = Convert.ToInt32(txtQuantity.Text);
+            //Store a Purchase in the session object
+            Session["APurchase"] = APurchase;
 
-        //Capture a OrderDate
-        APurchase.OrderDate = Convert.ToDateTime(DateTime.Now);
+            //Navigate to the view page
+            Response.Redirect("PurchasesViewer.aspx");
+        }
+        else
+        {
+            //Display the error message
+            lblError.Text = Error;
+        }
 
-        //Capture a TotalAmount
-        APurchase.TotalAmount = Convert.ToDouble(txtTotalAmount.Text);
-
-        //Capture a Checkbox
-        APurchase.OrderConfirmed = chkOrderConfirmed.Checked;
-
-        //Store a Purchase in the session object
-        Session["APurchase"] = APurchase;
-
-        //Navigate to the view page
-        Response.Redirect("PurchasesViewer.aspx");
+           
     }
 
     protected void CheckBox1_CheckedChanged1(object sender, EventArgs e)
