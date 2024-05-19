@@ -48,6 +48,7 @@
     <Compile Include="clsPiano.cs" />
     <Compile Include="clsPianoCollection.cs" />
     <Compile Include="clsPurchases.cs" />
+    <Compile Include="clsPurchasesCollection.cs" />
     <Compile Include="clsPurchasesPiano.cs" />
     <Compile Include="clsStaff.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
