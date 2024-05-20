@@ -34,4 +34,13 @@ public partial class _1_List : System.Web.UI.Page
         //Bind the data to the list
         lstPurchaseList.DataBind();
     }
+
+    protected void btnAdd_Click(object sender, EventArgs e)
+    {
+        //Store -1 into the session object to indicate this is a new record
+        Session["PurchaseId"] = -1;
+
+        //Redirect to the data entry page
+        Response.Redirect("PurchasesDataEntry.aspx");
+    }
 }

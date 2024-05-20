@@ -5,6 +5,13 @@ namespace ClassLibrary
 {
     public class clsPurchasesCollection
     {
+
+        //Private data member for the list
+        List<clsPurchases> mPurchaseList = new List<clsPurchases>();
+
+        //Private member data for thisPurchase
+        clsPurchases mThisPurchase = new clsPurchases();
+
         //Constructor for the class
         public clsPurchasesCollection() 
         {
@@ -49,9 +56,6 @@ namespace ClassLibrary
 
         }
 
-
-        //Private data member for the list
-        List <clsPurchases> mPurchaseList = new List<clsPurchases>();
         //Public property for the Purchase list
         public List<clsPurchases> PurchaseList
         {
@@ -79,8 +83,37 @@ namespace ClassLibrary
             }
         }
 
-        public clsPurchases ThisPurchase { get; set; }
+        public clsPurchases ThisPurchase
+        {
+            get
+            {
+                //return the private data
+                return mThisPurchase;
+            }
+            set
+            {
+                //Set the private data
+                mThisPurchase = value;
+            }
+        }
 
+        public int Add()
+        {
+            //add a record to the DB basd on the values of mThisPurchase
+            //connect to DB
+            clsDataConnection DB = new clsDataConnection();
 
+            //set params for the sproc
+            DB.AddParameter("@OrderDate", mThisPurchase.OrderDate);
+            DB.AddParameter("@ProductPrice", mThisPurchase.ProductPrice);
+            DB.AddParameter("@CustomerName", mThisPurchase.CustomerName);
+            DB.AddParameter("@DeliveryOptions", mThisPurchase.DeliveryOptions);
+            DB.AddParameter("@OrderConfirmed", mThisPurchase.OrderConfirmed);
+            DB.AddParameter("@TotalAmount", mThisPurchase.TotalAmount);
+            DB.AddParameter("@Quantity", mThisPurchase.Quantity);
+
+            //return the PrimaryKey of the new record
+            return DB.Execute("sproc_tblPurchases_Insert");
+        }
     }
 }

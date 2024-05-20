@@ -31,7 +31,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //Variable to store any error messages
         string Error = "";
 
-        //Validate the data#
+        //Validate the data
         Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
 
         if (Error == "")
@@ -43,12 +43,19 @@ public partial class _1_DataEntry : System.Web.UI.Page
             APurchase.Quantity = Convert.ToInt32(Quantity);
             APurchase.OrderDate = Convert.ToDateTime(OrderDate);
             APurchase.TotalAmount = Convert.ToDouble(TotalAmount);
+            APurchase.OrderConfirmed = Convert.ToBoolean(OrderConfirmed);
 
-            //Store a Purchase in the session object
-            Session["APurchase"] = APurchase;
+            //New instance created
+            clsPurchasesCollection PurchaseList = new clsPurchasesCollection();
 
-            //Navigate to the view page
-            Response.Redirect("PurchasesViewer.aspx");
+            //ThisPurchase property set
+            PurchaseList.ThisPurchase = APurchase;
+
+            //New record added
+            PurchaseList.Add();
+
+            //Navigate to the list page
+            Response.Redirect("PurchasesList.aspx");
         }
         else
         {
