@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 
 
 namespace ClassLibrary
@@ -8,6 +9,9 @@ namespace ClassLibrary
     {
         //private data member for the list
         List<clsCustomerSupport> cCustomerSupportList = new List<clsCustomerSupport>();
+
+        //private member data for thisCustomerSupport
+        clsCustomerSupport cThisCustomerSupport = new clsCustomerSupport();
 
         //public property for the address list
         
@@ -41,7 +45,21 @@ namespace ClassLibrary
                 
             
         }
-        public clsCustomerSupport ThisCustomerSupport { get; set; }
+
+        //public property for ThisCustomerSupport
+        public clsCustomerSupport ThisCustomerSupport 
+        {
+            get
+            {
+                //return the private data
+                return cThisCustomerSupport;
+            }
+                set
+            {
+                //set the private data
+                cThisCustomerSupport= value;
+            }
+        }
 
         public clsCustomerSupportCollection() 
         {
@@ -81,6 +99,25 @@ namespace ClassLibrary
                 //point at the next record
                 Index++;
             }
+        }
+
+        public int Add()
+        {
+            //add a record to the database based on the values of cThisCustomerSupport
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+
+            //set the parameters for the stored procedure
+            DB.AddParameter("@TicketType", cThisCustomerSupport.TicketType);
+            DB.AddParameter("@Subject", cThisCustomerSupport.Subject);
+            DB.AddParameter("@Description", cThisCustomerSupport.Description);
+            DB.AddParameter("@SubmissionDate", cThisCustomerSupport.SubmissionDate);
+            DB.AddParameter("@TicketStatus", cThisCustomerSupport.TicketStatus);
+            DB.AddParameter("@TicketElevated", cThisCustomerSupport.TicketElevated);
+
+            //execute the query returning the primary key value
+            return DB.Execute("sproc_CustomerSupport_Insert");
+
         }
     }
 }
