@@ -58,19 +58,19 @@ namespace ClassLibrary
 
 
         //private data member for the Date of birth property
-        private DateTime mDateOfBirth;
+        private DateTime mStaffRegisterDate;
         //Date of birth public property
-        public DateTime DateOfBirth
+        public DateTime StaffRegisterDate
         {
             get
             {
                 //this line of code sends data out of the property
-                return mDateOfBirth;
+                return mStaffRegisterDate;
             }
             set
             {
                 //this line of code allows data into the property
-                mDateOfBirth = value;
+                mStaffRegisterDate = value;
             }
         }
 
@@ -144,7 +144,7 @@ namespace ClassLibrary
                 mStaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffID"]);
                 mStaffName = Convert.ToString(DB.DataTable.Rows[0]["StaffName"]);
                 mStaffEmail = Convert.ToString(DB.DataTable.Rows[0]["StaffEmail"]);
-                mDateOfBirth = Convert.ToDateTime(DB.DataTable.Rows[0]["DateOfBirth"]);
+                mStaffRegisterDate = Convert.ToDateTime(DB.DataTable.Rows[0]["StaffRegisterDate"]);
                 mStaffAddress = Convert.ToString(DB.DataTable.Rows[0]["StaffAddress"]);
                 mStaffAge = Convert.ToInt32(DB.DataTable.Rows[0]["StaffAge"]);
                 mIsManager = Convert.ToBoolean(DB.DataTable.Rows[0]["IsManager"]);
@@ -163,7 +163,7 @@ namespace ClassLibrary
 
         }
 
-        public string Valid(string staffName, string staffEmail, string dateOfBirth, string staffAddress, string staffAge)
+        public string Valid(string staffName, string staffEmail, string staffRegisterDate, string staffAddress, string staffAge)
         {
             //create a string variable to store the error
             String Error = "";
@@ -218,73 +218,69 @@ namespace ClassLibrary
 
             }
 
-            //Define the Date value to 18 years 
-            AgeTemp = Convert.ToInt32(staffAge);
+            //Define too old
+            Int32 TooOld = 65;
+            Int32 TooYoung = 18;
 
-            //if the StaffAddress is greater than 50
-            if (AgeTemp > 65)
-            {
-                //record the error
-                Error = Error + "The Staff Age is too old: ";
-
-            }
-
-
-            //if the StaffAddress is greater than 50
-            if (AgeTemp < 18)
-            {
-                //record the error
-                Error = Error + "The Staff is too young: ";
-
-            }
-
-
-
-
-            // Define the extreme minimum date (100 years ago), todays date and min (-1 day)
-                DateTime ExtremeMinDate = DateTime.Today.AddYears(-100);
-                DateTime DateComp = new DateTime(2004, 1, 10);
-            
-               
 
             try
             {
+                // Copy the staffAge value to the AgeTemp variable
+                AgeTemp = Convert.ToInt32(staffAge);
+                // Check if the staff age is less than 18
+                if (AgeTemp < TooYoung)
+                {
+                    // Record the error
+                    Error = Error + "The staff age must be less than 65 years old: ";
+                }
+
+                // Check if the age is greater than 65
+                if (AgeTemp > TooOld)
+                {
+                    // Record the error
+                    Error = Error + "The staff age is too young: ";
+                }
+
+            }
+            catch (FormatException)
+            {
+
+                // Record the error for invalid date format
+                Error = Error + "The staff age is not valid: ";
+            }
+
+
+            // Define the currentDate to today's date
+            DateTime CurrentDate = DateTime.Now.Date;
+            
+            
+              
+            try
+            {
                 // Copy the dateOfBirth value to the DateTemp variable
-                DateTemp = Convert.ToDateTime(dateOfBirth);
+                DateTemp = Convert.ToDateTime(staffRegisterDate);
                 // Check if the date of birth is less than the extreme minimum date
-                if (DateTemp < ExtremeMinDate)
+                if (DateTemp < CurrentDate)
                 {
                     // Record the error
-                    Error = Error + "The date of birth is too far in the past: ";
+                    Error = Error + "Registration date cannot be in the past ";
                 }
 
                 // Check if the date of birth is greater than today's date
-                if (DateTemp > DateComp)
+                if (DateTemp > CurrentDate)
                 {
                     // Record the error
-                    Error = Error + "The date of birth cannot be in the future: ";
+                    Error = Error + "Registration date cannot be in the future: ";
                 }
 
-                // Check if the date of birth is greater than today's date
-                if (DateTemp == DateComp.AddDays(1))
-                {
-                    // Record the error
-                    Error = Error + "The date of birth cannot be in the future: ";
-                }
-
-                // Check if the date of birth is greater than today's date
-                if (DateTemp == DateComp.AddDays(-1))
-                {
-                    // Record the error
-                    Error = Error + "The date of birth is too far in the past: ";
-                }
+                
 
             }
             catch (FormatException)
             {
               
                 // Record the error for invalid date format
-                Error = Error + "The date of birth is not a valid date: ";
+                Error = Error + "Registration Date is not a valid date: ";
             }
 
 

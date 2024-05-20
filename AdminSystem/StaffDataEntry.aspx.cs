@@ -6,8 +6,11 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using ClassLibrary;
 
+
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+   
+
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -28,23 +31,50 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of clsStaff
         clsStaff AStaff = new clsStaff();
         //caputres the staff Id
-        AStaff.StaffId = Convert.ToInt32(txtStaffId.Text);
+        string StaffId = txtStaffId.Text;
         //capture the staff name
-        AStaff.StaffName = txtStaffName.Text;
+        string StaffName = txtStaffName.Text;
         //captures the staff email
-        AStaff.StaffEmail = txtStaffEmail.Text;
+        string StaffEmail = txtStaffEmail.Text;
         //captures the date of birth
-        AStaff.DateOfBirth = Convert.ToDateTime(txtDateOfBirth.Text);
+        string StaffRegisterDate = txtStaffRegisterDate.Text;
         //captures the staff Address
-        AStaff.StaffAddress = txtStaffAddress.Text;
+        string StaffAddress = txtStaffAddress.Text;
         //captures the Staff Age
-        AStaff.StaffAge = Convert.ToInt32(txtStaffAge.Text);
+        string StaffAge = txtStaffAge.Text;
         //captures the Is manager? check box
-        AStaff.IsManager = chkIsManager.Checked;
-        //store the name in the session object
-        Session["AStaff"] = AStaff;
-        //navigates to the view page
-        Response.Redirect("StaffViewer.aspx");
+        string IsManager = chkIsManager.Text;
+        //variable to store any error message
+        string Error = "";
+        //validate the data
+        Error = AStaff.Valid(StaffName, StaffEmail, StaffRegisterDate, StaffAddress, StaffAge);
+        if (Error == "")
+        {
+            //capture the staff Id
+            AStaff.StaffId = Convert.ToInt32(txtStaffId.Text);
+            //capture the Staff name
+            AStaff.StaffName = StaffName;
+            //captures the staff email
+            AStaff.StaffEmail = StaffEmail;
+            //captures the date of birth
+            AStaff.StaffRegisterDate = Convert.ToDateTime(StaffRegisterDate);
+            //captures the staff Address
+            AStaff.StaffAddress = StaffAddress;
+            //captures the Staff Age
+            AStaff.StaffAge = Convert.ToInt32(StaffAge);
+            //store the name in the session object
+            Session["AStaff"] = AStaff;
+            //navigates to the view page
+            Response.Redirect("StaffViewer.aspx");
+
+        }
+        else
+        {
+            //display the error Message
+            lblError.Text = Error;
+        }
+
+
     }
 
 
@@ -67,7 +97,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             //display the values of the propertiesin the form 
             txtStaffName.Text = AStaff.StaffName;
             txtStaffEmail.Text = AStaff.StaffEmail;
-            txtDateOfBirth.Text = AStaff.DateOfBirth.ToString();
+            txtStaffRegisterDate.Text = AStaff.StaffRegisterDate.ToString();
             txtStaffAddress.Text = AStaff.StaffAddress;
             txtStaffAge.Text = AStaff.StaffAge.ToString();
             txtStaffName.Text = AStaff.StaffName;
