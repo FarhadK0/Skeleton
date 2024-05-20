@@ -7,6 +7,8 @@ namespace ClassLibrary
     {
         //private data memebr for the list
         List<clsPiano> mPianoList = new List<clsPiano>();
+        //private data member for thisPiano
+        clsPiano mThisPiano = new clsPiano();
 
         public clsPianoCollection()
         {
@@ -70,6 +72,36 @@ namespace ClassLibrary
                 // TODO
             }
         }
-        public clsPiano ThisPiano { get; set; }
+        public clsPiano ThisPiano 
+        {
+            get
+            {
+                //return the private data
+                return mThisPiano;
+            }
+            set
+            {
+                //set the private data
+                mThisPiano = value;
+            }
+        }
+
+        public int Add()
+        {
+            //add a record to the DB basd on the values of mThisPiano
+            //connect to DB
+            clsDataConnection db = new clsDataConnection();
+
+            //set params for the sproc
+            db.AddParameter("@DateAdded", mThisPiano.DateAdded);
+            db.AddParameter("@Price", mThisPiano.Price);
+            db.AddParameter("@Manufacturer", mThisPiano.Manufacturer);
+            db.AddParameter("@ModelName", mThisPiano.ModelName);
+            db.AddParameter("@IsInStock", mThisPiano.IsInStock);
+            db.AddParameter("@SerialNumber", mThisPiano.SerialNumber);
+
+            //return the PK of the new record
+            return db.Execute("sproc_tblPiano_Insert");
+        }
     }
 }
