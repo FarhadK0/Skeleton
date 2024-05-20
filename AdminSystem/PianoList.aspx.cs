@@ -31,4 +31,12 @@ public partial class _1_List : System.Web.UI.Page
         //bind the data to the list
         lstPianoList.DataBind();
     }
+
+    protected void btnAdd_Click1(object sender, EventArgs e)
+    {
+        //store -1 into session object to indicate this is a new record
+        Session["PianoId"] = -1;
+        //Redirect to DataEntry Page
+        Response.Redirect("PianoDataEntry.aspx");
+    }
 }

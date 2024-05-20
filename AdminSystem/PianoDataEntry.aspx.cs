@@ -44,11 +44,14 @@ public partial class _1_DataEntry : System.Web.UI.Page
             //aPiano.IsInStock = Convert.ToBoolean(IsInStock);
             aPiano.SerialNumber = SerialNumber;
 
-            //store the model name in the session object
-            Session["aPiano"] = aPiano;
-
-            //nav to the view page
-            Response.Redirect("PianoViewer.aspx");
+            //create a new PianoList
+            clsPianoCollection PianoList = new clsPianoCollection();
+            //set the ThisPIano property
+            PianoList.ThisPiano = aPiano;
+            //add the new record
+            PianoList.Add();
+            //redirect back to the list page
+            Response.Redirect("PianoList.aspx");
         }
         else
         {
