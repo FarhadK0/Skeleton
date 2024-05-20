@@ -21,7 +21,7 @@ public partial class _1Viewer : System.Web.UI.Page
         //display the staff emial for this entry
         Response.Write(AStaff.StaffEmail + "<br />");
         //display the date of birth for this entry 
-        Response.Write(AStaff.DateOfBirth + "<br />" );
+        Response.Write(AStaff.StaffRegisterDate + "<br />" );
         //display the Staff Address
         Response.Write(AStaff.StaffAddress + "<br />");
         //display the staff Age

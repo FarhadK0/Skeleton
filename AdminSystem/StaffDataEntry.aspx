@@ -22,8 +22,8 @@
             <asp:TextBox ID="txtStaffEmail" runat="server" style="z-index: 1; left: 104px; top: 111px; position: absolute; width: 219px"></asp:TextBox>
         </p>
         <p>
-            <asp:Label ID="lblDateOfBirth" runat="server" style="z-index: 1; left: 10px; top: 148px; position: absolute; right: 1759px; width: 95px" Text="Date Of Birth"></asp:Label>
-            <asp:TextBox ID="txtDateOfBirth" runat="server" style="z-index: 1; left: 104px; top: 148px; position: absolute" width="219px"></asp:TextBox>
+            <asp:Label ID="lblStaffRegisterDate" runat="server" Style="z-index: 1; left: 10px; top: 148px; position: absolute; right: 1759px; width: 97px" Text="Register Date"></asp:Label>
+            <asp:TextBox ID="txtStaffRegisterDate" runat="server" style="z-index: 1; left: 104px; top: 148px; position: absolute" width="219px"></asp:TextBox>
         </p>
         <p>
             <asp:Label ID="lblStaffAddress" runat="server" style="z-index: 1; left: 10px; top: 186px; position: absolute" Text="Staff Address" width="95px"></asp:Label>
