@@ -59,11 +59,20 @@ public partial class _1_DataEntry : System.Web.UI.Page
             //capture the TicketStatus
             AnCustomerSupport.TicketStatus = TicketStatus;
 
-            //store the CustomerSupport in the session object
-            Session["CustomerSupport"] = AnCustomerSupport;
+            //capture TicketElevated
+            AnCustomerSupport.TicketElevated = chkTicketElevated.Checked;
 
-            //navigate to the view page
-            Response.Redirect("CustomerSupportViewer.aspx");
+            //create a new instance of the customerSupport collection
+            clsCustomerSupportCollection CustomerSupportList = new clsCustomerSupportCollection();
+
+            //set the ThisCustomerSupport property
+            CustomerSupportList.ThisCustomerSupport = AnCustomerSupport;
+
+            //add the new record
+            CustomerSupportList.Add();
+
+            //redirect back to the list page
+            Response.Redirect("CustomerSupportList.aspx");
 
         }
         else

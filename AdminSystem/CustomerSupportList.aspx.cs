@@ -35,4 +35,13 @@ public partial class _1_List : System.Web.UI.Page
         //bind the data to the list
         lstCustomerSupportList.DataBind();
     }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        //store -1 into the session object to inducate this is a new record
+        Session["TicketID"] = -1;
+
+        //redirect to the data entry page
+        Response.Redirect("CustomerSupportDataEntry.aspx");
+    }
 }
