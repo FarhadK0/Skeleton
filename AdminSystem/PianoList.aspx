@@ -20,6 +20,8 @@
         <div>
         </div>
         <asp:Button ID="btnAdd" runat="server" CssClass="auto-style1" Text="Add" OnClick="btnAdd_Click1" />
+        <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 17px; top: 547px; position: absolute"></asp:Label>
+        <asp:Button ID="btnEdit" runat="server" style="z-index: 1; left: 65px; top: 498px; position: absolute" Text="Edit" OnClick="btnEdit_Click1" />
     </form>
 </body>
 </html>
