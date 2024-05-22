@@ -8,9 +8,21 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    //variable to store the primary key with page level scope
+    Int32 TicketID;
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        //get the number of the ticket to be processed
+        TicketID = Convert.ToInt32(Session["TicketID"]);
+        if (IsPostBack == false)
+        {
+            //if this is the not a new record
+            if (TicketID !=-1)
+            {
+                //display the current data for the record
+                DisplayCustomerSupport();
+            }
+        }
     }
 
 
@@ -44,6 +56,9 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
         if (Error == "")
         {
+            //capture the ticket id
+            AnCustomerSupport.TicketID = TicketID;
+
             //capture the TicketType
             AnCustomerSupport.TicketType = TicketType;
 
@@ -65,11 +80,27 @@ public partial class _1_DataEntry : System.Web.UI.Page
             //create a new instance of the customerSupport collection
             clsCustomerSupportCollection CustomerSupportList = new clsCustomerSupportCollection();
 
-            //set the ThisCustomerSupport property
-            CustomerSupportList.ThisCustomerSupport = AnCustomerSupport;
+            //if this is a new record i.e TicketID = -1 then add the data
+            if (TicketID == -1)
+            {
+                //set the ThisCustomerSupport property
+                CustomerSupportList.ThisCustomerSupport = AnCustomerSupport;
 
-            //add the new record
-            CustomerSupportList.Add();
+                //add the new record
+                CustomerSupportList.Add();
+            }
+            //otherwise it must be an update
+            else
+            {
+                //find the record to update
+                CustomerSupportList.ThisCustomerSupport.Find(TicketID);
+
+                //set the ThisCustomerSupport property
+                CustomerSupportList.ThisCustomerSupport = AnCustomerSupport;
+
+                //update the record
+                CustomerSupportList.Update();
+            }
 
             //redirect back to the list page
             Response.Redirect("CustomerSupportList.aspx");
@@ -112,5 +143,24 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
 
         }
+    }
+
+    protected void DisplayCustomerSupport()
+    {
+        //create an instance of the customersupport
+        clsCustomerSupportCollection CustomerSupport = new clsCustomerSupportCollection();
+
+        //find the record to update
+        CustomerSupport.ThisCustomerSupport.Find(TicketID); 
+
+        //display the data for the record
+        txtTicketID.Text = CustomerSupport.ThisCustomerSupport.TicketID.ToString();
+        txtTicketType.Text = CustomerSupport.ThisCustomerSupport.TicketType;
+        txtSubject.Text = CustomerSupport.ThisCustomerSupport.Subject;
+        txtDescription.Text = CustomerSupport.ThisCustomerSupport.Description;
+        txtSubmissionDate.Text = CustomerSupport.ThisCustomerSupport.SubmissionDate.ToString();
+        txtTicketStatus.Text = CustomerSupport.ThisCustomerSupport.TicketStatus;
+        chkTicketElevated.Checked = CustomerSupport.ThisCustomerSupport.TicketElevated;
+
     }
 }
