@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using ClassLibrary;
 
 
+
 public partial class _1_DataEntry : System.Web.UI.Page
 {
    
@@ -62,10 +63,15 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AStaff.StaffAddress = StaffAddress;
             //captures the Staff Age
             AStaff.StaffAge = Convert.ToInt32(StaffAge);
-            //store the name in the session object
-            Session["AStaff"] = AStaff;
-            //navigates to the view page
-            Response.Redirect("StaffViewer.aspx");
+            //captre the Is manager
+            AStaff.IsManager = chkIsManager.Checked;
+            //create a new instance for the Staff collection
+            clsStaffCollection StaffList = new clsStaffCollection();
+            //set the ThisStaff property
+            StaffList.ThisStaff = AStaff;
+            //add the new record 
+            Response.Redirect("StaffList.aspx");
+
 
         }
         else
