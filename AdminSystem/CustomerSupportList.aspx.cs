@@ -93,4 +93,49 @@ public partial class _1_List : System.Web.UI.Page
             lblError.Text = "Please select a record from the list to delete";
         }
     }
+
+    protected void btnApplyFilter_Click(object sender, EventArgs e)
+    {
+        //create an instance of the address object
+        clsCustomerSupportCollection AnCustomerSupport = new clsCustomerSupportCollection();
+
+        //retrieve the value of post code from the presentation layer
+        AnCustomerSupport.ReportByTicketType(txtFilter.Text);
+
+        //set the data source to the list of CustomerSupports in the collection
+        lstCustomerSupportList.DataSource = AnCustomerSupport.CustomerSupportList;
+
+        //set the name of the primary key
+        lstCustomerSupportList.DataValueField = "TicketID";
+
+        //set the name of the field to display
+        lstCustomerSupportList.DataTextField = "TicketType";
+
+        //bind the data to the list
+        lstCustomerSupportList.DataBind();
+    }
+
+    protected void btnClearFilter_Click(object sender, EventArgs e)
+    {
+        //create an instance of the customer support
+        clsCustomerSupportCollection AnCustomerSupport = new clsCustomerSupportCollection();
+
+        //set an empty string
+        AnCustomerSupport.ReportByTicketType("");
+
+        //clear any existing filter to tidy up the interface
+        txtFilter.Text = "";
+
+        //set the data source to the list of CustomerSupports in the collection
+        lstCustomerSupportList.DataSource= AnCustomerSupport.CustomerSupportList;
+
+        //set the name of the primary key
+        lstCustomerSupportList.DataValueField = "TicketID";
+
+        //set the name of the field to display
+        lstCustomerSupportList.DataTextField = "TicketType";
+
+        //bind the data to list
+        lstCustomerSupportList.DataBind();
+    }
 }
