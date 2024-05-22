@@ -13,3 +13,4 @@
     </form>
 </body>
 </html>
+<asp:ListBox runat="server" ID="lstCustomerList" Height="223px" Width="278px"></asp:ListBox>
