@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -65,6 +66,31 @@ public partial class _1_List : System.Web.UI.Page
         else  //if no record has been selected
         {
             lblError.Text = "Please select a record from the list to edit";
+        }
+    }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        //variable to store the primary key value of the record to be delete
+        Int32 TicketID;
+
+        //if a record has been selected from the list
+        if (lstCustomerSupportList.SelectedIndex != -1)
+        {
+            //get the primary key value of he record delete
+            TicketID = Convert.ToInt32(lstCustomerSupportList.SelectedValue);
+
+            //store the data in the seesion object
+            Session["TicketID"] = TicketID;
+
+            //redirect to the deletepage
+            Response.Redirect("CustomerSupportConfirmDelete.aspx");
+        }
+
+        else //if no record has been selected
+        {
+            //display an error message
+            lblError.Text = "Please select a record from the list to delete";
         }
     }
 }

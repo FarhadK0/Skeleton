@@ -138,5 +138,19 @@ namespace ClassLibrary
             //execute the query returning the primary key value
              DB.Execute("sproc_CustomerSupport_Update");
         }
+
+        public void Delete()
+        {
+            //deletes the record pointed to by ThisCustomerSupport
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+
+            //set the parameters for the stored procedure
+            DB.AddParameter("@TicketID", cThisCustomerSupport.TicketID);
+
+            //execute the stored procedure
+            DB.Execute("sproc_CustomerSupport_Delete");
+             
+        }
     }
 }
