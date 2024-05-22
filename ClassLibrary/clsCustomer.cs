@@ -207,14 +207,14 @@ namespace ClassLibrary
                 Error = Error + "The Customer Phone must be less than or equal to 18 characters : ";
             }
 
-            DateTime Over18 = DateTime.Now.Date;
+            DateTime dateToday = DateTime.Now.Date;
             
 
             try
             {
                 DateTemp = Convert.ToDateTime(Dateofbirth);
 
-                if (DateTemp < Over18)
+                if (DateTemp > dateToday.AddYears(-18))
                 {
                     Error = Error + "Customer should be at least 18 years old";
                 }
