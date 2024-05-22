@@ -132,9 +132,9 @@ namespace Testing2
 
             //set its properties
             TestItem.TicketID = 1;
-            TestItem.TicketType = " Support";
-            TestItem.Subject = "t password";
-            TestItem.Description = "cannot reset  password";
+            TestItem.TicketType = " Buying Issue";
+            TestItem.Subject = "Access Denied";
+            TestItem.Description = "Cannot buy the item";
             TestItem.SubmissionDate = DateTime.Now;
             TestItem.TicketStatus = "close";
             TestItem.TicketElevated = true;
@@ -169,11 +169,12 @@ namespace Testing2
             Int32 PrimaryKey = 0;
 
             //set its properties
-            TestItem.TicketType = "Technical Support";
-            TestItem.Subject = "reset password";
-            TestItem.Description = "cannot reset the password";
+           
+            TestItem.TicketType = " Buying Issue";
+            TestItem.Subject = "Access Denied";
+            TestItem.Description = "Cannot buy the item";
             TestItem.SubmissionDate = DateTime.Now;
-            TestItem.TicketStatus = "InProgress";
+            TestItem.TicketStatus = "close";
             TestItem.TicketElevated = true;
 
             //set ThisCustomerSupport to the test data
@@ -204,6 +205,51 @@ namespace Testing2
 
             //test to see if ThisAddress matches the test data
             Assert.AreEqual(AllCustomerSupports.ThisCustomerSupport, TestItem );
+        }
+
+        [TestMethod]
+
+        public void DeleteMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupportCollection AllCustomerSupports = new clsCustomerSupportCollection();
+
+            //create the item of test data
+            clsCustomerSupport TestItem = new clsCustomerSupport();
+
+            //variable to store the primary key
+            Int32 PrimaryKey = 0;
+
+            //set its properties
+            TestItem.TicketID = 1;
+            TestItem.TicketType = " Buying Issue";
+            TestItem.Subject = "Access Denied";
+            TestItem.Description = "Cannot buy the item";
+            TestItem.SubmissionDate = DateTime.Now;
+            TestItem.TicketStatus = "close";
+            TestItem.TicketElevated = true;
+
+            //set ThisCustomerSupport to the test data
+            AllCustomerSupports.ThisCustomerSupport = TestItem;
+
+            //add the record
+            PrimaryKey = AllCustomerSupports.Add();
+
+            //set the primary key of the test data
+            TestItem.TicketID = PrimaryKey;
+
+            //Find the record
+            AllCustomerSupports.ThisCustomerSupport.Find(PrimaryKey);
+
+            //delete the record
+            AllCustomerSupports.Delete();
+
+            //now find the record
+            Boolean Found = AllCustomerSupports.ThisCustomerSupport.Find(PrimaryKey);
+
+            //test to see that the record was not found
+            Assert.IsFalse( Found );
+
         }
     }
 }
