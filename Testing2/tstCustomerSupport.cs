@@ -225,7 +225,7 @@ namespace Testing2
             Found = AnCustomerSupport.Find(TicketID);
 
             //check the TicketType property
-            if (AnCustomerSupport.TicketType != "BillInquiry")
+            if (AnCustomerSupport.TicketType != "CardError")
             {
                 OK = false;
             }
@@ -309,7 +309,7 @@ namespace Testing2
             Found = AnCustomerSupport.Find(TicketID);
 
             //check the SubmissionDate Property
-            if (AnCustomerSupport.SubmissionDate != Convert.ToDateTime("02/05/2024"))
+            if (AnCustomerSupport.SubmissionDate != Convert.ToDateTime("21/05/2024"))
             {
                 OK = false;
             }

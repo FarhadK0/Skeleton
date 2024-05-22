@@ -154,5 +154,56 @@ namespace Testing2
             //test to see that two values are the same
             Assert.AreEqual(AllCustomerSupports.ThisCustomerSupport, TestItem);
         }
+
+        [TestMethod]
+
+        public void UpdateMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupportCollection AllCustomerSupports = new clsCustomerSupportCollection();
+
+            //create the item of test data
+            clsCustomerSupport TestItem = new clsCustomerSupport();
+
+            //variable to store the primary key
+            Int32 PrimaryKey = 0;
+
+            //set its properties
+            TestItem.TicketType = "Technical Support";
+            TestItem.Subject = "reset password";
+            TestItem.Description = "cannot reset the password";
+            TestItem.SubmissionDate = DateTime.Now;
+            TestItem.TicketStatus = "InProgress";
+            TestItem.TicketElevated = true;
+
+            //set ThisCustomerSupport to the test data
+            AllCustomerSupports.ThisCustomerSupport = TestItem ;
+
+            //add the record
+            PrimaryKey = AllCustomerSupports.Add();
+            
+            //set the primary key of the test data
+            TestItem.TicketID = PrimaryKey;
+
+            //modify the test record
+            TestItem.TicketType = "Purchase History";
+            TestItem.Subject = "cannot access";
+            TestItem.Description = "give me error for the history";
+            TestItem.SubmissionDate = DateTime.Now;
+            TestItem.TicketStatus = "close";
+            TestItem.TicketElevated = false;
+
+            //set the record based on the new test data
+            AllCustomerSupports.ThisCustomerSupport = TestItem;
+
+            //update the record
+            AllCustomerSupports.Update();
+
+            //find the record 
+            AllCustomerSupports.ThisCustomerSupport.Find(PrimaryKey);
+
+            //test to see if ThisAddress matches the test data
+            Assert.AreEqual(AllCustomerSupports.ThisCustomerSupport, TestItem );
+        }
     }
 }

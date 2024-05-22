@@ -119,5 +119,24 @@ namespace ClassLibrary
             return DB.Execute("sproc_CustomerSupport_Insert");
 
         }
+
+        public void Update()
+        {
+            //add a record to the database based on the values of cThisCustomerSupport
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+
+            //set the parameters for the stored procedure
+            DB.AddParameter("@TicketID", cThisCustomerSupport.TicketID);
+            DB.AddParameter("@TicketType", cThisCustomerSupport.TicketType);
+            DB.AddParameter("@Subject", cThisCustomerSupport.Subject);
+            DB.AddParameter("@Description", cThisCustomerSupport.Description);
+            DB.AddParameter("@SubmissionDate", cThisCustomerSupport.SubmissionDate);
+            DB.AddParameter("@TicketStatus", cThisCustomerSupport.TicketStatus);
+            DB.AddParameter("@TicketElevated", cThisCustomerSupport.TicketElevated);
+
+            //execute the query returning the primary key value
+             DB.Execute("sproc_CustomerSupport_Update");
+        }
     }
 }
