@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="PianosViewer.aspx.cs" Inherits="_1Viewer" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="PianoViewer.aspx.cs" Inherits="_1Viewer" %>
 
 <!DOCTYPE html>
 
