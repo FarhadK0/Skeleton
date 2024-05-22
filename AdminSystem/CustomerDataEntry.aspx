@@ -43,6 +43,7 @@
             &nbsp;</p>
         <p>
             &nbsp;</p>
+        <asp:Label ID="lblError" runat="server"></asp:Label>
     </form>
 </body>
 </html>
