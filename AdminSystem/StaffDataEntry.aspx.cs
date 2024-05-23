@@ -7,12 +7,43 @@ using System.Web.UI.WebControls;
 using ClassLibrary;
 
 
+
 public partial class _1_DataEntry : System.Web.UI.Page
 {
-   
+
+    //variable to stroe the primary key with page level scope
+    Int32 StaffId;
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        //get the number of staff to be processed 
+        StaffId = Convert.ToInt32(Session[StaffId]);
+        if(IsPostBack == false)
+        {
+            //if this is not a new record 
+            if (StaffId != -1)
+            {
+                //display the current data for the record 
+                DisplayStaff();
+            }
+        }
+
+    }
+
+    void DisplayStaff()
+    {
+        //create a new instance of the staff book 
+        clsStaffCollection StaffBook = new clsStaffCollection();
+        //find the record to update 
+        StaffBook.ThisStaff.Find(StaffId);
+        //display the data for the record 
+        txtStaffId .Text = StaffBook.ThisStaff.StaffId.ToString();
+        txtStaffName.Text = StaffBook.ThisStaff.StaffName.ToString();
+        txtStaffEmail.Text = StaffBook.ThisStaff.StaffEmail.ToString();
+        txtStaffRegisterDate.Text = StaffBook.ThisStaff.StaffRegisterDate.ToString();
+        txtStaffAddress.Text = StaffBook.ThisStaff.StaffAddress.ToString();
+        txtStaffAge.Text = StaffBook.ThisStaff.StaffAge.ToString();
+        chkIsManager.Checked = StaffBook.ThisStaff.IsManager;
 
     }
 
@@ -50,8 +81,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = AStaff.Valid(StaffName, StaffEmail, StaffRegisterDate, StaffAddress, StaffAge);
         if (Error == "")
         {
-            //capture the staff Id
-            AStaff.StaffId = Convert.ToInt32(txtStaffId.Text);
+            //capture the staff Id 
+            AStaff.StaffId = Convert.ToInt32(StaffId);
             //capture the Staff name
             AStaff.StaffName = StaffName;
             //captures the staff email
@@ -62,10 +93,33 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AStaff.StaffAddress = StaffAddress;
             //captures the Staff Age
             AStaff.StaffAge = Convert.ToInt32(StaffAge);
-            //store the name in the session object
-            Session["AStaff"] = AStaff;
-            //navigates to the view page
-            Response.Redirect("StaffViewer.aspx");
+            //captre the Is manager
+            AStaff.IsManager = chkIsManager.Checked;
+            //create a new instance for the Staff collection
+            clsStaffCollection StaffList = new clsStaffCollection();
+            
+            //if this is a new record i.e. Staff Id = -1 then, add the data 
+            if(Convert.ToInt32(StaffId) == -1)
+            {
+            
+                //set the ThisStaff property
+                StaffList.ThisStaff = AStaff;
+                //add the new record 
+                StaffList.Add();
+            }
+            //otherwise it must be an update 
+            else
+            {
+                //find the record to update 
+                StaffList.ThisStaff.Find(Convert.ToInt32(StaffId));
+                //set the ThisStaff property 
+                StaffList.ThisStaff = AStaff;
+                //update the record 
+                StaffList.Update();
+
+            }
+            //redirect back to the list page
+            Response.Redirect("StaffList.aspx");
 
         }
         else
@@ -100,7 +154,6 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtStaffRegisterDate.Text = AStaff.StaffRegisterDate.ToString();
             txtStaffAddress.Text = AStaff.StaffAddress;
             txtStaffAge.Text = AStaff.StaffAge.ToString();
-            txtStaffName.Text = AStaff.StaffName;
             chkIsManager.Checked = AStaff.IsManager;
 
 

@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using System.IdentityModel.Tokens;
+
+using System.IdentityModel.Metadata;
+
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -46,6 +50,7 @@ public partial class _1_List : System.Web.UI.Page
         Response.Redirect("CustomerSupportDataEntry.aspx");
     }
 
+
     protected void btnEdit_Click(object sender, EventArgs e)
     {
         //variable to store the primary key of the record to be edited
@@ -68,6 +73,7 @@ public partial class _1_List : System.Web.UI.Page
             lblError.Text = "Please select a record from the list to edit";
         }
     }
+
 
     protected void btnDelete_Click(object sender, EventArgs e)
     {
@@ -93,6 +99,7 @@ public partial class _1_List : System.Web.UI.Page
             lblError.Text = "Please select a record from the list to delete";
         }
     }
+
 
     protected void btnApplyFilter_Click(object sender, EventArgs e)
     {
@@ -139,6 +146,7 @@ public partial class _1_List : System.Web.UI.Page
         //bind the data to list
         lstCustomerSupportList.DataBind();
     }
+
 
     protected void btnEdit_Click1(object sender, EventArgs e)
     {
@@ -194,3 +202,16 @@ public partial class _1_List : System.Web.UI.Page
 
     
 }
+
+}
+
+}
+
+}
+
+}
+
+
+
+
+
