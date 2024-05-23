@@ -118,7 +118,7 @@ namespace ClassLibrary
             //connect to the database 
             clsDataConnection DB = new clsDataConnection();
             //set the parameters for the new stored procedure
-            DB.AddParameter("@StaffId", mThisStaff.StaffId);
+            DB.AddParameter("@StaffID", mThisStaff.StaffId);
             DB.AddParameter("@StaffName", mThisStaff.StaffName);
             DB.AddParameter("@StaffEmail", mThisStaff.StaffEmail);
             DB.AddParameter("@StaffRegisterDate", mThisStaff.StaffRegisterDate);
@@ -127,6 +127,17 @@ namespace ClassLibrary
             DB.AddParameter("@IsManager", mThisStaff.IsManager);
             //execute the stroed procedure
              DB.Execute("sproc_tblStaff_Update");
+        }
+
+        public void Delete()
+        {
+            //delete the record pointed to by ThisStaff 
+            //connect to the database 
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the stored procedure
+            DB.AddParameter("@StaffID", mThisStaff.StaffId);
+            //execute the stored procedure 
+            DB.Execute("sproc_tblStaff_Delete");
         }
     }
 }

@@ -14,7 +14,8 @@
         <br />
         <br />
         <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="Add" />
-        <asp:Button ID="btnEdit" runat="server" Style="z-index: 1; left: 84px; position: absolute" Text="Edit" OnClick="btnEdit_Click" />
+        <asp:Button ID="btnEdit" runat="server" Style="z-index: 1; left: 80px; position: absolute" Text="Edit" OnClick="btnEdit_Click" />
+        <asp:Button ID="btnDelete" runat="server" Style="z-index: 1; left: 140px; position: absolute" Text="Delete" OnClick="btnDelete_Click" />
         <br />
         <br />
         <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 10px; position: absolute"></asp:Label>
