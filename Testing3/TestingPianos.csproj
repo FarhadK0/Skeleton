@@ -52,6 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="tstPiano.cs" />
     <Compile Include="tstPianoCollection.cs" />
+    <Compile Include="tstPianoUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
