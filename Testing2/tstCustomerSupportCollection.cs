@@ -251,5 +251,73 @@ namespace Testing2
             Assert.IsFalse( Found );
 
         }
+
+        [TestMethod]
+
+        public void ReportByTicketTypeMethodOK()
+        {
+            //create an instance of the class contaning un filtered results
+            clsCustomerSupportCollection AllCustomerSupports = new clsCustomerSupportCollection();
+
+            //create an instance of the filtered data
+            clsCustomerSupportCollection FilteredCustomerSupports = new clsCustomerSupportCollection();
+
+            //apply a blank string (should return all records);
+            FilteredCustomerSupports.ReportByTicketType("");
+
+            //test to see that the two values are the same
+            Assert.AreEqual(AllCustomerSupports.Count, FilteredCustomerSupports.Count );
+        }
+
+        [TestMethod]
+
+        public void ReportByTicketTypeNoneFound()
+        {
+            //create an instance of the class we want to create
+            clsCustomerSupportCollection FilteredCustomerSupports = new clsCustomerSupportCollection();
+
+            //apply a post code that doesn't exist
+            FilteredCustomerSupports.ReportByTicketType("xxx xxx");
+
+            //test to see that there are no records
+            Assert.AreEqual(0, FilteredCustomerSupports.Count);
+        }
+
+        [TestMethod]
+
+        public void ReportByTicketTypeTestDataFound()
+        {
+            //create an instance of the filtered data
+            clsCustomerSupportCollection FilteredCustomerSupports = new clsCustomerSupportCollection();
+
+            //variable to store the outcome
+            Boolean OK = true;
+
+            //apply a Ticket Type that doesn't exist
+            FilteredCustomerSupports.ReportByTicketType("PurchaseHistory");
+
+            //check that the correct number of records are found
+            if (FilteredCustomerSupports.Count == 2)
+            {
+                //check to see that the first record is 54
+                if (FilteredCustomerSupports.CustomerSupportList[0].TicketID != 54)
+                {
+                    OK = false;
+                }
+
+                //check to see that the first record is 55
+                if (FilteredCustomerSupports.CustomerSupportList[1].TicketID != 55)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+
+            //test to see that there are no records
+            Assert.IsTrue(OK);
+        }
     }
 }
