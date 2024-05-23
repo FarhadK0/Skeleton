@@ -134,5 +134,16 @@ namespace ClassLibrary
             //Execute he stored procedure
             DB.Execute("sproc_tblPurchases_Update");
         }
+        public void Delete()
+        {
+            //Deletes the record pointed to by thisPurchase (Connect to the database)
+            clsDataConnection DB = new clsDataConnection();
+
+            //Set the parameters for the stored procedure
+            DB.AddParameter("@PurchaseId", mThisPurchase.PurchaseId);
+
+            //Execute the stored procedure
+            DB.Execute("sproc_tblPurchases_Delete");
+        }
     }
 }

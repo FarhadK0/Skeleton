@@ -199,6 +199,52 @@ namespace Testing5
             //Test to see if ThisPurchase matches test data
             Assert.AreEqual(AllPurchases.ThisPurchase, TestItem);
         }
+
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            //Instance class of the class we wanted to create
+            clsPurchasesCollection AllPurchases = new clsPurchasesCollection();
+
+            //Add an item to the list & create the item of test data
+            clsPurchases TestItem = new clsPurchases();
+
+            //Variable to store Primary Key
+            Int32 PrimaryKey = 0;
+
+            //Properties being set
+            TestItem.PurchaseId = 1;
+            TestItem.CustomerName = "Chloe Hans";
+            TestItem.DeliveryOptions = "Morning";
+            TestItem.ProductPrice = 1.99;
+            TestItem.Quantity = 1;
+            TestItem.OrderDate = DateTime.Now;
+            TestItem.TotalAmount = 1.99;
+            TestItem.OrderConfirmed = true;
+
+            //Set ThisPurchase to the test data
+            AllPurchases.ThisPurchase = TestItem;
+
+            //Record added
+            PrimaryKey = AllPurchases.Add();
+
+            //Primary key of the test data
+            TestItem.PurchaseId = PrimaryKey;
+
+            //Record being looked for
+            AllPurchases.ThisPurchase.Find(PrimaryKey);
+
+            //Delete the record
+            AllPurchases.Delete();
+
+            //Find the record
+            Boolean Found = AllPurchases.ThisPurchase.Find(PrimaryKey);
+
+            //Test to see that the record was not found
+            Assert.IsFalse(Found);
+        }
+
+
     }
 }
 
