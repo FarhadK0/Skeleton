@@ -19,7 +19,6 @@ public partial class _1_DataEntry : System.Web.UI.Page
         clsPurchases APurchase = new clsPurchases();
 
         //Capture the attributes
-        string PurchaseId = txtPurchaseId.Text;
         string CustomerName = txtCustomerName.Text;
         string DeliveryOptions = txtDeliveryOptions.Text;
         string ProductPrice = txtProductPrice.Text;
