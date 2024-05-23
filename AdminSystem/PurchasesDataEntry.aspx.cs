@@ -8,10 +8,44 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    //Variable to store the primary key with pag level scope
+    Int32 PurchaseId;
+
     protected void Page_Load(object sender, EventArgs e)
     {
+        //Get the number of the Purchase to be processed
+        PurchaseId = Convert.ToInt32(Session["PurchaseId"]);
+        if (IsPostBack == false)
+        {
+            //if this is not a new record
+            if (PurchaseId != -1)
+            {
+                //Display the current data for the record
+                DisplayPurchase();
+            }
+        }
 
     }
+
+     protected void DisplayPurchase()
+    {
+        //Create an instance of the Purchase Book
+        clsPurchasesCollection AllPurchases = new clsPurchasesCollection();
+
+        //Find the record to update
+        AllPurchases.ThisPurchase.Find(PurchaseId);
+
+        //Display the data for the record
+        txtPurchaseId.Text = AllPurchases.ThisPurchase.PurchaseId.ToString();
+        txtCustomerName.Text = AllPurchases.ThisPurchase.CustomerName;
+        txtDeliveryOptions.Text = AllPurchases.ThisPurchase.DeliveryOptions;
+        txtProductPrice.Text = AllPurchases.ThisPurchase.ProductPrice.ToString();
+        txtQuantity.Text = AllPurchases.ThisPurchase.Quantity.ToString();
+        txtOrderDate.Text = AllPurchases.ThisPurchase.OrderDate.ToString();
+        txtTotalAmount.Text = AllPurchases.ThisPurchase.TotalAmount.ToString();
+        chkOrderConfirmed.Checked = AllPurchases.ThisPurchase.OrderConfirmed;
+    }
+
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
@@ -36,6 +70,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if (Error == "")
         {
             //Capture the attributes 2
+            APurchase.PurchaseId = PurchaseId;
             APurchase.CustomerName = CustomerName;
             APurchase.DeliveryOptions = DeliveryOptions;
             APurchase.ProductPrice = Convert.ToDouble(ProductPrice);
@@ -47,11 +82,26 @@ public partial class _1_DataEntry : System.Web.UI.Page
             //New instance created
             clsPurchasesCollection PurchaseList = new clsPurchasesCollection();
 
-            //ThisPurchase property set
-            PurchaseList.ThisPurchase = APurchase;
+            //If this is a new record
+            if (PurchaseId == -1)
+            {
+                //ThisPurchase property set
+                PurchaseList.ThisPurchase = APurchase;
 
-            //New record added
-            PurchaseList.Add();
+                //New record added
+                PurchaseList.Add();
+            }
+            else
+            {
+                //Find ThisPurchase record to update
+                PurchaseList.ThisPurchase.Find(PurchaseId);
+
+                //ThisPurchase property set
+                PurchaseList.ThisPurchase = APurchase;
+
+                //Update the record
+                PurchaseList.Update();
+            }
 
             //Navigate to the list page
             Response.Redirect("PurchasesList.aspx");
@@ -60,9 +110,9 @@ public partial class _1_DataEntry : System.Web.UI.Page
         {
             //Display the error message
             lblError.Text = Error;
-        }
+        } 
+        
 
-           
     }
 
     protected void CheckBox1_CheckedChanged1(object sender, EventArgs e)
