@@ -90,4 +90,51 @@ public partial class _1_List : System.Web.UI.Page
             lblError.Text = "Please select a record from the list to delete";
         }
     }
+
+    protected void btnClearFilter_Click(object sender, EventArgs e)
+    {
+        //Instance Created
+        clsPurchasesCollection APurchase = new clsPurchasesCollection();
+
+        //set an empty string
+        APurchase.ReportByCustomerName("");
+
+        //Clear any existing filter to tidy up interface
+        txtFilter.Text = "";
+
+        //Set the data source to the list of addresses in the collection
+        lstPurchaseList.DataSource = APurchase.PurchaseList;
+
+        //Set the name of the primary key
+        lstPurchaseList.DataValueField = "PurchaseId";
+
+        //Set the name of the field to display
+        lstPurchaseList.DataTextField = "CustomerName";
+
+        //Bind the data to the list
+        lstPurchaseList.DataBind();
+
+    }
+
+    protected void btnApplyFilter_Click(object sender, EventArgs e)
+    {
+        //Instance Created
+        clsPurchasesCollection APurchase = new clsPurchasesCollection();
+
+        //Retrieve the value or Customer Name from the presentation layer
+        APurchase.ReportByCustomerName(txtFilter.Text);
+
+        //Set the data source to the list of Purchases in the collection
+        lstPurchaseList.DataSource = APurchase.PurchaseList;
+
+        //Sets name of primary key
+        lstPurchaseList.DataValueField = "PurchaseId";
+
+        //Set the name of the field to display
+        lstPurchaseList.DataTextField = "CustomerName";
+
+        //Bind the data to the list
+        lstPurchaseList.DataBind();
+
+    }
 }
