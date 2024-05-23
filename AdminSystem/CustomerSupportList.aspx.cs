@@ -113,6 +113,7 @@ public partial class _1_List : System.Web.UI.Page
 
         //bind the data to the list
         lstCustomerSupportList.DataBind();
+
     }
 
     protected void btnClearFilter_Click(object sender, EventArgs e)
@@ -138,4 +139,58 @@ public partial class _1_List : System.Web.UI.Page
         //bind the data to list
         lstCustomerSupportList.DataBind();
     }
+
+    protected void btnEdit_Click1(object sender, EventArgs e)
+    {
+        //variable to store the primary key of the record to be edited
+        Int32 TicketID;
+
+        //if a record has been selected from the list
+        if (lstCustomerSupportList.SelectedIndex != -1)
+        {
+            //get the primary key value of the record to edit
+            TicketID = Convert.ToInt32(lstCustomerSupportList.SelectedValue);
+
+            //store the data in the session object
+            Session["TicketID"] = TicketID;
+
+            //redirec to the edit page
+            Response.Redirect("CustomerSupportDataEntry.aspx");
+        }
+        else  //if no record has been selected
+        {
+            lblError.Text = "Please select a record from the list to edit";
+        }
+
+
+    }
+
+    protected void btnDelete_Click1(object sender, EventArgs e)
+    {
+        //variable to store the primary key value of the record to be delete
+        Int32 TicketID;
+
+        //if a record has been selected from the list
+        if (lstCustomerSupportList.SelectedIndex != -1)
+        {
+            //get the primary key value of he record delete
+            TicketID = Convert.ToInt32(lstCustomerSupportList.SelectedValue);
+
+            //store the data in the seesion object
+            Session["TicketID"] = TicketID;
+
+            //redirect to the deletepage
+            Response.Redirect("CustomerSupportConfirmDelete.aspx");
+        }
+
+        else //if no record has been selected
+        {
+            //display an error message
+            lblError.Text = "Please select a record from the list to delete";
+        }
+    }
+
+
+
+    
 }

@@ -277,7 +277,7 @@ namespace Testing2
             clsCustomerSupportCollection FilteredCustomerSupports = new clsCustomerSupportCollection();
 
             //apply a post code that doesn't exist
-            FilteredCustomerSupports.ReportByTicketType("xxx xxx");
+            FilteredCustomerSupports.ReportByTicketType("bbb bbb");
 
             //test to see that there are no records
             Assert.AreEqual(0, FilteredCustomerSupports.Count);
