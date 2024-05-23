@@ -293,7 +293,7 @@ namespace Testing2
             //variable to store the outcome
             Boolean OK = true;
 
-            //apply a post code that doesn't exist
+            //apply a Ticket Type that doesn't exist
             FilteredCustomerSupports.ReportByTicketType("PurchaseHistory");
 
             //check that the correct number of records are found
@@ -306,7 +306,7 @@ namespace Testing2
                 }
 
                 //check to see that the first record is 55
-                if (FilteredCustomerSupports.CustomerSupportList[0].TicketID != 55)
+                if (FilteredCustomerSupports.CustomerSupportList[1].TicketID != 55)
                 {
                     OK = false;
                 }
@@ -317,7 +317,7 @@ namespace Testing2
             }
 
             //test to see that there are no records
-            Assert.IsTrue( OK );
+            Assert.IsTrue(OK);
         }
     }
 }
