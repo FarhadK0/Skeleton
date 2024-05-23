@@ -52,6 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="tstCustomerSupport.cs" />
     <Compile Include="tstCustomerSupportCollection.cs" />
+    <Compile Include="tstCustomerSupportUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
