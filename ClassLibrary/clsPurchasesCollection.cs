@@ -14,12 +14,13 @@ namespace ClassLibrary
 
         //Constructor for the class
         public clsPurchasesCollection() 
-        {
-            //Variable for the index
-            Int32 Index = 0;
+        {      
+
+            ////Variable for the index
+            //Int32 Index = 0;
             
-            //Variable to store the record count
-            Int32 RecordCount = 0;
+            ////Variable to store the record count
+            //Int32 RecordCount = 0;
 
             //Object for the data connect
             clsDataConnection DB = new clsDataConnection();
@@ -27,32 +28,35 @@ namespace ClassLibrary
             //Stored Procedure execution
             DB.Execute("sproc_tblPurchases_SelectAll");
 
-            //Counts of records
-            RecordCount = DB.Count;
+            //Populate the array list with the data table
+            PopulateArray(DB);
 
-            //While there are records to process
-            while (Index < RecordCount)
-            {
-                //Blank Purchase created
-                clsPurchases APurchase = new clsPurchases();
+            ////Counts of records
+            //RecordCount = DB.Count;
 
-                //Read in the fields for the current record
-                APurchase.PurchaseId = Convert.ToInt32(DB.DataTable.Rows[Index]["PurchaseId"]);
-                APurchase.Quantity = Convert.ToInt32(DB.DataTable.Rows[Index]["Quantity"]);
-                APurchase.CustomerName = Convert.ToString(DB.DataTable.Rows[Index]["CustomerName"]);
-                APurchase.DeliveryOptions = Convert.ToString(DB.DataTable.Rows[Index]["DeliveryOptions"]);
-                APurchase.ProductPrice = Convert.ToDouble(DB.DataTable.Rows[Index]["ProductPrice"]);
-                APurchase.TotalAmount = Convert.ToDouble(DB.DataTable.Rows[Index]["TotalAmount"]);
-                APurchase.OrderDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["OrderDate"]);
-                APurchase.OrderConfirmed = Convert.ToBoolean(DB.DataTable.Rows[Index]["OrderConfirmed"]);
+            ////While there are records to process
+            //while (Index < RecordCount)
+            //{
+            //    //Blank Purchase created
+            //    clsPurchases APurchase = new clsPurchases();
 
-                //Add record to the private data member
-                mPurchaseList.Add(APurchase);
+            //    //Read in the fields for the current record
+            //    APurchase.PurchaseId = Convert.ToInt32(DB.DataTable.Rows[Index]["PurchaseId"]);
+            //    APurchase.Quantity = Convert.ToInt32(DB.DataTable.Rows[Index]["Quantity"]);
+            //    APurchase.CustomerName = Convert.ToString(DB.DataTable.Rows[Index]["CustomerName"]);
+            //    APurchase.DeliveryOptions = Convert.ToString(DB.DataTable.Rows[Index]["DeliveryOptions"]);
+            //    APurchase.ProductPrice = Convert.ToDouble(DB.DataTable.Rows[Index]["ProductPrice"]);
+            //    APurchase.TotalAmount = Convert.ToDouble(DB.DataTable.Rows[Index]["TotalAmount"]);
+            //    APurchase.OrderDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["OrderDate"]);
+            //    APurchase.OrderConfirmed = Convert.ToBoolean(DB.DataTable.Rows[Index]["OrderConfirmed"]);
 
-                //Point at the next record
-                Index++;
+            //    //Add record to the private data member
+            //    mPurchaseList.Add(APurchase);
 
-            }
+            //    //Point at the next record
+            //    Index++;
+
+            //}
 
         }
 
@@ -144,6 +148,60 @@ namespace ClassLibrary
 
             //Execute the stored procedure
             DB.Execute("sproc_tblPurchases_Delete");
+        }
+
+        public void ReportByCustomerName(string CustomerName)
+        {
+            //Filters the record based on a full or partial Customer Name (Connects to the database)
+            clsDataConnection DB = new clsDataConnection();
+
+            //Send the Customer Name parameter to the database
+            DB.AddParameter("@CustomerName", CustomerName);
+
+            //Execite the stored procedure
+            DB.Execute("sproc_tblPurchases_FilterByCustomerName");
+
+            ////Populate Array the array list with the data table
+            PopulateArray(DB);
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            //Populate the array list based on the data table in the parameter DB
+            //Variable for the index
+            Int32 Index = 0;
+
+            //Variable to store the record count
+            Int32 RecordCount; /*= DB.Count;*/
+
+            //Get the count of records
+            RecordCount = DB.Count;
+
+            //Clear the private array list
+            mPurchaseList = new List<clsPurchases>();
+
+            //While there are records to process
+            while (Index < RecordCount)
+            {
+                //Create a blank Purchase object
+                clsPurchases APurchase = new clsPurchases();
+
+                //Read in the fields from the record
+                APurchase.CustomerName = Convert.ToString(DB.DataTable.Rows[Index]["CustomerName"]);
+                APurchase.DeliveryOptions = Convert.ToString(DB.DataTable.Rows[Index]["DeliveryOptions"]);
+                APurchase.ProductPrice = Convert.ToDouble(DB.DataTable.Rows[Index]["ProductPrice"]);
+                APurchase.TotalAmount = Convert.ToDouble(DB.DataTable.Rows[Index]["TotalAmount"]);
+                APurchase.Quantity = Convert.ToInt32(DB.DataTable.Rows[Index]["Quantity"]);
+                APurchase.PurchaseId = Convert.ToInt32(DB.DataTable.Rows[Index]["PurchaseId"]);
+                APurchase.OrderDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["OrderDate"]);
+                APurchase.OrderConfirmed = Convert.ToBoolean(DB.DataTable.Rows[Index]["OrderConfirmed"]);
+
+                //Add rthe record to the private data member
+                mPurchaseList.Add(APurchase);
+
+                //Point at the next record
+                Index++;
+            }
         }
     }
 }

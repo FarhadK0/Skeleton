@@ -244,7 +244,69 @@ namespace Testing5
             Assert.IsFalse(Found);
         }
 
+        [TestMethod]
+        public void ReportByCustomerNameMethodOK()
+        {
+            //Instance created
+            clsPurchasesCollection AllPurchases = new clsPurchasesCollection();
 
+            //Create an instance of the filtered data
+            clsPurchasesCollection FilteredPurchases = new clsPurchasesCollection();
+
+            //Apply a blank string (Should return all records);
+            FilteredPurchases.ReportByCustomerName("");
+
+            //Test to see that the two values are the same
+            Assert.AreEqual(AllPurchases.Count, FilteredPurchases.Count);
+
+        }
+
+        [TestMethod]
+        public void ReportByCustomerNameMethodFound()
+        {
+            //Instance created
+            clsPurchasesCollection FilteredPurchases = new clsPurchasesCollection();
+
+            //Apply a Customer Name that doesn't exist
+            FilteredPurchases.ReportByCustomerName("A-Long-Customer-Name-Indeeddd");
+
+            //Test to see that there are no records
+            Assert.AreEqual(0, FilteredPurchases.Count);
+        }
+
+        [TestMethod]
+        public void ReportByCustomerNameTestDataFound()
+        {
+            //Instance created
+            clsPurchasesCollection FilteredPurchases = new clsPurchasesCollection();
+
+            //Variable to store the outcome
+            Boolean OK = true;
+
+            //Apply a Customer Name that doesn't exist
+            FilteredPurchases.ReportByCustomerName("Lily Lans");
+
+            //Check that the correct number of records are found
+            if (FilteredPurchases.Count == 2)
+            {
+                //Check to see that the first record is 125
+                if (FilteredPurchases.PurchaseList[0].PurchaseId != 125)
+                {
+                    OK = false;
+                }
+                //Check to see that the next record is 126
+                if (FilteredPurchases.PurchaseList[1].PurchaseId != 126)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            //test to see if there are records
+            Assert.IsTrue(OK);
+        }
     }
 }
 
