@@ -104,6 +104,17 @@ namespace ClassLibrary
             return db.Execute("sproc_tblPiano_Insert");
         }
 
+        public void Delete()
+        {
+            //deletes the record pointed by thisPiano
+            //connect to db
+            clsDataConnection db = new clsDataConnection();
+            //add PianoId Param for sproc
+            db.AddParameter("@PianoId", mThisPiano.PianoId);
+            //exec sproc
+            db.Execute("sproc_tblPiano_Delete");
+        }
+
         public void Update()
         {
             //create a new db connection

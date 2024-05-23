@@ -195,5 +195,39 @@ namespace Testing3
             //test to see if ThisPiano matches the test data
             Assert.AreEqual(allPianos.ThisPiano, TestItem);
         }
+
+        public void DeleteMethodOK()
+        {
+            //create an instance of piano collection
+            clsPianoCollection allPianos = new clsPianoCollection();
+            //create the test item
+            clsPiano TestItem = new clsPiano();
+            //var to store PK
+            Int32 PK = 0;
+
+            //set TestItem properties
+            TestItem.PianoId = 1;
+            TestItem.DateAdded = DateTime.Now;
+            TestItem.Price = 999.99;
+            TestItem.Manufacturer = "Steinway";
+            TestItem.ModelName = "GG-1";
+            TestItem.IsInStock = true;
+            TestItem.SerialNumber = "dfh98";
+
+            //set ThisPiano to test data
+            allPianos.ThisPiano = TestItem;
+            //add the record
+            PK = allPianos.Add();
+            //set the PK of the test data
+            TestItem.PianoId = PK;
+            //find the record
+            allPianos.ThisPiano.Find(PK);
+            //delete record
+            allPianos.Delete();
+            //attemot to find the record once again
+            Boolean Found = allPianos.ThisPiano.Find(PK);
+            //test to see that the record was successfully deleted
+            Assert.IsFalse(Found);
+        }
     }
 }

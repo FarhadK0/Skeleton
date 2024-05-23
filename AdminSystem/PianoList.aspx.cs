@@ -59,4 +59,24 @@ public partial class _1_List : System.Web.UI.Page
             lblError.Text = "Please select a record from the list to edit";
         }
     }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        //PK of the record to be edited
+        Int32 PianoId;
+        //if a record has been selected from the list
+        if (lstPianoList.SelectedIndex != -1)
+        {
+            //get PK of the record to edit
+            PianoId = Convert.ToInt32(lstPianoList.SelectedValue);
+            //store the data in session object
+            Session["PianoId"] = PianoId;
+            //Redirect to edit page
+            Response.Redirect("PianoConfirmDelete.aspx");
+        }
+        else
+        {
+            lblError.Text = "Please select a record from the list to edit";
+        }
+    }
 }
