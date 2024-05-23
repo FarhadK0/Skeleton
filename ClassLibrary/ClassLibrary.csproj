@@ -48,6 +48,7 @@
     <Compile Include="clsDataConnection.cs" />
     <Compile Include="clsPiano.cs" />
     <Compile Include="clsPianoCollection.cs" />
+    <Compile Include="clsPianoUser.cs" />
     <Compile Include="clsPurchases.cs" />
     <Compile Include="clsPurchasesCollection.cs" />
     <Compile Include="clsPurchasesPiano.cs" />
