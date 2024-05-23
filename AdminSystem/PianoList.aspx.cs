@@ -79,4 +79,37 @@ public partial class _1_List : System.Web.UI.Page
             lblError.Text = "Please select a record from the list to edit";
         }
     }
+
+    protected void btnApplyFilter_Click(object sender, EventArgs e)
+    {
+        //create an isnatnce of the piano list
+        clsPianoCollection allPianos = new clsPianoCollection();
+        //retrieve the value of the serial number from the textbox
+        allPianos.ReportBySerialNumber(txtFilterBySerialNumber.Text);
+        //set the data source to list of pianos in the collection
+        lstPianoList.DataSource = allPianos.PianoList;
+        //set hte name of the pk
+        lstPianoList.DataValueField = "PianoId";
+        //set the data field to display
+        lstPianoList.DataTextField = "ModelName";
+        //bind the data to the list
+        lstPianoList.DataBind();
+    }
+
+    protected void btnClearFilter_Click(object sender, EventArgs e)
+    {
+
+        //create an isnatnce of the piano list
+        clsPianoCollection allPianos = new clsPianoCollection();
+        //retrieve the value of the serial number from the textbox
+        allPianos.ReportBySerialNumber("");
+        //set the data source to list of pianos in the collection
+        lstPianoList.DataSource = allPianos.PianoList;
+        //set hte name of the pk
+        lstPianoList.DataValueField = "PianoId";
+        //set the data field to display
+        lstPianoList.DataTextField = "ModelName";
+        //bind the data to the list
+        lstPianoList.DataBind();
+    }
 }
