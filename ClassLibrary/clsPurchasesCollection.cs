@@ -115,5 +115,24 @@ namespace ClassLibrary
             //return the PrimaryKey of the new record
             return DB.Execute("sproc_tblPurchases_Insert");
         }
+
+        public void Update()
+        {
+            //Update a existing record based on the values of ThisPurchase (Connect to Database)
+            clsDataConnection DB = new clsDataConnection();
+
+            //Set the parameters fo the new stored procedures
+            DB.AddParameter("@PurchaseId", mThisPurchase.PurchaseId);
+            DB.AddParameter("@CustomerName", mThisPurchase.CustomerName);
+            DB.AddParameter("@DeliveryOptions", mThisPurchase.DeliveryOptions);
+            DB.AddParameter("@ProductPrice", mThisPurchase.ProductPrice);
+            DB.AddParameter("@Quantity", mThisPurchase.Quantity);
+            DB.AddParameter("@OrderDate", mThisPurchase.OrderDate);
+            DB.AddParameter("@TotalAmount", mThisPurchase.TotalAmount);
+            DB.AddParameter("@OrderConfirmed", mThisPurchase.OrderConfirmed);
+
+            //Execute he stored procedure
+            DB.Execute("sproc_tblPurchases_Update");
+        }
     }
 }
