@@ -16,6 +16,13 @@ public partial class _1_List : System.Web.UI.Page
             //update the list box
             DisplayPianos();
         }
+
+        //create a new instance of the clsPianoUser
+        clsPianoUser anUser = new clsPianoUser();
+        //obtain data from the session object
+        anUser = (clsPianoUser)Session["anUser"];
+        //display the username
+        Response.Write("Logged in as: " + anUser.UserName);
     }
 
     private void DisplayPianos()
@@ -111,5 +118,11 @@ public partial class _1_List : System.Web.UI.Page
         lstPianoList.DataTextField = "ModelName";
         //bind the data to the list
         lstPianoList.DataBind();
+    }
+
+    protected void btnReturnToMainMenu_Click(object sender, EventArgs e)
+    {
+        //return to main menu
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }

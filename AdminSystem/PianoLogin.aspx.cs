@@ -27,6 +27,8 @@ public partial class PianoLogin : System.Web.UI.Page
         password = Convert.ToString(txtPassword.Text);
         //find the record
         Found = anUser.FindUser(username, password);
+        //Add a session to capture the username
+        Session["anUser"] = anUser;
 
         //if username and/or password is empty
         if (txtUsername.Text == "")
@@ -53,6 +55,7 @@ public partial class PianoLogin : System.Web.UI.Page
 
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-
+        //redirect to the main menu
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }

@@ -41,6 +41,7 @@
 
         <p>
             <asp:Button ID="btnFind" runat="server" Height="43px" OnClick="btnFind_Click" Text="Find" Width="63px" />
+            <asp:Button ID="btnReturnToMainMenu" runat="server" OnClick="btnReturnToMainMenu_Click" style="z-index: 1; left: 120px; top: 327px; position: absolute" Text="Return to Main Menu" />
         </p>
         <p>
             &nbsp;</p>
