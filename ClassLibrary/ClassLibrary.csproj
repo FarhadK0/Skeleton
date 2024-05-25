@@ -53,6 +53,7 @@
     <Compile Include="clsPurchases.cs" />
     <Compile Include="clsPurchasesCollection.cs" />
     <Compile Include="clsPurchasesPiano.cs" />
+    <Compile Include="clsPurchaseUser.cs" />
     <Compile Include="clsStaff.cs" />
     <Compile Include="clsStaffCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
