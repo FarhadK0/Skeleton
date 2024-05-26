@@ -107,7 +107,7 @@ namespace Testing6
 
         }
 
-
+        
         [TestMethod]
         public void AddMethodOK()
         {
@@ -140,6 +140,9 @@ namespace Testing6
 
         }
 
+        
+
+        
         
 
         [TestMethod]
@@ -220,6 +223,71 @@ namespace Testing6
 
 
         }
+
+
+        [TestMethod]
+        public void ReportByStaffAddressMethodOK()
+        {
+            //creating an instance of the class we want to create.
+            clsStaffCollection AllStaffs = new clsStaffCollection();
+            //create an instance of the staff method
+            clsStaffCollection FilteredStaffs= new clsStaffCollection();
+            //apply a blank string (should return all records)
+            FilteredStaffs.ReportByStaffAddress("");
+            //test to see that the two values are the same 
+            Assert.AreEqual(AllStaffs.Count, FilteredStaffs.Count);
+
+        }
+
+
+        [TestMethod]
+        public void ReportByStaffAddressNoneFoundMethodOK()
+        {
+            //creating an instance of the class we want to create.
+            clsStaffCollection FilteredStaffs = new clsStaffCollection();
+            //apply a staff address that doesn't exist
+            FilteredStaffs.ReportByStaffAddress("xxx xxx");
+            //test to see there are no records
+            Assert.AreEqual(0, FilteredStaffs.Count);
+
+        }
+
+
+        [TestMethod]
+        public void ReportByStaffAddressTestDataFound()
+        {
+            //creating an instance of the class we want to create.
+            clsStaffCollection FilteredStaffs = new clsStaffCollection();
+            //variable to store the outcome
+            Boolean OK = true;
+            //apply a staff address that doesn't exists 
+            FilteredStaffs.ReportByStaffAddress("yyy yyy");
+            //check that the correct number of records are found 
+            if(FilteredStaffs.Count == 2)
+            {
+                //check to see that the first record is 118
+                if (FilteredStaffs.StaffList[0].StaffId != 118)
+                {
+                    OK = false;
+                }
+
+                //check to see that the first record is 119
+                if (FilteredStaffs.StaffList[1].StaffId != 119)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            //test to see that there are no records 
+            Assert.IsTrue(OK);
+
+        }
+
+
+
 
 
 

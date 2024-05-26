@@ -18,9 +18,42 @@
         <asp:Button ID="btnDelete" runat="server" Style="z-index: 1; left: 140px; position: absolute" Text="Delete" OnClick="btnDelete_Click" />
         <br />
         <br />
-        <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 10px; position: absolute"></asp:Label>
+        <br />
+
+      
+        <p>
+            <asp:Label ID="lblFilter" runat="server" Text="Enter a Staff Address" height="22px" width="153px"></asp:Label>
+&nbsp;
+            <asp:TextBox ID="txtFilter" runat="server" Height="19px" top="80px"  Width="161px"></asp:TextBox>
+        </p>
+        <p>
+            &nbsp;</p>
+        <p>
+            <asp:Button ID="btnApplyFilter" runat="server" OnClick="btnApplyFilter_Click" Text="Apply Filter" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="btnClearFilter" runat="server" OnClick="btnClearFilter_Click" Text="Clear Filter" />
+        </p>
+        <p>
+        <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 16px; position: absolute; top: 768px; width: 68px;"></asp:Label>
+
+      
+        </p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
 
       
     </form>
+    <p>
+        &nbsp;</p>
 </body>
 </html>
