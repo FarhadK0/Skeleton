@@ -17,7 +17,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         //get the number of staff to be processed 
-        StaffId = Convert.ToInt32(Session[StaffId]);
+        StaffId = Convert.ToInt32(Session["StaffId"]);
         if(IsPostBack == false)
         {
             //if this is not a new record 
@@ -37,32 +37,22 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //find the record to update 
         StaffBook.ThisStaff.Find(StaffId);
         //display the data for the record 
-        txtStaffId .Text = StaffBook.ThisStaff.StaffId.ToString();
-        txtStaffName.Text = StaffBook.ThisStaff.StaffName.ToString();
-        txtStaffEmail.Text = StaffBook.ThisStaff.StaffEmail.ToString();
+        txtStaffId.Text = StaffBook.ThisStaff.StaffId.ToString();
+        txtStaffName.Text = StaffBook.ThisStaff.StaffName;
+        txtStaffEmail.Text = StaffBook.ThisStaff.StaffEmail;
         txtStaffRegisterDate.Text = StaffBook.ThisStaff.StaffRegisterDate.ToString();
-        txtStaffAddress.Text = StaffBook.ThisStaff.StaffAddress.ToString();
+        txtStaffAddress.Text = StaffBook.ThisStaff.StaffAddress;
         txtStaffAge.Text = StaffBook.ThisStaff.StaffAge.ToString();
         chkIsManager.Checked = StaffBook.ThisStaff.IsManager;
 
     }
 
-    protected void txtStaffId_TextChanged(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void txtStaffId_TextChanged1(object sender, EventArgs e)
-    {
-
-    }
+    
 
     protected void btnOk_Click(object sender, EventArgs e)
     {
         //create a new instance of clsStaff
         clsStaff AStaff = new clsStaff();
-        //caputres the staff Id
-        string StaffId = txtStaffId.Text;
         //capture the staff name
         string StaffName = txtStaffName.Text;
         //captures the staff email
@@ -82,7 +72,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if (Error == "")
         {
             //capture the staff Id 
-            AStaff.StaffId = Convert.ToInt32(StaffId);
+            AStaff.StaffId = StaffId;
             //capture the Staff name
             AStaff.StaffName = StaffName;
             //captures the staff email

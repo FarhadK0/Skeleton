@@ -23,7 +23,7 @@
         </p>
         <p>
             <asp:Label ID="lblStaffRegisterDate" runat="server" Style="z-index: 1; left: 10px; top: 148px; position: absolute; right: 1759px; width: 97px" Text="Register Date"></asp:Label>
-            <asp:TextBox ID="txtStaffRegisterDate" runat="server" style="z-index: 1; left: 104px; top: 148px; position: absolute" width="219px"></asp:TextBox>
+            <asp:TextBox ID="txtStaffRegisterDate" runat="server" style="z-index: 1; left: 104px; top: 148px; position: absolute" width="219px" TextMode="DateTime"></asp:TextBox>
         </p>
         <p>
             <asp:Label ID="lblStaffAddress" runat="server" style="z-index: 1; left: 10px; top: 186px; position: absolute" Text="Staff Address" width="95px"></asp:Label>
