@@ -33,6 +33,10 @@
         
       
         
+        <asp:Button ID="btnMainMenu" runat="server" OnClick="btnMainMenu_Click" style="z-index: 1; left: 416px; top: 514px; position: absolute" Text="Return to Main Menu" />
+        
+      
+        
     </form>
 </body>
 </html>

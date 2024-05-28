@@ -39,6 +39,7 @@
         <p>
         <asp:CheckBox ID="chkTicketElevated" runat="server" style="z-index: 1; left: 158px; top: 323px; position: absolute" Text="TicketElevated" />
         </p>
+        <asp:Button ID="btnMainMenu" runat="server" OnClick="btnMainMenu_Click" style="z-index: 1; left: 249px; top: 375px; position: absolute" Text="Return to Main Menu" />
     </form>
 </body>
 </html>

@@ -34,6 +34,9 @@ public partial class CustomerSupportLogin : System.Web.UI.Page
         //find the record 
         Found = AnUser.FindUser(UserName, Password);
 
+        //Add a session to capture the user name
+        Session["AnUser"] = AnUser;
+
         //if username and/or password is empty
         if (txtUserName.Text == "")
         {
@@ -62,5 +65,11 @@ public partial class CustomerSupportLogin : System.Web.UI.Page
             lblError.Text = "Login Details are Incorrect. Please try again";
         }
                 
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        //Redirect to the main menu
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }
