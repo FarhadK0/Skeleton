@@ -139,4 +139,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
             chkIsInStock.Checked = aPiano.IsInStock;
         }
     }
+
+    protected void btnReturnToMainMenu_Click(object sender, EventArgs e)
+    {
+        //go back to the main menu
+        Response.Redirect("TeamMainMenu.aspx");
+    }
 }
