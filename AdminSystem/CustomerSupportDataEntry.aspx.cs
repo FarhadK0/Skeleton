@@ -163,4 +163,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
         chkTicketElevated.Checked = CustomerSupport.ThisCustomerSupport.TicketElevated;
 
     }
+
+    protected void btnMainMenu_Click(object sender, EventArgs e)
+    {
+        //Redirect to Main Menu
+        Response.Redirect("TeamMainMenu.aspx");
+    }
 }
