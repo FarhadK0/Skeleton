@@ -146,11 +146,15 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtStaffAge.Text = AStaff.StaffAge.ToString();
             chkIsManager.Checked = AStaff.IsManager;
 
-
-
-
         }
 
 
     }
+
+
+    protected void btnMain_Click(object sender, EventArgs e)
+    {
+        //redirect to the Main menu
+        Response.Redirect("TeamMainMenu.aspx");
     }
+}
