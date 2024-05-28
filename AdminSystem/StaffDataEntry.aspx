@@ -40,14 +40,15 @@
             <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 10px; top: 304px; position: absolute; height: 19px"></asp:Label>
         </p>
         <p>
-            <asp:Button ID="btnOk" runat="server" OnClick="btnOk_Click" style="z-index: 1; left: 10px; top: 335px; position: absolute" Text="OK" />
-            <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 87px; top: 335px; position: absolute" Text="Cancel" />
+            <asp:Button ID="btnOk" runat="server" OnClick="btnOk_Click" style="z-index: 1; left: 9px; top: 335px; position: absolute" Text="OK" height="26px" />
+            <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 87px; top: 335px; position: absolute" Text="Cancel" height="26px" />
         </p>
         <p>
-            <asp:Button ID="btnFind" runat="server" Height="34px" Text="Find" Width="51px" style="z-index: 1; left: 10px; top: 380px; position: absolute" OnClick="btnFind_Click1" />
+            <asp:Button ID="btnFind" runat="server" Height="34px" Text="Find" Width="51px" style="z-index: 1; left: 9px; top: 380px; position: absolute" OnClick="btnFind_Click1" />
         </p>
         <p>
-            &nbsp;</p>
+            <asp:Button ID="btnMain" runat="server" style="z-index: 1; left: 200px; top: 335px; position: absolute" Text="Return to Main Menu" height="26px" OnClick="btnMain_Click" />
+        </p>
         <p>
             &nbsp;</p>
     </form>
