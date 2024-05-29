@@ -230,6 +230,65 @@ namespace Testing3
             Assert.IsFalse(Found);
         }
 
+
+        [TestMethod]
+        public void ReportByModelNameMethodOK()
+        {
+            //create an instance of the class containing unfiltered results
+            clsPianoCollection allPianos = new clsPianoCollection();
+            //create an instance of the filtered data
+            clsPianoCollection filteredPianos = new clsPianoCollection();
+            //apply a blank string
+            filteredPianos.ReportByModelName("");
+            //test to see that the two values are the same
+            Assert.AreEqual(allPianos.Count, filteredPianos.Count);
+        }
+
+        [TestMethod]
+        public void ReportByModelNameNoneFound()
+        {
+            //create an instance of the filtered data
+            clsPianoCollection filteredPianos = new clsPianoCollection();
+            //apply a serial number that doesn't exist
+            filteredPianos.ReportByModelName("a-fake-piano");
+            //test to see that there are no records
+            Assert.AreEqual(0, filteredPianos.Count);
+        }
+
+        [TestMethod]
+        public void ReportByModelNameTestDataFound()
+        {
+            //create an instance of the filtered data
+            clsPianoCollection filteredPianos = new clsPianoCollection();
+            //var for storing outcome
+            Boolean OK = true;
+            //apply a serial number that exists among few records
+            filteredPianos.ReportByModelName("Upright B1");
+            
+            //check that the correct number of records are found
+            if (filteredPianos.Count == 2)
+            {
+                //check to see that the first record's PianoId is 1
+                if (filteredPianos.PianoList[0].PianoId != 1)
+                {
+                    OK = false;
+                }
+                //check to see that the next record's PianoId is 25
+                if (filteredPianos.PianoList[1].PianoId != 105)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            //test to see that there are two records
+            Assert.IsTrue(OK);
+        }
+
+
+        /*
         [TestMethod]
         public void ReportBySerialNumberMethodOK()
         {
@@ -285,5 +344,6 @@ namespace Testing3
             //test to see that there are two records
             Assert.IsTrue(OK);
         }
+        */
     }
 }

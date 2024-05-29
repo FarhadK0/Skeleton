@@ -92,7 +92,7 @@ public partial class _1_List : System.Web.UI.Page
         //create an isnatnce of the piano list
         clsPianoCollection allPianos = new clsPianoCollection();
         //retrieve the value of the serial number from the textbox
-        allPianos.ReportBySerialNumber(txtFilterBySerialNumber.Text);
+        allPianos.ReportByModelName(txtFilterByModelName.Text);
         //set the data source to list of pianos in the collection
         lstPianoList.DataSource = allPianos.PianoList;
         //set hte name of the pk
@@ -109,7 +109,7 @@ public partial class _1_List : System.Web.UI.Page
         //create an isnatnce of the piano list
         clsPianoCollection allPianos = new clsPianoCollection();
         //retrieve the value of the serial number from the textbox
-        allPianos.ReportBySerialNumber("");
+        allPianos.ReportByModelName("");
         //set the data source to list of pianos in the collection
         lstPianoList.DataSource = allPianos.PianoList;
         //set hte name of the pk
