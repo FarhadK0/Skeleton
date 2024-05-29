@@ -10,13 +10,13 @@ public partial class PurchaseLogin : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        
     }
 
     protected void btnLogin_Click(object sender, EventArgs e)
     {
         //create and instance of the piano user clas
-        clsPurchaseUser anUser = new clsPurchaseUser();
+        clsPurchaseUser AnUser = new clsPurchaseUser();
 
         //create the vars to store the user entered username & password
         string Username = txtUsername.Text;
@@ -30,7 +30,10 @@ public partial class PurchaseLogin : System.Web.UI.Page
         Password = Convert.ToString(txtPassword.Text);
 
         //find the record
-        Found = anUser.FindUser(Username, Password);
+        Found = AnUser.FindUser(Username, Password);
+
+        //Session added to capture the Username
+        Session["AnUser"] = AnUser;
 
         //if username and/or password is empty
         if (txtUsername.Text == "")
@@ -57,6 +60,7 @@ public partial class PurchaseLogin : System.Web.UI.Page
 
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-
+        //redirect to main menu
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }

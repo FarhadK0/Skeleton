@@ -122,7 +122,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-
+        //redirect to main menu
+        Response.Redirect("PurchasesList.aspx");
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
@@ -154,5 +155,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtTotalAmount.Text = APurchase.TotalAmount.ToString();
             chkOrderConfirmed.Checked = APurchase.OrderConfirmed;
         }
+    }
+
+    protected void btnMainMenu_Click(object sender, EventArgs e)
+    {
+        //Redirect to the data entry page
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }

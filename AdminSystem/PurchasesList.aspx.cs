@@ -16,6 +16,15 @@ public partial class _1_List : System.Web.UI.Page
             //Update the list box
             DisplayPurchases();
         }
+
+        //Instance Created
+        clsPurchaseUser AnUser = new clsPurchaseUser();
+
+        //Get data from the session object
+        AnUser = (clsPurchaseUser)Session["AnUser"];
+
+        //Display Username
+        Response.Write("Logged in as: " + AnUser.UserName);
     }
     void DisplayPurchases()
     {
@@ -136,5 +145,17 @@ public partial class _1_List : System.Web.UI.Page
         //Bind the data to the list
         lstPurchaseList.DataBind();
 
+    }
+
+    //protected void btnMainMenu_Click(object sender, EventArgs e)
+    //{
+    //    //Redirect to the data entry page
+    //    Response.Redirect("TeamMainMenu.aspx");
+    //}
+
+    protected void btnMainmenu_Click(object sender, EventArgs e)
+    {
+        //Redirect to the data entry page
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }
