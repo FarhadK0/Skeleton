@@ -23,7 +23,7 @@ namespace ClassLibrary
 
 
 
-        //Private data member for the Purchase ID property
+        //Private data member for the OrderDate property
         private DateTime mOrderDate;
         public DateTime OrderDate
         {
@@ -39,7 +39,7 @@ namespace ClassLibrary
             }
         }
 
-        //Private data member for the Purchase ID property
+        //Private data member for the CustomerName property
         private string mCustomerName;
         public string CustomerName
         {
@@ -55,7 +55,7 @@ namespace ClassLibrary
             }
         }
 
-        //Private data member for the Purchase ID property
+        //Private data member for the DeliveryOptions property
         private string mDeliveryOptions;
         public string DeliveryOptions
         {
@@ -71,7 +71,7 @@ namespace ClassLibrary
             }
         }
 
-        //Private data member for the Purchase ID property
+        //Private data member for the ProductPrice property
         private double mProductPrice;
         public double ProductPrice
         {
@@ -87,7 +87,7 @@ namespace ClassLibrary
             }
         }
 
-        //Private data member for the Purchase ID property
+        //Private data member for the Quantity property
         private int mQuantity;
         public int Quantity
         {
@@ -103,7 +103,7 @@ namespace ClassLibrary
             }
         }
 
-        //Private data member for the Purchase ID property
+        //Private data member for the TotalAmount property
         private double mTotalAmount;
         public double TotalAmount
         {
@@ -119,7 +119,7 @@ namespace ClassLibrary
             }
         }
 
-        //Private data member for the Purchase ID property
+        //Private data member for the OrderConfirmed property
         private Boolean mOrderConfirmed;
         public bool OrderConfirmed
         {
@@ -178,9 +178,10 @@ namespace ClassLibrary
 
         }
 
+        /**VALIDATION METHOD**/
         public string Valid(string customerName, string deliveryOptions, string productPrice, string quantity, string orderDate, string totalAmount)
         {
-            //This is` the Valid Method
+            //This is the Valid Method
 
             //String variable to store error
             String Error = "";
@@ -191,6 +192,13 @@ namespace ClassLibrary
             //Create instance of DateTime to compare with DateTemp
             //In the if statements
             DateTime DateComp = DateTime.Now.Date;
+
+            //Create new variable for storing actual productPrice & totalAmount as double
+            Double ProductPriceAsDouble;
+            Double TotalAmountAsDouble;
+
+            //Create new variable for storing actual Quanitity as Int
+            Int32 QuantityAsInt32;
 
             //If the CustomerName is blank
             if (customerName.Length == 0)
@@ -218,42 +226,58 @@ namespace ClassLibrary
                 Error = Error + "The delivery options must be less than 150 characters: <br>  ";
             }
 
-            //If ProductPrice is less than 0
-            //try
+            try
             {
-                //ProductPriceAsDouble = Convert.ToDouble(productPrice);
+                ProductPriceAsDouble = Convert.ToDouble(productPrice);
 
+                //If ProductPrice is less than 0
+                if (ProductPriceAsDouble < 0)
+                {
+                    Error = Error + "The Product Price can't be smaller than £0.00: <br> ";
+                }
             }
-            ProductPrice = Convert.ToDouble(productPrice);
-            if (ProductPrice < 0)
+            catch
             {
-                Error = Error + "The Product Price can't be smaller than £0.00: <br> ";
+                //Error being recorded cause of invalid data type
+                Error = Error + "Please input the Product Price: <br>";
             }
 
-            //If TotalAmount is less than 0
-            TotalAmount = Convert.ToDouble(totalAmount);
-            if (TotalAmount < 0)
+            try
             {
-                Error = Error + "The Total Amount can't be smaller than £0.00: <br> ";
+                TotalAmountAsDouble = Convert.ToDouble(totalAmount);
+
+                //If Total Amount is less than 0
+                if (TotalAmountAsDouble < 0)
+                {
+                    Error = Error + "The Total Amount can't be smaller than £0.00: <br> ";
+                }
+            }
+            catch
+            {
+                //Error being recorded cause of invalid data type
+                Error = Error + "Please  input the Total Amount: <br>";
+            }
+
+            try
+            {
+                QuantityAsInt32 = Convert.ToInt32(quantity);
+
+                //If the Quantity is less than 1
+                if (QuantityAsInt32 < 1)
+                {
+                    Error = Error + "The quantity can't be less than one: <br>  ";
+                }
+                //If the Quantity is greater than 250
+                if (QuantityAsInt32 > 250)
+                {
+                    Error = Error + "The quantity can't be more than 250: <br>  ";
+                }
+            }
+            catch
+            {
+                Error = Error + "Please input a Quantity: <br>  ";
             }
         
-            //If the Quantity is less than 1
-            Quantity = Convert.ToInt32(quantity);
-            if (Quantity < 1)
-            {
-                //Record the error
-                Error = Error + "The quantity can't be less than one: <br>  ";
-            }
-            //If the Quantity is greater than 250
-            Quantity = Convert.ToInt32(quantity);
-            if (Quantity > 250)
-            {
-                //Record the error
-                Error = Error + "The quantity can't be more than 250: <br>  ";
-            }
-
-        
-
             try
             {
                 //Copy the OrderDate value to the DateTemp variable
