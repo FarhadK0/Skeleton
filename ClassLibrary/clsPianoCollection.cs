@@ -90,15 +90,15 @@ namespace ClassLibrary
             db.Execute("sproc_tblPiano_Delete");
         }
 
-        public void ReportBySerialNumber(string SerialNumber)
+        public void ReportByModelName(string ModelName)
         {
             //filters th records based on a full or partial serial number
             //connect to db
             clsDataConnection db = new clsDataConnection();
             //send the SerialNumber param to the db
-            db.AddParameter("@SerialNumber", SerialNumber);
+            db.AddParameter("@ModelName", ModelName);
             //execute the sproc
-            db.Execute("sproc_tblPiano_FilterBySerialNumber");
+            db.Execute("sproc_tblPiano_FilterByModelName");
             //populate the array list with the data table
             PopulateArray(db);
         }
