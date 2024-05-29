@@ -60,7 +60,7 @@
         </p>
         <p>
             &nbsp;</p>
-            <asp:CheckBox ID="chkOrderConfirmed" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged1" Text="OrderConfirmed" height="28px" style="z-index: 1; left: 93px; top: 399px; position: absolute" />
+            <asp:CheckBox ID="chkOrderConfirmed" runat="server" Text="OrderConfirmed" height="28px" style="z-index: 1; left: 93px; top: 399px; position: absolute" />
     </form>
 </body>
 </html>

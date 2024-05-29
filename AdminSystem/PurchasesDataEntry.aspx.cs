@@ -77,7 +77,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             APurchase.Quantity = Convert.ToInt32(Quantity);
             APurchase.OrderDate = Convert.ToDateTime(OrderDate);
             APurchase.TotalAmount = Convert.ToDouble(TotalAmount);
-            APurchase.OrderConfirmed = Convert.ToBoolean(OrderConfirmed);
+            APurchase.OrderConfirmed = chkOrderConfirmed.Checked;
 
             //New instance created
             clsPurchasesCollection PurchaseList = new clsPurchasesCollection();
@@ -111,13 +111,6 @@ public partial class _1_DataEntry : System.Web.UI.Page
             //Display the error message
             lblError.Text = Error;
         } 
-        
-
-    }
-
-    protected void CheckBox1_CheckedChanged1(object sender, EventArgs e)
-    {
-
     }
 
     protected void btnCancel_Click(object sender, EventArgs e)

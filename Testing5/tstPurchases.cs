@@ -431,11 +431,11 @@ namespace Testing5
             Assert.AreEqual(Error, "");
         }
 
+        //---------------------------------------------- (CUSTOMER NAME VALID METHOD)
+
         [TestMethod]
         public void CustomerNameMinMinusOne()
         {
-
-            //This is the CustomerName Valid Method
 
             //Instance of Class Created
             clsPurchases APurchase = new clsPurchases();
@@ -478,8 +478,6 @@ namespace Testing5
         public void CustomerNameMin()
         {
 
-            //This is the CustomerName Valid Method
-
             //Instance of Class Created
             clsPurchases APurchase = new clsPurchases();
 
@@ -499,8 +497,6 @@ namespace Testing5
         [TestMethod]
         public void CustomerNameMaxMinusOne()
         {
-
-            //This is the CustomerName Valid Method
 
             //Instance of Class Created
             clsPurchases APurchase = new clsPurchases();
@@ -523,8 +519,6 @@ namespace Testing5
         public void CustomerNameMax()
         {
 
-            //This is the CustomerName Valid Method
-
             //Instance of Class Created
             clsPurchases APurchase = new clsPurchases();
 
@@ -544,8 +538,6 @@ namespace Testing5
         [TestMethod]
         public void CustomerNameMaxPlusOne()
         {
-
-            //This is the CustomerName Valid Method
 
             //Instance of Class Created
             clsPurchases APurchase = new clsPurchases();
@@ -567,8 +559,6 @@ namespace Testing5
         public void CustomerNameMid()
         {
 
-            //This is the CustomerName Valid Method
-
             //Instance of Class Created
             clsPurchases APurchase = new clsPurchases();
 
@@ -589,8 +579,6 @@ namespace Testing5
         public void CustomerNameExtremeMax()
         {
 
-            //This is the CustomerName Valid Method
-
             //Instance of Class Created
             clsPurchases APurchase = new clsPurchases();
 
@@ -607,6 +595,9 @@ namespace Testing5
             //Test to see if result is correct
             Assert.AreNotEqual(Error, "");
         }
+
+        //---------------------------------------------- (DELIVERY OPTIONS VALID METHOD)
+
         [TestMethod]
         public void DeliveryOptionsMinMinusOne()
         {
@@ -785,6 +776,9 @@ namespace Testing5
             Assert.AreNotEqual(Error, "");
         }
 
+        //---------------------------------------------- (PRODUCT PRICE VALID METHOD)
+
+
         [TestMethod]
         public void ProductPriceExtremeMin()
         {
@@ -874,6 +868,28 @@ namespace Testing5
         }
 
         [TestMethod]
+        public void ProductPriceInvalidDataType()
+        {
+            //create an instance of the class we want to create
+            clsPurchases APurchase = new clsPurchases();
+
+            //string variable to store any error message
+            String Error = "";
+
+            //set target test data
+            string ProductPrice = "ProductPrice";
+
+            //invoke the method
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);    
+            
+            //Test to see if result is correct
+            Assert.AreNotEqual(Error, ""); 
+        }
+
+        //---------------------------------------------- (TOTAL AMOUNT VALID METHOD)
+
+
+        [TestMethod]
         public void TotalAmountExtremeMin()
         {
 
@@ -961,11 +977,31 @@ namespace Testing5
             Assert.AreEqual(Error, "");
         }
 
-            [TestMethod]
+        [TestMethod]
+        public void TotalAmountInvalidDataType()
+        {
+            //create an instance of the class we want to create
+            clsPurchases APurchase = new clsPurchases();
+
+            //string variable to store any error message
+            String Error = "";
+
+            //set target test data
+            string TotalAmount = "TotalAmount";
+
+            //invoke the method
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //---------------------------------------------- (QUANTITY VALID METHOD)
+
+
+        [TestMethod]
             public void QuantityMinMinusOne()
             {
-
-                //This is the Quantity Valid Method
 
                 //Instance of Class Created
                 clsPurchases APurchase = new clsPurchases();
@@ -987,8 +1023,6 @@ namespace Testing5
             public void QuantityMin()
             {
 
-            //This is the Quantity Valid Method
-
                 //Instance of Class Created
                 clsPurchases APurchase = new clsPurchases();
 
@@ -1009,7 +1043,6 @@ namespace Testing5
             [TestMethod]
             public void QuantityMinPlusOne()
             {
-                //This is the Quantity Valid Method
 
                 //Instance of Class Created
                 clsPurchases APurchase = new clsPurchases();
@@ -1030,8 +1063,6 @@ namespace Testing5
             [TestMethod]
             public void QuantityMaxMinusOne()
             {
-
-            //This is the Quantity Valid Method
 
             //Instance of Class Created
             clsPurchases APurchase = new clsPurchases();
@@ -1054,10 +1085,8 @@ namespace Testing5
             public void QuantityMax()
             {
 
-            //This is the Quantity Valid Method
-
-            //Instance of Class Created
-            clsPurchases APurchase = new clsPurchases();
+                //Instance of Class Created
+                clsPurchases APurchase = new clsPurchases();
 
                 //String Variable to store error message
                 String Error = "";
@@ -1076,8 +1105,6 @@ namespace Testing5
             public void QuantityMaxPlusOne()
             {
 
-                //This is the DeliveryOptions Valid Method
-
                 //Instance of Class Created
                 clsPurchases APurchase = new clsPurchases();
 
@@ -1094,7 +1121,7 @@ namespace Testing5
                 Assert.AreNotEqual(Error, "");
             }
 
-            //This is the CustomerName Valid Method
+            //This is the Quantity Valid Method
             [TestMethod]
             public void QuantityMid()
             {
@@ -1119,8 +1146,6 @@ namespace Testing5
         public void QuantityExtremeMax()
         {
 
-            //This is the DeliveryOptions Valid Method
-
             //Instance of Class Created
             clsPurchases APurchase = new clsPurchases();
 
@@ -1137,6 +1162,29 @@ namespace Testing5
             Assert.AreNotEqual(Error, "");
 
         }
+
+        [TestMethod]
+        public void QuantityInvalidDataType()
+        {
+
+            //Instance of Class Created
+            clsPurchases APurchase = new clsPurchases();
+
+            //String Variable to store error message
+            String Error = "";
+
+            //Some test date to pass method
+            string Quantity = "Quantity";
+
+            //Method Invoked
+            Error = APurchase.Valid(CustomerName, DeliveryOptions, ProductPrice, Quantity, OrderDate, TotalAmount);
+
+            //Test to see if result is correct
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        //---------------------------------------------- (ORDER DATE VALID METHOD)
 
         [TestMethod]
         public void OrderDateExtremeMin()
@@ -1194,6 +1242,7 @@ namespace Testing5
             Assert.AreNotEqual(Error, "");
 
         }
+
         [TestMethod]
         public void OrderDateMinPlusOne()
         {
@@ -1294,28 +1343,7 @@ namespace Testing5
             Assert.AreNotEqual(Error, ""); 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
-
     }
 }
 
