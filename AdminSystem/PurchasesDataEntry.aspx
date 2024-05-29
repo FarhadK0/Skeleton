@@ -24,7 +24,8 @@
         <asp:TextBox ID="txtPurchaseId" runat="server" style="z-index: 1; left: 86px; top: 26px; position: absolute; bottom: 784px;" height="22px" width="128px"></asp:TextBox>
         <asp:Label ID="lblDeliveryOptions" runat="server" style="z-index: 1; left: 10px; top: 120px; position: absolute" Text="Delivery Options" height="38px" width="51px"></asp:Label>
         <p>
-            &nbsp;</p>
+            <asp:Button ID="btnMainMenu" runat="server" OnClick="btnMainMenu_Click" style="z-index: 1; left: 213px; top: 538px; position: absolute" Text="Main Menu" />
+            </p>
         <p class="auto-style1">
         <asp:Label ID="lblProductPrice" runat="server" style="z-index: 1; left: 10px; top: 176px; position: absolute" Text="Product Price" height="38px" width="51px"></asp:Label>
         </p>
@@ -35,9 +36,9 @@
         <asp:TextBox ID="txtProductPrice" runat="server" style="z-index: 1; left: 86px; top: 191px; position: absolute" height="22px" width="128px"></asp:TextBox>
         <asp:TextBox ID="txtQuantity" runat="server" style="z-index: 1; left: 86px; top: 239px; position: absolute" height="22px" width="128px"></asp:TextBox>
         <asp:TextBox ID="txtOrderDate" runat="server" style="z-index: 1; left: 86px; top: 290px; position: absolute" height="22px" width="128px"></asp:TextBox>
-        <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 30px; top: 547px; position: absolute" Text="OK" />
+        <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 30px; top: 538px; position: absolute" Text="OK" />
         <asp:TextBox ID="txtTotalAmount" runat="server" style="z-index: 1; left: 86px; top: 350px; position: absolute" height="22px" width="128px"></asp:TextBox>
-        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 110px; top: 547px; position: absolute" Text="Cancel" OnClick="btnCancel_Click" />
+        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 110px; top: 538px; position: absolute" Text="Cancel" OnClick="btnCancel_Click" />
         </div>
         <p>
             &nbsp;</p>

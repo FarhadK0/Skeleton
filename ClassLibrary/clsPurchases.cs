@@ -188,6 +188,10 @@ namespace ClassLibrary
             //create a temporary variable to store the date values
             DateTime DateTemp;
 
+            //Create instance of DateTime to compare with DateTemp
+            //In the if statements
+            DateTime DateComp = DateTime.Now.Date;
+
             //If the CustomerName is blank
             if (customerName.Length == 0)
             {
@@ -215,6 +219,11 @@ namespace ClassLibrary
             }
 
             //If ProductPrice is less than 0
+            //try
+            {
+                //ProductPriceAsDouble = Convert.ToDouble(productPrice);
+
+            }
             ProductPrice = Convert.ToDouble(productPrice);
             if (ProductPrice < 0)
             {
@@ -243,9 +252,7 @@ namespace ClassLibrary
                 Error = Error + "The quantity can't be more than 250: <br>  ";
             }
 
-        //Create instance of DateTime to compare with DateTemp
-        //In the if statements
-        DateTime DateComp = DateTime.Now.Date;
+        
 
             try
             {
