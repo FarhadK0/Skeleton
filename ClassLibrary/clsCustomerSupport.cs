@@ -228,9 +228,9 @@ namespace ClassLibrary
             }
 
             //if the Description is greater than 20 characters
-            if (description.Length > 30)
+            if (description.Length > 100)
             {
-                Error = Error + "The Description must be less than 30 characters <br>";
+                Error = Error + "The Description must be less than 100 characters <br>";
 
             }
 

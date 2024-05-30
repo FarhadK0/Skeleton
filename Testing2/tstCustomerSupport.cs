@@ -795,7 +795,7 @@ namespace Testing2
             string Error = "";
 
             //create some test data to pass the method
-            string Description ="ddddddddddddddddddddddddddddd"; //this should be ok
+            string Description = "ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"; //this should be ok
 
             //invoke the method
             Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
@@ -816,7 +816,7 @@ namespace Testing2
             string Error = "";
 
             //create some test data to pass the method
-            string Description = "dddddddddddddddddddddddddddddd"; //this should be ok
+            string Description = "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"; //this should be ok
 
             //invoke the method
             Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
@@ -837,7 +837,7 @@ namespace Testing2
             string Error = "";
 
             //create some test data to pass the method
-            string Description = "ddddddddddddddd"; //this should be ok
+            string Description = "dddddddddddddddddddddddddddddddddddddddddddddddddd"; //this should be ok
 
             //invoke the method
             Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
@@ -858,7 +858,7 @@ namespace Testing2
             string Error = "";
 
             //create some test data to pass the method
-            string Description = "ddddddddddddddddddddddddddddddd"; //this should be ok
+            string Description = "ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"; //this should be ok
 
             //invoke the method
             Error = AnCustomerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
@@ -880,7 +880,7 @@ namespace Testing2
 
             //create some test data to pass to the method
             string Description = "";
-            Description = Description.PadRight(100, 'd'); //this should fail
+            Description = Description.PadRight(200, 'd'); //this should fail
 
             //invoke the method
             Error = AnCustmerSupport.Valid(TicketType, Subject, Description, SubmissionDate, TicketStatus);
