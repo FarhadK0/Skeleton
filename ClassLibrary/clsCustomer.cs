@@ -154,9 +154,7 @@ namespace ClassLibrary
         public string Valid(string CustomerName, string CustomerEmail, string CustomerPhone, string CustomerAddress, string Dateofbirth)
         {
             // Create a string variab;le to store teh error
-            String Error = "";
-            //Cretae a temporay variable to store date values
-            DateTime DateTemp;
+            string Error = "";
 
             //If the CustomerName is blank
             if (CustomerName.Length == 0)
@@ -207,11 +205,11 @@ namespace ClassLibrary
                 Error = Error + "The Customer Phone must be less than or equal to 18 characters : ";
             }
 
-            DateTime dateToday = DateTime.Now.Date;
-            
-
             try
             {
+                DateTime dateToday = DateTime.Now.Date;
+                //Cretae a temporay variable to store date values
+                DateTime DateTemp;
                 DateTemp = Convert.ToDateTime(Dateofbirth);
 
                 if (DateTemp > dateToday.AddYears(-18))
@@ -223,7 +221,7 @@ namespace ClassLibrary
             {
                 Error = Error + "The date of birth is not vaild date.";
             }
-             
+
 
             // return any error massages
             return Error;

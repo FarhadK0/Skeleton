@@ -9,12 +9,46 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 CustomerID;
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        // get the number of the address to be processed
+        CustomerID = Convert.ToInt32(Session["CustomerID"]);
+        if (IsPostBack == false)
+        {
+            //if this is the not new record
+            if (CustomerID != -1)
+            {
+                //display the current data for record
+                DisplayCustomer();
+            }
+        }
 
+
+
+    }
+    void DisplayCustomer()
+    {
+        // create an instance of the customer book
+        clsCustomerCollection CustomerBook = new clsCustomerCollection();
+        //find the recor to update
+        CustomerBook.ThisCustomer.Find(CustomerID);
+        //display the data for the record
+        txtCustomerID.Text = CustomerBook.ThisCustomer.CustomerID.ToString();
+        txtName.Text = CustomerBook.ThisCustomer.CustomerName.ToString();
+        txtEamil.Text = CustomerBook.ThisCustomer.CustomerEmail.ToString();
+        txtPhone.Text = CustomerBook.ThisCustomer.CustomerPhone.ToString();
+        txtAddress.Text = CustomerBook.ThisCustomer.CustomerAddress.ToString();
+        txtDateofbirth.Text = CustomerBook.ThisCustomer.Dateofbirth.ToString();
+        chkhasPurchases.Checked = CustomerBook.ThisCustomer.hasPurchases;
+    }
 
     protected void btnOk_Click(object sender, EventArgs e)
     {
+
         //Create  a new instance of clsCustomer
         clsCustomer AnCustomer = new clsCustomer();
+       
         //capture the CustomerName
         string CustomerName = txtName.Text;
         //capture the CustomerEmail
@@ -33,22 +67,40 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = AnCustomer.Valid(CustomerName, CustomerEmail, CustomerPhone, CustomerAddress, Dateofbirth);
         if (Error == "")
         {
-
-
+            AnCustomer.CustomerID = CustomerID;
             //capture the CustomerName
-            AnCustomer.CustomerName = txtName.Text;
+            AnCustomer.CustomerName = CustomerName;
             //capture the CustomerEmail
-            AnCustomer.CustomerEmail = txtEamil.Text;
+            AnCustomer.CustomerEmail = CustomerEmail;
             //capture the CustomerPhone
-            AnCustomer.CustomerPhone = txtPhone.Text;
+            AnCustomer.CustomerPhone = CustomerPhone;
             //capture the CustomerAddress
-            AnCustomer.CustomerAddress = txtAddress.Text;
+            AnCustomer.CustomerAddress = CustomerAddress;
             //capture the Dateofbirth
-            AnCustomer.Dateofbirth = Convert.ToDateTime(DateTime.Now);
-            // store the customer in the sesion objrct
-            Session["AnCustomer"] = AnCustomer;
-            //navegate to view page
-            Response.Redirect("CustomerViewer.aspx");
+            AnCustomer.Dateofbirth = Convert.ToDateTime(Dateofbirth);
+            // capture hasPurchases
+            AnCustomer.hasPurchases = chkhasPurchases.Checked;
+            //create a new instance of the the customer collection
+            clsCustomerCollection CustomerList = new clsCustomerCollection();
+
+            // if this is a new record i.e CustomerID = -1 then add the data
+            if (CustomerID == -1)
+            {
+                //set the ThisCustomer property
+                CustomerList.ThisCustomer = AnCustomer;
+                //add the new record
+                CustomerList.Add();
+            }
+            else
+            {
+                CustomerList.ThisCustomer.Find(CustomerID);
+                //set the ThisCustomer property
+                CustomerList.ThisCustomer = AnCustomer;
+                //Update record
+                CustomerList.Update();
+            }
+            //redirect back to the list page
+            Response.Redirect("CustomerList.aspx");
         }
         else
         {
@@ -78,6 +130,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if (Found == true)
         {
             //display yhe value of the properties in the form
+            txtCustomerID.Text =AnCustomer.CustomerID.ToString();
             txtName.Text = AnCustomer.CustomerName;
             txtEamil.Text = AnCustomer.CustomerEmail;
             txtPhone.Text = AnCustomer.CustomerPhone; 

@@ -14,7 +14,7 @@ namespace Testing1
         string CustomerEmail = "Jainish@gmail.com";
         string CustomerPhone = "0099887766";
         string CustomerAddress = "1234 Leicster";
-        string Dateofbirth = DateTime.Now.Date.ToShortDateString();
+        string Dateofbirth = Convert.ToString("25/02/1988");
 
         [TestMethod]
         public void InstanceOK()
@@ -43,7 +43,7 @@ namespace Testing1
             //create an instance of the class we want to create
             clsCustomer AnCustomer = new clsCustomer();
             //create some test data to assign to the property
-            string TestData = "Some Name";
+            string TestData = "Name";
             //assign the data to the property
             AnCustomer.CustomerName = TestData;
             //test to see that the two values are the same
@@ -245,7 +245,7 @@ namespace Testing1
             //invoke the method
             Found = AnCustomer.Find(CustomerID);
             //check the post code property
-            if (AnCustomer.CustomerAddress != "1234 Leicster ")
+            if (AnCustomer.CustomerAddress != "1234 Leicester")
             {
                 OK = false;
             }
@@ -709,37 +709,40 @@ namespace Testing1
         [TestMethod]
         public void DateofbirthMin()
         {
-           //create an instance of the class we want to create
-           clsCustomer AnCustomer = new clsCustomer();
-           String Error = "";
-            DateTime TestData;
-            //create some test data to pass to method
-            TestData = DateTime.Now.Date;
-           string Dateofbirth = TestData.ToString();// 18 years old
-           Error = AnCustomer.Valid(CustomerName, CustomerEmail, CustomerPhone, CustomerAddress, Dateofbirth);
-           // test to see that the result is correct
-           Assert.AreEqual(Error, "");
+            // Create an instance of the class we want to test
+            clsCustomer AnCustomer = new clsCustomer();
+            String Error = "";
+            // Create some test data to pass to method
+            DateTime testData = DateTime.Now.Date.AddYears(-18);
+            string Dateofbirth = testData.ToString(); // This would be the date 18 years ago
+
+            // Invoke the Valid method
+             Error = AnCustomer.Valid(CustomerName, CustomerEmail, CustomerPhone, CustomerAddress, Dateofbirth);
+
+            // Test to see that the result is correct
+            Assert.AreEqual(Error, "");
         }
         [TestMethod]
         public void DateofbirthMinPlusOne()
         {
-            //create an instance of the class we want to create
+            // Create an instance of the class we want to create
             clsCustomer AnCustomer = new clsCustomer();
-            //string variable to store any error message
+            // String variable to store any error message
             String Error = "";
-            //create a variable to store the test date data
+            // Create a variable to store the test date data
             DateTime TestData;
-            //set the date totodays date
+            // Set the date to today's date
             TestData = DateTime.Now.Date;
-            //change the date to whatever the date is less 1 day
-            TestData = TestData.AddYears(1);
-            //convert the date variable to a string variable
+            // Change the date to whatever the date is minus 1 day
+            TestData = TestData.AddYears(-19); // Adjusted to be one day more than 18 years ago
+                                                          // Convert the date variable to a string variable
             string Dateofbirth = TestData.ToString();
-            //invoke the method
+            // Invoke the method
             Error = AnCustomer.Valid(CustomerName, CustomerEmail, CustomerPhone, CustomerAddress, Dateofbirth);
-            //test to see that the result is correct
+            // Test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
+
         [TestMethod]
         public void DateofbirthInvalidDataType()
         {
