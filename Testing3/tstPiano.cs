@@ -129,7 +129,7 @@ namespace Testing3
             //create a Boolean variable to store the results of the validation
             Boolean Found = false;
             //create some test data to use with the method
-            Int32 PianoId = 2;
+            Int32 PianoId = 4;
             //invoke the method
             Found = aPiano.Find(PianoId);
             //test to see if result is true
@@ -147,11 +147,11 @@ namespace Testing3
             //create a Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 PianoId = 2;
+            Int32 PianoId = 4;
             //invoke the method
             Found = aPiano.Find(PianoId);
             //check the address id property
-            if (aPiano.PianoId != 2)
+            if (aPiano.PianoId != 4)
             {
                 OK = false;
             }
@@ -169,11 +169,11 @@ namespace Testing3
             //create a Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 PianoId = 2;
+            Int32 PianoId = 4;
             //invoke the method
             Found = aPiano.Find(PianoId);
             //check the address id property
-            if (aPiano.DateAdded != Convert.ToDateTime("12/06/2024"))
+            if (aPiano.DateAdded != Convert.ToDateTime("21/09/2023"))
             {
                 OK = false;
             }
@@ -191,11 +191,11 @@ namespace Testing3
             //create a Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 PianoId = 2;
+            Int32 PianoId = 4;
             //invoke the method
             Found = aPiano.Find(PianoId);
             //check the address id property
-            if (aPiano.Price != 399.99)
+            if (aPiano.Price != 359.99)
             {
                 OK = false;
             }
@@ -213,11 +213,11 @@ namespace Testing3
             //create a Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 PianoId = 2;
+            Int32 PianoId = 4;
             //invoke the method
             Found = aPiano.Find(PianoId);
             //check the address id property
-            if (aPiano.Manufacturer != "Kawai")
+            if (aPiano.Manufacturer != "Yamaha")
             {
                 OK = false;
             }
@@ -235,11 +235,11 @@ namespace Testing3
             //create a Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 PianoId = 2;
+            Int32 PianoId = 4;
             //invoke the method
             Found = aPiano.Find(PianoId);
             //check the address id property
-            if (aPiano.ModelName != "GX")
+            if (aPiano.ModelName != "Electric")
             {
                 OK = false;
             }
@@ -257,11 +257,11 @@ namespace Testing3
             //create a Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 PianoId = 2;
+            Int32 PianoId = 4;
             //invoke the method
             Found = aPiano.Find(PianoId);
             //check the address id property
-            if (aPiano.IsInStock != true)
+            if (aPiano.IsInStock != false)
             {
                 OK = false;
             }
@@ -279,11 +279,11 @@ namespace Testing3
             //create a Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 PianoId = 2;
+            Int32 PianoId = 4;
             //invoke the method
             Found = aPiano.Find(PianoId);
             //check the address id property
-            if (aPiano.SerialNumber != "00231")
+            if (aPiano.SerialNumber != "8374A")
             {
                 OK = false;
             }
