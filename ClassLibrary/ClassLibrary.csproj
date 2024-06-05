@@ -46,6 +46,7 @@
     <Compile Include="clsCustomerSupport.cs" />
     <Compile Include="clsCustomerSupportCollection.cs" />
     <Compile Include="clsCustomerSupportUser.cs" />
+    <Compile Include="clsCustomerUser.cs" />
     <Compile Include="clsDataConnection.cs" />
     <Compile Include="clsPiano.cs" />
     <Compile Include="clsPianoCollection.cs" />
