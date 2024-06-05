@@ -102,11 +102,11 @@ namespace Testing1
             Int32 PrimaryKey = 0;
             // set its properties 
             TestItem.CustomerID = 1;
-            TestItem.CustomerName = "Jainish";
-            TestItem.CustomerEmail = "Jainish@gmail.com";
-            TestItem.CustomerPhone = "0099887766";
-            TestItem.Dateofbirth = Convert.ToDateTime("03/05/2002");
-            TestItem.CustomerAddress = "1234 Leicster";
+            TestItem.CustomerName = "Add method Customer";
+            TestItem.CustomerEmail = "CustomerEmail";
+            TestItem.CustomerPhone = "0099887700";
+            TestItem.Dateofbirth = Convert.ToDateTime("07/05/2001");
+            TestItem.CustomerAddress = "12346 Leicster";
             TestItem.hasPurchases = true;
             // set ThisCustomer to the test data
             AllCustomers.ThisCustomer = TestItem;
@@ -130,11 +130,11 @@ namespace Testing1
             Int32 PrimaryKey = 0;
             // set its properties 
             TestItem.CustomerID = 1;
-            TestItem.CustomerName = "Jainish";
-            TestItem.CustomerEmail = "Jainish@gmail.com";
-            TestItem.CustomerPhone = "0099887766";
-            TestItem.Dateofbirth = Convert.ToDateTime("03/05/2002");
-            TestItem.CustomerAddress = "1234 Leicster";
+            TestItem.CustomerName = "Pablo";
+            TestItem.CustomerEmail = "Pablo@gmail.com";
+            TestItem.CustomerPhone = "0099886666";
+            TestItem.Dateofbirth = Convert.ToDateTime("10/10/2000");
+            TestItem.CustomerAddress = "14 Leicster";
             TestItem.hasPurchases = true;
             // set ThisCustomer to the test data
             AllCustomers.ThisCustomer = TestItem;
@@ -144,11 +144,11 @@ namespace Testing1
             TestItem.CustomerID = PrimaryKey;
             // MODIFY THE TEST RECORD
             TestItem.CustomerID = 3;
-            TestItem.CustomerName = "Wataru";
-            TestItem.CustomerEmail = "Wataru@gmail.com";
-            TestItem.CustomerPhone = "0991123567";
-            TestItem.Dateofbirth = Convert.ToDateTime("01/09/1998");
-            TestItem.CustomerAddress = "1 Leicester";
+            TestItem.CustomerName = "Iphone";
+            TestItem.CustomerEmail = "Iphone@gmail.com";
+            TestItem.CustomerPhone = "9944556677";
+            TestItem.Dateofbirth = Convert.ToDateTime("24/12/1999");
+            TestItem.CustomerAddress = "67 Leicester";
             TestItem.hasPurchases = true;
             //SET THE Record based  on the new test data
             AllCustomers.ThisCustomer = TestItem;
@@ -170,11 +170,11 @@ namespace Testing1
             Int32 PrimaryKey = 0;
             // set its properties 
             TestItem.CustomerID = 1;
-            TestItem.CustomerName = "Jainish";
-            TestItem.CustomerEmail = "Jainish@gmail.com";
-            TestItem.CustomerPhone = "0099887766";
-            TestItem.Dateofbirth = Convert.ToDateTime("03/05/2002");
-            TestItem.CustomerAddress = "1234 Leicster";
+            TestItem.CustomerName = "Ronaldo";
+            TestItem.CustomerEmail = "Ronaldo@gmail.com";
+            TestItem.CustomerPhone = "0006661290";
+            TestItem.Dateofbirth = Convert.ToDateTime("20/11/2004");
+            TestItem.CustomerAddress = "38 Leicster";
             TestItem.hasPurchases = true;
             // set ThisCustomer to the test data
             AllCustomers.ThisCustomer = TestItem;
