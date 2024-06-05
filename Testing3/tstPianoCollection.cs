@@ -18,7 +18,7 @@ namespace Testing3
         }
 
         [TestMethod]
-        public void AddressListOK()
+        public void PianoListOK()
         {
             //create an instance of allPianos
             clsPianoCollection allPianos = new clsPianoCollection();
@@ -138,9 +138,9 @@ namespace Testing3
             //set TestItem properties
             TestItem.PianoId = 1;
             TestItem.DateAdded = DateTime.Now;
-            TestItem.Price = 999.99;
-            TestItem.Manufacturer = "Roland";
-            TestItem.ModelName = "A Nice Piano";
+            TestItem.Price = 99999.99;
+            TestItem.Manufacturer = "Bosendorf";
+            TestItem.ModelName = "Nice Piano";
             TestItem.IsInStock = true;
             TestItem.SerialNumber = "dfh9sdad";
 
@@ -155,10 +155,10 @@ namespace Testing3
             TestItem.PianoId = 9;
             TestItem.DateAdded = DateTime.Now;
             TestItem.Price = 999.98;
-            TestItem.Manufacturer = "Roland";
-            TestItem.ModelName = "Not A Nice Piano";
+            TestItem.Manufacturer = "Bosendorf";
+            TestItem.ModelName = "What Used to be A Nice Piano";
             TestItem.IsInStock = false;
-            TestItem.SerialNumber = "dasdad";
+            TestItem.SerialNumber = "dfh9sdad";
 
             //set ThisPiano to new test data
             allPianos.ThisPiano = TestItem;
@@ -183,10 +183,10 @@ namespace Testing3
             TestItem.PianoId = 1;
             TestItem.DateAdded = DateTime.Now;
             TestItem.Price = 999.99;
-            TestItem.Manufacturer = "Steinway";
-            TestItem.ModelName = "GG-1";
+            TestItem.Manufacturer = "ShadyKeys";
+            TestItem.ModelName = "ToyPiano";
             TestItem.IsInStock = true;
-            TestItem.SerialNumber = "dfh98";
+            TestItem.SerialNumber = "asdja";
 
             //set ThisPiano to test data
             allPianos.ThisPiano = TestItem;
