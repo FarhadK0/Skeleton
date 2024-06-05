@@ -31,7 +31,7 @@
             <asp:Label ID="lblUserName" runat="server" style="z-index: 1; left: 55px; top: 148px; position: absolute" Text="UserName:"></asp:Label>
             <asp:TextBox ID="txtPassword" runat="server" style="z-index: 1; left: 142px; top: 193px; position: absolute" TextMode="Password"></asp:TextBox>
             <asp:Button ID="btnLogin" runat="server" OnClick="btnLogin_Click" style="z-index: 1; left: 142px; top: 241px; position: absolute" Text="Login" />
-            <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 217px; top: 241px; position: absolute" Text="Cancel" />
+            <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 217px; top: 241px; position: absolute" Text="Cancel" OnClick="btnCancel_Click" />
             <asp:Label ID="lblPassword" runat="server" style="z-index: 1; left: 55px; top: 196px; position: absolute" Text="Password:"></asp:Label>
             <asp:TextBox ID="txtUserName" runat="server" style="z-index: 1; left: 146px; top: 147px; position: absolute"></asp:TextBox>
         </p>

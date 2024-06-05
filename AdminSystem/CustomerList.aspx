@@ -8,6 +8,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:Button ID="btnReturnMainMenu" runat="server" OnClick="btnReturnMainMenu_Click" style="z-index: 1; left: 348px; top: 420px; position: absolute" Text="Return to Main Menu" />
         <asp:ListBox ID="lstCustomerList" runat="server" Height="232px" OnSelectedIndexChanged="ListBox1_SelectedIndexChanged" Width="341px"></asp:ListBox>
         <br />
         <br />
