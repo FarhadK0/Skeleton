@@ -18,7 +18,16 @@ public partial class _1_List : System.Web.UI.Page
             //Update the list box
             DisplayCustomers();
         }
+        //create an intance of the clsCustomerUser
+        clsCustomerUser AnUser = new clsCustomerUser();
+        //get data from the session object
+        AnUser = (clsCustomerUser)Session["AnUser"];
+        //display the user name
+        Response.Write("Logged in as:" + AnUser.UserName);
+
     }
+
+
     void DisplayCustomers()
     {
         //create an intance of the Customer collection
@@ -127,6 +136,12 @@ public partial class _1_List : System.Web.UI.Page
         lstCustomerList.DataTextField = "CustomerEmail";
         //bind the data to the list
         lstCustomerList.DataBind();
+    }
+
+    protected void btnReturnMainMenu_Click(object sender, EventArgs e)
+    {
+        //redirect to main menu
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }
 

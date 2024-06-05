@@ -29,6 +29,8 @@ public partial class CustomerBookingLogin : System.Web.UI.Page
         Password = Convert.ToString(txtPassword.Text);
         //find the record
         Found = AnUser.FindUser(UserName, Password);
+        //add a session to capture the user name
+        Session["AnUser"] = AnUser;
         if (txtUserName.Text == "") 
         {
             //record the error
@@ -50,5 +52,11 @@ public partial class CustomerBookingLogin : System.Web.UI.Page
             //record the error
             lblError.Text = "Login details are incorrect. Please try again";
         }
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        //redirect to the main menu 
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }
