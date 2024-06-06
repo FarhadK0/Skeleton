@@ -284,18 +284,18 @@ namespace Testing5
             Boolean OK = true;
 
             //Apply a Customer Name that doesn't exist
-            FilteredPurchases.ReportByCustomerName("Lily Lans");
+            FilteredPurchases.ReportByCustomerName("Jemie Killai");
 
             //Check that the correct number of records are found
             if (FilteredPurchases.Count == 2)
             {
-                //Check to see that the first record is 125
-                if (FilteredPurchases.PurchaseList[0].PurchaseId != 125)
+                //Check to see that the first record is 174
+                if (FilteredPurchases.PurchaseList[0].PurchaseId != 174)
                 {
                     OK = false;
                 }
-                //Check to see that the next record is 126
-                if (FilteredPurchases.PurchaseList[1].PurchaseId != 126)
+                //Check to see that the next record is 175
+                if (FilteredPurchases.PurchaseList[1].PurchaseId != 175)
                 {
                     OK = false;
                 }
